@@ -1,16 +1,9 @@
 'use client';
 
+import { InputFormField } from '@/app/components/form-field';
 import { login } from '@/app/utils/api';
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { Form } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -20,8 +13,8 @@ const formSchema = z.object({
   username: z.string().min(2, {
     message: 'Username must be at least 2 characters.',
   }),
-  password: z.string().min(6, {
-    message: 'Password must be at least 6 characters.',
+  password: z.string().min(8, {
+    message: 'Password must be at least 8 characters.',
   }),
 });
 
@@ -54,40 +47,18 @@ export default function SignInPage() {
         >
           <h2 className="text-white text-2xl font-bold mb-6">Login</h2>
           <div className="space-y-4">
-            <FormField
-              control={form.control}
+            <InputFormField
+              form={form}
               name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-gray-300">Username</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Enter your username"
-                      {...field}
-                      className="bg-[#2e2e2e] text-white"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="Username"
+              placeholder="Enter your username"
             />
-            <FormField
-              control={form.control}
+            <InputFormField
+              form={form}
               name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-gray-300">Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="Enter your password"
-                      {...field}
-                      className="bg-[#2e2e2e] text-white"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="Password"
+              type="password"
+              placeholder="Enter your password"
             />
           </div>
           <Button
