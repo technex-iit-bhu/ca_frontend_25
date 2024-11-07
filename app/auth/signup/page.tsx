@@ -43,6 +43,7 @@ export default function SignupPage() {
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(formSchema),
+    mode: 'onBlur',
     defaultValues: {
       name: '',
       username: '',
