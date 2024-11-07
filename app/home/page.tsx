@@ -101,7 +101,7 @@ const CAPortal = () => {
           id="about"
           className="flex h-auto flex-col items-start justify-center bg-zinc-900 px-6 text-left sm:h-screen sm:px-12 md:px-24"
         >
-          <h2 className="text-3xl font-normal sm:text-4xl sm:text-6xl">
+          <h2 className="text-3xl font-normal sm:text-4xl sm:text-8xl">
             About <span className="text-red-600">Technex</span>
           </h2>
           <p className="mt-4 max-w-2xl text-white sm:text-xl">
