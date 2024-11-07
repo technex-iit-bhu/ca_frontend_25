@@ -1,33 +1,47 @@
-"use client";
-import React, { useEffect } from "react";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
+'use client';
+import React, { useEffect } from 'react';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
 const CAPortal = () => {
   const handleScroll = () => {
-    const firstSection = document.getElementById("first-section") as HTMLElement;
-    const aboutSection = document.getElementById("about") as HTMLElement;
+    const firstSection = document.getElementById('first-section') as HTMLElement;
+    const aboutSection = document.getElementById('about') as HTMLElement;
 
     if (!firstSection || !aboutSection) return;
 
     const scrollPosition = window.scrollY;
-    if (scrollPosition >= firstSection.offsetHeight - window.innerHeight) {
-      aboutSection.scrollIntoView({ behavior: "smooth" });
+    const firstSectionHeight = firstSection.offsetHeight;
+
+    if (
+      scrollPosition + window.innerHeight >= firstSectionHeight &&
+      !aboutSection.classList.contains('scrolled')
+    ) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+      aboutSection.classList.add('scrolled');
     }
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-gray-900 font-sans text-white">
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black opacity-80"></div> 
+        <div className="absolute inset-0 bg-black opacity-80"></div>
         <Image
           src="/homebg.png"
           alt="Home Background"
@@ -89,18 +103,18 @@ const CAPortal = () => {
           className="flex h-screen flex-col items-start justify-center space-y-6 px-6 text-left sm:px-12 md:px-24"
         >
           <h1 className="text-4xl font-normal sm:text-5xl md:text-6xl">
-            <span className="text-red-600">Tech</span>{" "}
+            <span className="text-red-600">Tech</span>{' '}
             <span className="text-white">Trek Pioneer</span>
           </h1>
           <p className="max-w-xl text-xl sm:text-2xl">
-            <span className="text-3xl text-white sm:text-4xl">TECHNEX'24, IIT BHU</span>{" "}
-            is one of the largest and oldest college fests in India. Embodying the true spirit of
-            youth, Technex provides a platform for{" "}
+            <span className="text-3xl text-white sm:text-4xl">TECHNEX'24, IIT BHU</span> is one of
+            the largest and oldest college fests in India. Embodying the true spirit of youth,
+            Technex provides a platform for{' '}
             <span className="text-red-600">young talent from all over India</span> to showcase their
             varied skills.
             <br />
             <br />
-            Keeping this motto in mind, Technex, IIT BHU is reaching out to all the colleges across{" "}
+            Keeping this motto in mind, Technex, IIT BHU is reaching out to all the colleges across{' '}
             <span className="text-red-600">India where you can lead the contingent</span> from your
             college taking part in Technex and engage them with different activities of Technex, IIT
             BHU.
@@ -118,7 +132,7 @@ const CAPortal = () => {
           id="about"
           className="flex h-auto flex-col items-start justify-center bg-zinc-900 px-6 text-left sm:h-screen sm:px-12 md:px-24"
         >
-          <h2 className="text-3xl font-normal sm:text-8xl">
+          <h2 className="my-20 text-3xl font-normal sm:text-8xl">
             About <span className="text-red-600">Technex</span>
           </h2>
           <p className="mt-4 max-w-2xl text-white sm:text-xl">
@@ -141,7 +155,7 @@ const CAPortal = () => {
 
         <section className="flex h-auto flex-col items-center justify-center bg-zinc-900 px-6 text-center sm:h-screen sm:px-12 md:px-24">
           <div className="w-full text-right">
-            <h2 className="text-3xl font-normal text-white sm:text-4xl sm:text-6xl">
+            <h2 className="pt-20 text-3xl font-normal text-white sm:text-6xl">
               <span className="text-red-600">Our</span> Reach
             </h2>
           </div>
@@ -169,7 +183,7 @@ const CAPortal = () => {
           </div>
 
           <div className="mt-6 flex w-full justify-end">
-            <div className="h-1 w-2/3 bg-red-600 sm:w-1/2 md:w-1/3"></div>
+            <div className="my-10 h-1 w-2/3 bg-red-600 sm:w-1/2 md:w-1/3"></div>
           </div>
         </section>
       </main>
