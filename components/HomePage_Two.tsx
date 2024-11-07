@@ -90,6 +90,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
                         <span className="text-red-600"> {testimonial.surname}</span>
                       </h3>
                       <p className="text-gray-400">{testimonial.content}</p>
+                      <button className='border border-white rounded-2xl text-white py-1 px-4 mt-2'>Read More</button>
                     </div>
                   </div>
                 </CardContent>
@@ -107,7 +108,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
           <Accordion
             type="single"
             collapsible
-            className="grid w-full grid-cols-1 gap-6 md:grid-cols-2"
+            className="grid w-full grid-cols-1 gap-6"
           >
             {faqs.map((faq, index) => (
               <FAQItem key={index} question={faq.question} answer={faq.answer} index={index} />
