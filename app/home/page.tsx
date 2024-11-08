@@ -3,6 +3,46 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 
+interface StatCircleProps {
+  value: number;
+  percentage: number;
+  label: string;
+}
+
+const StatCircle: React.FC<StatCircleProps> = ({ value, percentage, label }) => {
+  const radius = 15.9155;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (percentage / 100) * circumference;
+
+  return (
+    <div className="flex flex-col items-center">
+      <div className="relative flex h-32 w-32 items-center justify-center sm:h-40 sm:w-40 md:h-48 md:w-48">
+        <svg className="absolute h-full w-full" viewBox="0 0 36 36">
+          <path
+            className="text-gray-700"
+            strokeWidth="4"
+            stroke="currentColor"
+            fill="none"
+            d="M18 2.0845a15.9155 15.9155 0 1 1 0 31.831 15.9155 15.9155 0 1 1 0-31.831"
+          />
+          <path
+            className="text-red-600"
+            strokeWidth="4"
+            stroke="currentColor"
+            fill="none"
+            strokeDasharray={circumference}
+            strokeDashoffset={offset}
+            d="M18 2.0845a15.9155 15.9155 0 1 1 0 31.831 15.9155 15.9155 0 1 1 0-31.831"
+            style={{ transition: 'stroke-dashoffset 0.35s ease' }}
+          />
+        </svg>
+        <span className="text-lg font-bold sm:text-4xl md:text-6xl">{value}</span>
+      </div>
+      <p className="mt-4 text-sm sm:text-lg md:text-xl">{label}</p>
+    </div>
+  );
+};
+
 const CAPortal = () => {
   const handleScroll = () => {
     const firstSection = document.getElementById('first-section') as HTMLElement;
@@ -21,14 +61,6 @@ const CAPortal = () => {
       aboutSection.classList.add('scrolled');
     }
   };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -97,7 +129,7 @@ const CAPortal = () => {
         </div>
       </div>
 
-      <main className="relative h-screen overflow-y-auto">
+      <main className="relative h-full overflow-y-auto">
         <section
           id="first-section"
           className="flex h-screen flex-col items-start justify-center space-y-6 px-6 text-left sm:px-12 md:px-24"
@@ -106,7 +138,7 @@ const CAPortal = () => {
             <span className="text-red-600">Tech</span>{' '}
             <span className="text-white">Trek Pioneer</span>
           </h1>
-          <p className="max-w-xl text-xl sm:text-2xl">
+          <p className="max-w-xl text-xl sm:text-2xl md:text-3xl">
             <span className="text-3xl text-white sm:text-4xl">TECHNEX'24, IIT BHU</span> is one of
             the largest and oldest college fests in India. Embodying the true spirit of youth,
             Technex provides a platform for{' '}
@@ -135,7 +167,7 @@ const CAPortal = () => {
           <h2 className="my-20 text-3xl font-normal sm:text-8xl">
             About <span className="text-red-600">Technex</span>
           </h2>
-          <p className="mt-4 max-w-2xl text-white sm:text-xl">
+          <p className="mt-4 max-w-2xl text-white sm:text-xl md:text-2xl">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque earum optio,
             maiores, doloribus iure distinctio quis temporibus non pariatur ullam atque
             reprehenderit natus in vitae suscipit. Sed perspiciatis adipisci enim. Impedit quo
@@ -152,38 +184,20 @@ const CAPortal = () => {
             <div className="h-1 bg-red-600"></div>
           </div>
         </section>
-
         <section className="flex h-auto flex-col items-center justify-center bg-zinc-900 px-6 text-center sm:h-screen sm:px-12 md:px-24">
-          <div className="w-full text-right">
-            <h2 className="pt-20 text-3xl font-normal text-white sm:text-6xl">
+          <div className="mt-40 w-full text-right">
+            <h2 className="text-3xl font-normal sm:text-8xl">
               <span className="text-red-600">Our</span> Reach
             </h2>
           </div>
-
-          <div className="my-32 flex flex-wrap items-end justify-center space-x-12">
-            <div className="flex items-end px-10">
-              <Image
-                src="/collegeambassador.svg"
-                alt="College Ambassadors"
-                width={250}
-                height={80}
-              />
-            </div>
-            <div className="flex items-end px-10">
-              <Image src="/indiancollege.svg" alt="Indian Colleges" width={230} height={80} />
-            </div>
-            <div className="flex items-end px-10">
-              <Image
-                src="/internationalcollege.svg"
-                alt="International Colleges"
-                width={250}
-                height={80}
-              />
-            </div>
+          <div className="my-32 flex flex-col items-center justify-center space-y-12 sm:flex-row sm:space-x-12 sm:space-y-0">
+            <StatCircle value={69} label="College Ambassadors" percentage={60} />
+            <StatCircle value={234} label="Indian Colleges" percentage={70} />
+            <StatCircle value={987} label="International Colleges" percentage={65} />
           </div>
 
           <div className="mt-6 flex w-full justify-end">
-            <div className="my-10 h-1 w-2/3 bg-red-600 sm:w-1/2 md:w-1/3"></div>
+            <div className="mb-40 h-1 w-full max-w-[90%] bg-red-600 sm:w-1/2 md:w-1/3"></div>
           </div>
         </section>
       </main>
