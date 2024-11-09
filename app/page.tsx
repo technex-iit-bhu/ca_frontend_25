@@ -5,7 +5,7 @@ import { Navbar } from '@/components/transparent-navbar-with-logo';
 export default function Home() {
   return (
     <>
-      <ContactSection />
+      <Navbar />
     </>
   );
 }
