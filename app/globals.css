@@ -95,3 +95,21 @@ a {
     @apply bg-background text-foreground;
   }
 }
+
+@font-face {
+  font-family: 'Spline Sans';
+  src:
+    url('/fonts/splinesans-regular.woff2') format('woff2'),
+    url('/fonts/splinesans-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Spline Sans';
+  src:
+    url('/fonts/splinesans-bold.woff2') format('woff2'),
+    url('/fonts/splinesans-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
