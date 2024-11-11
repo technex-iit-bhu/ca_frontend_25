@@ -8,7 +8,7 @@ import { Form, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, UseFormReturn } from 'react-hook-form';
 import { z } from 'zod';
-import {getProfileDetails} from "@/app/utils/api";
+import {getProfileDetails, updateProfileDetails} from "@/app/utils/api";
 import { useRouter } from "next/navigation";
 
 const userSchema = z.object({ // TODO: update the optional() in case the backend supports mandatory profile completion in the future
@@ -47,7 +47,7 @@ const UserStructConfig : UserStructConfigType = {
     metadata : {
         name: {
             userFriendlyLabel: "Name",
-            editable: false,
+            editable: true,
             isMultiline: false,
             isShown: true
         },
@@ -73,7 +73,7 @@ const UserStructConfig : UserStructConfigType = {
             userFriendlyLabel: "College",
             editable: true,
             isMultiline: false,
-            isShown: false
+            isShown: true
         },
         city: {
             userFriendlyLabel: "City",
@@ -85,13 +85,13 @@ const UserStructConfig : UserStructConfigType = {
             userFriendlyLabel: "Postal Code",
             editable: true,
             isMultiline: false,
-            isShown: true
+            isShown: false
         },
         pin_code: {
             userFriendlyLabel: "Pin Code",
             editable: true,
             isMultiline: false,
-            isShown: false
+            isShown: true
         },
         why_choose_you: {
             userFriendlyLabel: "Why Choose You?",
@@ -149,12 +149,6 @@ let formref: UseFormReturn<User> | null = null;
 
 const DetailTextarea = ({ className, field }: {className: string, field: UserField}) => {
     const metadata = UserStructConfig.metadata[field];
-    const handleInput: React.ChangeEventHandler<HTMLTextAreaElement>  = (event) => {
-        setUpdateProfileButtonVisible?.(true)
-        const { scrollHeight } = event.target;
-        event.target.style.height = 'auto';
-        event.target.style.height = `${scrollHeight}px`;
-    };
     const handleKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> = metadata.isMultiline ? () => {} : (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
@@ -167,11 +161,19 @@ const DetailTextarea = ({ className, field }: {className: string, field: UserFie
                     id={field}
                     className={className}
                     onKeyDown={handleKeyDown}
-                    onInput={handleInput}
+                    // onInput={handleInput}
                     placeholder={`Set ${metadata.userFriendlyLabel}`}
                     disabled={!metadata.editable}
                     style={{fontSize: "1.125rem", lineHeight: "1.75rem"}} //hardcoding it as of now as passing text-lg in className doesn't work for some reason
                     {...controllerField}
+                    ref = {(elm)=>{
+                        controllerField.ref(elm);
+                        if (elm) {
+                            elm.style.height = 'auto';
+                            elm.style.height = `${elm.scrollHeight}px`;
+                            setUpdateProfileButtonVisible?.(true)
+                        }
+                    }}
                 />
                 <FormMessage className="ml-5"/>
             </FormItem>
@@ -193,12 +195,13 @@ const DetailElement = ({field} : {field: UserField} ) => {
     );
 }
 
-const ProfileCard = ({user}: {user: User | null}) => {
+const ProfileCard = ({user, onProfileFormSubmit}: {user: User | null, onProfileFormSubmit: (data: User) => void}) => {
     const [updateProfileButtonVisible, _updateProfileButtonVisible] = useState(false);
     setUpdateProfileButtonVisible = _updateProfileButtonVisible;
     const form = useForm<User>({
         resolver: zodResolver(userSchema),
-        defaultValues: user ?? {}
+        defaultValues: user ?? {},
+        mode: 'onChange'
     });
     formref = form;
     useEffect(() => {
@@ -210,11 +213,7 @@ const ProfileCard = ({user}: {user: User | null}) => {
         <div className="text-white bg-[#272727] bg-opacity-50 p-8 mt-12 rounded-3xl shadow-lg w-auto max-w-5xl flex flex-col">
             {user?(
                 <Form {...form}>
-                    <form className="flex flex-col" onSubmit={form.handleSubmit((data) => {
-                        const updatedUserJson = JSON.stringify({...user,...data});
-                        // TODO make api call to backend to update user profile
-                        prompt('Api call not made as backend has no profile updation route.', updatedUserJson);
-                    }, (e) => console.error(e))}>
+                    <form className="flex flex-col" onSubmit={form.handleSubmit(onProfileFormSubmit, (e) => console.error(e))}>
                         <div className="flex flex-col sm:flex-row gap-x-10 gap-y-10">
                             <div className="w-full sm:w-2/5 pr-6 pb-6 border-[#A81F25] border-b-2 sm:border-b-0 sm:border-r-2">
                                 <div className="relative w-44 h-44 -top-20 inline-flex justify-center items-center rounded-full border-4 border-[#A81F25]">
@@ -264,31 +263,47 @@ const ProfileCard = ({user}: {user: User | null}) => {
 const ProfilePage: React.FC = () => {
     const router = useRouter();
     const [user, setUser] = useState<User | null>(null);
+    const fetchUserData = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            if(!token) {
+                throw new Error('User not logged in.');
+            }
+            const data = await getProfileDetails(token);
+            if (! ('data' in data)) {
+                throw new Error(data?.message ?? '');
+            }
+            console.log(data);
+            const muser : User = {};
+            Object.keys(userSchema.shape).forEach((key) => {
+                if (key in data.data){
+                    muser[key] = data.data[key];
+                }
+            });
+            setUser(muser);
+        } catch (error) {
+            alert(error);
+            router.push('/login'); 
+        }
+    };
+    const updateUserData = async (data: User) => {
+        const updatedUserJson = JSON.stringify({...user,...data});
+        try {
+            const token = localStorage.getItem('token');
+            const response = await updateProfileDetails(token??'', updatedUserJson);
+            if (response.status !== 200) {
+                const responseJson = await response.json();
+                throw new Error(responseJson?.message ?? '');
+            }
+            alert('Profile updated successfully!');
+            setUpdateProfileButtonVisible?.(false);
+            setUser(null);
+            fetchUserData();
+        } catch (error) {
+            alert("Profile Updation Error: " + error);
+        }
+    }
     useEffect(() => {
-        const fetchUserData = async () => {
-          try {
-              const token = localStorage.getItem('token');
-              if(!token) {
-                  throw new Error('User not logged in.');
-              }
-              const data = await getProfileDetails(token);
-              if (! ('data' in data)) {
-                  throw new Error(data?.message ?? '');
-              }
-              console.log(data);
-              const muser : User = {};
-              Object.keys(userSchema.shape).forEach((key) => {
-                  if (key in data.data){
-                      muser[key] = data.data[key];
-                  }
-              });
-              setUser(muser);
-          } catch (error) {
-              console.error('Error fetching user data:', error);
-              router.push('/login'); 
-          }
-        };
-    
         fetchUserData();
       }, []);
     return (
@@ -297,7 +312,7 @@ const ProfilePage: React.FC = () => {
                 <span className="absolute left-5 -bottom-2 m-0 p-0 text-[6.5rem] sm:text-[10rem] sm:-bottom-8 sm:left-4 font-bold text-[#A81F25] opacity-20 pointer-events-none select-none">Profile</span>
                 <span className="text-white text-6xl">Profile</span>
             </div>
-            <ProfileCard user={user}/>
+            <ProfileCard user={user} onProfileFormSubmit={updateUserData}/>
             <Button
                 className="my-8 bg-[#A81F25] text-3xl px-10 py-6 rounded-3xl mx-auto self-center"
                 onClick={() => router.push('/')} // TODO ensure the link to dashboard is correct
