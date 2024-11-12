@@ -111,3 +111,29 @@
     @apply left-[4.2rem] top-[2.5rem] text-3xl !important;
   }
 }
+
+.coming-soon {
+  font-size: 0.9rem !important;
+  @apply mt-[20px];
+}
+
+@media (max-width: 900px) and (min-width: 600px) {
+  .coming-soon {
+    font-size: 0.85rem !important;
+    @apply mt-[20px];
+  }
+}
+
+@media (max-width: 900px) {
+  .coming-soon {
+    font-size: 0.7rem !important;
+    @apply mt-[10px];
+  }
+}
+
+@media (max-width: 530px) {
+  .coming-soon {
+    font-size: 0.6rem !important;
+    @apply mt-[10px];
+  }
+}

@@ -4,8 +4,21 @@ import { useState } from 'react';
 import SectionHandler from './sectionHandler';
 import './dashboard.css';
 
-function Dashboard() {
-  const [selectedTab, setSelectedTab] = useState('live');
+interface User {
+  name: string;
+  rank: number;
+  // more fields to be added
+}
+
+interface DashboardProps {
+  user: User;
+}
+
+// coming soon bool - to be removed later
+let comingSoon = true;
+
+function Dashboard({ user }: DashboardProps) {
+  const [selectedTab, setSelectedTab] = useState<string>('live');
 
   return (
     <div className="min-h-screen w-screen bg-[#191919] pt-[6rem] md:pb-[3rem] lg:pb-[5rem]">
@@ -28,22 +41,34 @@ function Dashboard() {
         </div>
         <div className="dashboard-profile mt-[2.5rem] flex w-full items-center justify-between px-[2rem] lg:px-[4rem]">
           <div className="dash-name text-white">
-            <h1 className="text-lg font-bold md:text-xl lg:text-3xl">Shivansh B.</h1>
-            <p className="leading-[1.5rem]">Rank : 3</p>
-            <p className="leading-[1.5rem]">CA Id: 000000000</p>
+            <h1 className="text-lg font-bold md:text-xl lg:text-3xl">{user.name}</h1>
+            <p className="leading-[1.5rem]">Rank : {user.rank}</p>
+            <p className="leading-[1.5rem]">CA Id: coming soon!</p>
           </div>
           <div className="stats flex items-start gap-x-3 px-2 lg:gap-x-6 lg:px-4">
             <div className="text-bold my-auto flex flex-col items-center p-3 lg:p-6">
               <p className="stat-heading text-[0.8rem] md:text-[1rem]">Tasks done</p>
-              <p className="stat-n text-[1rem] md:text-[2rem] lg:text-[3rem]">69</p>
+              <p
+                className={`stat-n text-[1rem] md:text-[2rem] lg:text-[3rem] ${comingSoon ? 'coming-soon' : ''}`}
+              >
+                Coming Soon
+              </p>
             </div>
             <div className="text-bold my-auto flex flex-col items-center p-3 lg:p-6">
               <p className="stat-heading text-[0.8rem] md:text-[1rem]">Total Tasks</p>
-              <p className="stat-n text-[1rem] md:text-[2rem] lg:text-[3rem]">200</p>
+              <p
+                className={`stat-n text-[1rem] md:text-[2rem] lg:text-[3rem] ${comingSoon ? 'coming-soon' : ''}`}
+              >
+                Coming Soon
+              </p>
             </div>
             <div className="text-bold my-auto flex flex-col items-center p-3 lg:p-6">
               <p className="stat-heading text-[0.8rem] md:text-[1rem]">Total Points</p>
-              <p className="stat-n text-[1rem] md:text-[2rem] lg:text-[3rem]">232</p>
+              <p
+                className={`stat-n text-[1rem] md:text-[2rem] lg:text-[3rem] ${comingSoon ? 'coming-soon' : ''}`}
+              >
+                Coming Soon
+              </p>
             </div>
           </div>
         </div>
