@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fira+Code:wght@300..700&family=Sedgwick+Ave&family=Spline+Sans:wght@300..700&family=Unica+One&family=VT323&display=swap');
+
+.dashboard-div {
+  background: linear-gradient(
+    180deg,
+    rgba(100, 100, 100, 0.4) 0%,
+    rgba(100, 100, 100, 0.35) 18.35%,
+    rgba(100, 100, 100, 0.29) 35.18%,
+    rgba(100, 100, 100, 0.2) 50.96%,
+    rgba(100, 100, 100, 0.1) 68.32%,
+    rgba(100, 100, 100, 0.05) 83.58%,
+    rgba(100, 100, 100, 0) 100%
+  );
+}
+.stats div {
+  background-color: #191919;
+  color: white;
+  margin-bottom: 2rem;
+  font-family: 'Sedgwick Ave', cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-style: italic;
+  font-weight: 300;
+  @apply h-[80px] w-[100px] rounded-[30px] md:h-[120px] md:w-[140px] md:rounded-[40px] lg:h-[135px] lg:w-[155px] lg:rounded-[50px];
+}
+.event-card {
+  background: linear-gradient(180deg, rgba(100, 100, 100, 0.4) 0%, rgba(100, 100, 100, 0.2) 100%);
+}
+
+@media (max-width: 900px) and (min-width: 600px) {
+  .stats div {
+    @apply h-[80px] w-[100px] rounded-[30px];
+  }
+  .stat-heading {
+    font-size: 0.8rem !important;
+    margin-bottom: 5px;
+  }
+  .stat-n {
+    font-size: 1rem !important;
+  }
+}
+@media (max-width: 767.5px) {
+  .dashboard-div {
+    margin-top: 15rem;
+  }
+}
+@media (max-width: 750px) {
+  .dashboard-div {
+    @apply h-[550px] !important;
+  }
+  .dashboard-profile {
+    @apply mt-2 flex-col gap-y-6 !important;
+  }
+  .milestone {
+    @apply mt-0 !important;
+  }
+  .dashboard-socials {
+    @apply mb-2 text-sm !important;
+  }
+}
+@media (max-width: 610px) {
+  .redh {
+    @apply text-[5rem] !important;
+  }
+  .whiteh {
+    @apply top-[4rem] text-4xl !important;
+  }
+  .dashboard-div {
+    margin-top: 12rem;
+  }
+}
+@media (max-width: 525px) {
+  .redh {
+    @apply text-[4rem] !important;
+  }
+  .whiteh {
+    @apply top-[3rem] text-3xl !important;
+  }
+  .dashboard-div {
+    margin-top: 12rem;
+  }
+  .dash-name {
+    @apply ml-[45%] !important;
+  }
+  .event-button {
+    @apply flex w-[70px] items-center justify-center text-xs font-thin !important;
+  }
+  .stats div {
+    @apply h-[60px] w-[80px] rounded-[30px];
+  }
+  .stat-heading {
+    font-size: 0.6rem !important;
+    margin-bottom: 3px;
+  }
+  .stat-n {
+    font-size: 0.8rem !important;
+  }
+  .dashboard-div {
+    @apply h-[570px] !important;
+  }
+}
+@media (max-width: 420px) {
+  .redh {
+    @apply text-[3.5rem] !important;
+  }
+  .whiteh {
+    @apply left-[4.2rem] top-[2.5rem] text-3xl !important;
+  }
+}
+
+.coming-soon {
+  font-size: 0.9rem !important;
+  @apply mt-[20px];
+}
+
+@media (max-width: 900px) and (min-width: 600px) {
+  .coming-soon {
+    font-size: 0.85rem !important;
+    @apply mt-[20px];
+  }
+}
+
+@media (max-width: 900px) {
+  .coming-soon {
+    font-size: 0.7rem !important;
+    @apply mt-[10px];
+  }
+}
+
+@media (max-width: 530px) {
+  .coming-soon {
+    font-size: 0.6rem !important;
+    @apply mt-[10px];
+  }
+}
