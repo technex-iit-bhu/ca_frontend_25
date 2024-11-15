@@ -59,8 +59,17 @@ const FAQSection: React.FC<FAQSectionProps> = ({
               Why <span className="text-red-600">CA</span>
             </h1>
             <p className="text-gray-300">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+              dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+              in culpa qui officia deserunt mollit anim id est laborum.
             </p>
             <div className="mt-8 w-32 border-t border-red-600"></div>
           </div>
@@ -90,7 +99,9 @@ const FAQSection: React.FC<FAQSectionProps> = ({
                         <span className="text-red-600"> {testimonial.surname}</span>
                       </h3>
                       <p className="text-gray-400">{testimonial.content}</p>
-                      <button className='border border-white rounded-2xl text-white py-1 px-4 mt-2'>Read More</button>
+                      <button className="mt-2 rounded-2xl border border-white px-4 py-1 text-white">
+                        Read More
+                      </button>
                     </div>
                   </div>
                 </CardContent>
@@ -105,11 +116,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
       <section>
         <div className="mx-auto flex max-w-4xl flex-col justify-center text-center">
           <h2 className="mb-8 text-4xl font-bold">FAQs</h2>
-          <Accordion
-            type="single"
-            collapsible
-            className="grid w-full grid-cols-1 gap-6"
-          >
+          <Accordion type="single" collapsible className="grid w-full grid-cols-1 gap-6">
             {faqs.map((faq, index) => (
               <FAQItem key={index} question={faq.question} answer={faq.answer} index={index} />
             ))}
