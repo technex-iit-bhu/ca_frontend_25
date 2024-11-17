@@ -2,9 +2,9 @@
 
 import { InputFormField } from '@/app/components/form-field';
 import { signup } from '@/app/utils/api';
-import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
-import { Label } from '@/components/ui/label';
+import { Button } from '@/app/components/ui/button';
+import { Form } from '@/app/components/ui/form';
+import { Label } from '@/app/components/ui/label';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -136,10 +136,13 @@ export default function SignupPage() {
           <div className="flex items-center space-x-4">
             <input
               type="checkbox"
+              id="terms"
               className="h-4 w-4"
               onChange={() => setIsCheckboxChecked(!isCheckboxChecked)}
             />
-            <Label className="text-white">I agree to the terms and conditions</Label>
+            <Label htmlFor="terms" className="text-white">
+              I agree to the terms and conditions
+            </Label>
           </div>
           <Button
             type="submit"

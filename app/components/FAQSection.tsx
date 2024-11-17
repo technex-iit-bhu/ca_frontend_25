@@ -1,11 +1,11 @@
 import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent } from '@/app/components/ui/card';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
+} from '@/app/components/ui/accordion';
 
 interface Testimonial {
   name: string;
@@ -44,8 +44,8 @@ const FAQItem: React.FC<{ question: string; answer: string; index: number }> = (
 };
 
 const FAQSection: React.FC<FAQSectionProps> = ({
-  title = 'Why Choose Us',
-  description = 'Discover why thousands trust us with their journey to success. We provide unparalleled expertise, commitment, and a passion for helping our clients reach their goals. From personalized services to industry-leading insights, we are here to make a difference.',
+  // title = 'Why Choose Us',
+  // description = 'Discover why thousands trust us with their journey to success. We provide unparalleled expertise, commitment, and a passion for helping our clients reach their goals. From personalized services to industry-leading insights, we are here to make a difference.',
   testimonials = [],
   faqs = [],
 }) => {

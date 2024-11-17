@@ -1,6 +1,6 @@
 import React from 'react';
-import ProfilePage from '@/components/ProfilePage';
-import { Navbar } from '@/components/transparent-navbar-with-logo';
+import ProfilePage from '@/app/components/ProfilePage';
+import { Navbar } from '@/app/components/transparent-navbar-with-logo';
 
 export default function UserProfile() {
   return (

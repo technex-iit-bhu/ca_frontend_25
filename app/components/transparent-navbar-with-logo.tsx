@@ -4,8 +4,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Menu, User } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
+import { Button } from '@/app/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/app/components/ui/sheet';
 
 export function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); //to check for logged in...

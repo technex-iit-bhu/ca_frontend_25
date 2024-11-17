@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/app/components/ui/button';
 
 export function RedesignedCards() {
   // Previous state management code remains the same
@@ -10,6 +10,11 @@ export function RedesignedCards() {
   const [incentivesIndex2, setIncentivesIndex2] = useState(0);
   const [responsibilitiesIndex, setResponsibilitiesIndex] = useState(0);
   const [cardsToShow, setCardsToShow] = useState({ incentives: 1, responsibilities: 1 });
+  interface CardItem {
+    title: string;
+    description: string;
+    icon?: string;
+  }
 
   // Previous arrays and refs remain the same
   const incentives1 = [
@@ -123,7 +128,12 @@ export function RedesignedCards() {
   }, []);
 
   // Previous renderCards function remains the same
-  const renderCards = (items, index, reverse = false, containerRef) => {
+  const renderCards = (
+    items: CardItem[],
+    index: number,
+    reverse = false,
+    containerRef: React.RefObject<HTMLDivElement>,
+  ) => {
     const doubledItems = [...items, ...items];
     return (
       <div
@@ -153,23 +163,32 @@ export function RedesignedCards() {
   };
 
   // Previous handleNavigation function remains the same
-  const handleNavigation = (direction, setIndex, items, containerRef) => {
+  const handleNavigation = (
+    direction: 'next' | 'prev',
+    setIndex: React.Dispatch<React.SetStateAction<number>>,
+    items: CardItem[],
+    containerRef: React.RefObject<HTMLDivElement>,
+  ) => {
     setIndex((prev) => {
       const newIndex = direction === 'next' ? prev + 1 : prev - 1;
-      if (newIndex >= items.length) {
+      if (newIndex >= items.length && containerRef.current) {
         containerRef.current.style.transition = 'none';
         containerRef.current.style.transform = 'translateX(0)';
         setTimeout(() => {
-          containerRef.current.style.transition = 'transform 500ms';
-          setIndex(1);
+          if (containerRef.current) {
+            containerRef.current.style.transition = 'transform 500ms';
+            setIndex(1);
+          }
         }, 50);
         return 0;
-      } else if (newIndex < 0) {
+      } else if (newIndex < 0 && containerRef.current) {
         containerRef.current.style.transition = 'none';
         containerRef.current.style.transform = `translateX(-${((items.length - 1) * 100) / cardsToShow.incentives}%)`;
         setTimeout(() => {
-          containerRef.current.style.transition = 'transform 500ms';
-          setIndex(items.length - 2);
+          if (containerRef.current) {
+            containerRef.current.style.transition = 'transform 500ms';
+            setIndex(items.length - 2);
+          }
         }, 50);
         return items.length - 1;
       }
