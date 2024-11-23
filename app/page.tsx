@@ -116,6 +116,7 @@ const CAPortal = () => {
 
           {/* FAQs */}
           <FAQSection />
+
           {/* Contact Us */}
           <ContactUs />
         </main>

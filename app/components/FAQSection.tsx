@@ -1,12 +1,6 @@
-import React from 'react';
-import { Card, CardContent } from '@/app/components/ui/card';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/app/components/ui/accordion';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+
 interface Testimonial {
   name: string;
   surname: string;
@@ -19,98 +13,92 @@ interface FAQ {
 }
 
 interface FAQSectionProps {
-  title?: string;
-  description?: string;
   testimonials?: Testimonial[];
   faqs?: FAQ[];
 }
 
-// FAQItem Component
-const FAQItem: React.FC<{ question: string; answer: string; index: number }> = ({
-  question,
-  answer,
-  index,
-}) => {
-  return (
-    <AccordionItem key={index} value={`item-${index}`}>
-      <AccordionTrigger className="flex w-full items-center rounded-lg bg-zinc-800 p-4 text-white hover:text-red-600">
-        {question}
-      </AccordionTrigger>
-      <AccordionContent className="w-full rounded-lg bg-zinc-900 p-4 text-gray-400">
-        {answer}
-      </AccordionContent>
-    </AccordionItem>
-  );
-};
-
 const FAQSection: React.FC<FAQSectionProps> = ({
-  // title = 'Why Choose Us',
-  // description = 'Discover why thousands trust us with their journey to success. We provide unparalleled expertise, commitment, and a passion for helping our clients reach their goals. From personalized services to industry-leading insights, we are here to make a difference.',
-  testimonials = [],
-  faqs = [],
+  testimonials = [
+    {
+      name: 'Shivansh',
+      surname: 'Bhatnagar',
+      content:
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?',
+    },
+    {
+      name: 'Aditi',
+      surname: 'Verma',
+      content:
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?',
+    },
+    {
+      name: 'Rohit',
+      surname: 'Sharma',
+      content:
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?',
+    },
+  ],
+  faqs = [
+    {
+      question: 'What is CA, and why should I choose it?',
+      answer:
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?',
+    },
+    {
+      question: 'How long does it take to complete CA?',
+      answer:
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?',
+    },
+    {
+      question: 'What support do you provide during the course?',
+      answer:
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?',
+    },
+  ],
 }) => {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
   return (
     <div className="min-h-screen w-full space-y-16 bg-zinc-900 p-8 text-white">
-      {/* Introduction Section */}
-      <section className="mb-16">
-        <div className="mx-auto flex max-w-2xl items-start gap-4">
-          <div>
-            <h1 className="mb-6 text-5xl font-bold">
-              Why <span className="text-red-600">CA</span>
-            </h1>
-            <p className="text-gray-300">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-              dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-              in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <div className="mt-8 w-32 border-t border-red-600"></div>
-          </div>
-          <div className="flex items-center justify-center text-[200px] font-bold text-gray-500">
-            ?
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials Section */}
       <section className="mb-16">
-        <div className="mx-auto flex max-w-4xl flex-col justify-center text-center">
+        <div className="mx-auto flex flex-col items-center text-center">
           <h2 className="mb-8 text-4xl font-bold">Testimonials</h2>
-          <div className="flex flex-wrap gap-6">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="w-full border-none bg-zinc-800 md:w-[48%]">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <Image
-                      className="h-16 w-16 rounded-lg bg-zinc-700"
-                      src="/next.svg"
-                      alt="User Icon"
-                      width={64}
-                      height={64}
-                    />
-                    <div className="flex-1">
-                      <h3 className="mb-2 text-xl font-semibold">
-                        <span className="text-white">{testimonial.name}</span>
-                        <span className="text-red-600"> {testimonial.surname}</span>
-                      </h3>
-                      <p className="text-gray-400">{testimonial.content}</p>
-                      <button className="mt-2 rounded-2xl border border-white px-4 py-1 text-white">
-                        Read More
-                      </button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="relative flex w-full items-center justify-center">
+            {/* Testimonial Card */}
+            <div className="relative flex w-[35rem] rounded-2xl bg-[#272727] p-8 shadow-lg">
+              {/* Overflowing Image */}
+              <div className="absolute -left-12 flex-shrink-0">
+                <Image
+                  src="/next.svg"
+                  alt="Testimonial Icon"
+                  className="h-[150px] w-[150px] rounded-lg bg-[#646464]"
+                  width={120}
+                  height={120}
+                />
+              </div>
+
+              {/* Text Content */}
+              <div className="ml-20">
+                <h3 className="mb-4 text-2xl font-semibold">
+                  <span className="text-white">{testimonials[currentTestimonial].name}</span>
+                  <span className="text-red-600"> {testimonials[currentTestimonial].surname}</span>
+                </h3>
+                <p className="text-gray-400">{testimonials[currentTestimonial].content}</p>
+                <button className="mt-4 rounded-xl border border-white px-4 py-2 text-white hover:bg-red-600 hover:text-white">
+                  Read More
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="mx-auto mt-8 w-32 border-t border-red-600"></div>
         </div>
       </section>
 
@@ -118,11 +106,14 @@ const FAQSection: React.FC<FAQSectionProps> = ({
       <section>
         <div className="mx-auto flex max-w-4xl flex-col justify-center text-center">
           <h2 className="mb-8 text-4xl font-bold">FAQs</h2>
-          <Accordion type="single" collapsible className="grid w-full grid-cols-1 gap-6">
+          <div className="grid w-full grid-cols-1 gap-6">
             {faqs.map((faq, index) => (
-              <FAQItem key={index} question={faq.question} answer={faq.answer} index={index} />
+              <div key={index} className="rounded-lg bg-zinc-800 p-4">
+                <h3 className="mb-2 text-lg font-semibold text-white">{faq.question}</h3>
+                <p className="text-gray-400">{faq.answer}</p>
+              </div>
             ))}
-          </Accordion>
+          </div>
         </div>
       </section>
     </div>
