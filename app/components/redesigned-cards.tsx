@@ -125,7 +125,14 @@ export function RedesignedCards() {
     }, 1500);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [
+    incentives1.length,
+    incentives2.length,
+    incentivesIndex1,
+    incentivesIndex2,
+    responsibilities.length,
+    responsibilitiesIndex,
+  ]);
 
   // Previous renderCards function remains the same
   const renderCards = (

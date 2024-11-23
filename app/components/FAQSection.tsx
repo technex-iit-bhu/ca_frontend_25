@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/app/components/ui/accordion';
-
+import Image from 'next/image';
 interface Testimonial {
   name: string;
   surname: string;
@@ -88,10 +88,12 @@ const FAQSection: React.FC<FAQSectionProps> = ({
               <Card key={index} className="w-full border-none bg-zinc-800 md:w-[48%]">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
-                    <img
+                    <Image
                       className="h-16 w-16 rounded-lg bg-zinc-700"
-                      src="next.svg"
+                      src="/next.svg"
                       alt="User Icon"
+                      width={64}
+                      height={64}
                     />
                     <div className="flex-1">
                       <h3 className="mb-2 text-xl font-semibold">

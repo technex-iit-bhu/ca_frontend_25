@@ -5,7 +5,7 @@ import Footer from './Footer';
 const ContactUs: React.FC = () => {
   return (
     <>
-      <div className="relative bg-zinc-800 pt-10 text-white">
+      <div className="relative bg-zinc-900 pt-10 text-white">
         {/* Background "Contact" Text */}
         <div className="relative">
           <h2 className="font-spline text-right text-[150px] font-bold leading-[120px] text-[#a81f25] opacity-20 md:text-[250px] md:leading-[160px]">
@@ -23,18 +23,18 @@ const ContactUs: React.FC = () => {
           {/* Contact Card 1 */}
           <div className="flex flex-col items-center space-y-2 md:flex-row md:items-center md:space-x-4">
             <FaPhoneAlt className="text-3xl text-gray-400" />
-            <div className="flex flex-col items-center md:items-start">
-              <p className="font-semibold text-red-500">Rhythm</p>
-              <p className="text-sm text-white">+91 0000000000</p>
+            <div className="flex flex-col items-center md:items-start p-3">
+              <p className="font-semibold text-customRed">Rhythm</p>
+              <p className="text-sm text-white">+91 8955879550</p>
             </div>
           </div>
 
           {/* Contact Card 2 */}
           <div className="flex flex-col items-center space-y-2 md:flex-row md:items-center md:space-x-4">
             <FaPhoneAlt className="text-3xl text-gray-400" />
-            <div className="flex flex-col items-center md:items-start">
-              <p className="font-semibold text-red-500">Rhythm</p>
-              <p className="text-sm text-white">+91 0000000000</p>
+            <div className="flex flex-col items-center md:items-start p-3">
+              <p className="font-semibold text-customRed">Keshav Maheshwari</p>
+              <p className="text-sm text-white">+91 8761833418</p>
             </div>
           </div>
         </div>

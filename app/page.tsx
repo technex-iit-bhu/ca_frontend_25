@@ -1,8 +1,10 @@
 'use client';
 import React, { useEffect } from 'react';
 import Image from 'next/image';
-import { Button } from '@/app/components/ui/button';
 import ContactUs from '@/app/components/contactUs';
+import TechnexInfo from '@/app/components/TechnexInfo';
+import AboutTechnex from '@/app/components/AboutTechnex';
+import FAQSection from '@/app/components/FAQSection';
 
 interface StatCircleProps {
   value: number;
@@ -88,62 +90,13 @@ const CAPortal = () => {
         </div>
 
         <main className="relative h-full overflow-y-auto">
-          <section
-            id="first-section"
-            className="flex h-screen flex-col items-start justify-center space-y-6 px-6 text-left sm:px-12 md:px-24"
-          >
-            <h1 className="text-4xl font-normal sm:text-5xl md:text-6xl">
-              <span className="text-red-600">Tech</span>{' '}
-              <span className="text-white">Trek Pioneer</span>
-            </h1>
-            <p className="max-w-xl text-xl sm:text-2xl md:text-3xl">
-              <span className="text-3xl text-white sm:text-4xl">TECHNEX&apos;24, IIT BHU</span> is
-              one of the largest and oldest college fests in India. Embodying the true spirit of
-              youth, Technex provides a platform for{' '}
-              <span className="text-red-600">young talent from all over India</span> to showcase
-              their varied skills.
-              <br />
-              <br />
-              Keeping this motto in mind, Technex, IIT BHU is reaching out to all the colleges
-              across <span className="text-red-600">
-                India where you can lead the contingent
-              </span>{' '}
-              from your college taking part in Technex and engage them with different activities of
-              Technex, IIT BHU.
-            </p>
+          {/* Main Technex Info */}
+          <TechnexInfo />
 
-            <Button
-              variant="outline"
-              className="w-48 rounded-full bg-white text-black hover:bg-gray-400"
-            >
-              Register
-            </Button>
-          </section>
+          {/* About Technex */}
+          <AboutTechnex />
 
-          <section
-            id="about"
-            className="flex h-auto flex-col items-start justify-center bg-zinc-900 px-6 text-left sm:h-screen sm:px-12 md:px-24"
-          >
-            <h2 className="my-20 text-3xl font-normal sm:text-8xl">
-              About <span className="text-red-600">Technex</span>
-            </h2>
-            <p className="mt-4 max-w-2xl text-white sm:text-xl md:text-2xl">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque earum optio,
-              maiores, doloribus iure distinctio quis temporibus non pariatur ullam atque
-              reprehenderit natus in vitae suscipit. Sed perspiciatis adipisci enim. Impedit quo
-              consectetur nemo eveniet pariatur repellendus, perferendis nihil enim dolorum
-              assumenda esse? Voluptatum voluptatem illum nostrum, placeat eos facere perferendis
-              eum odit vel inventore debitis. Quasi explicabo aperiam id totam consectetur eveniet
-              dolor? Optio reiciendis, impedit tempora explicabo provident cupiditate pariatur. Sunt
-              expedita doloribus sint assumenda error cumque, natus rem. Odio expedita atque
-              delectus ipsum eum, cupiditate doloribus, accusamus, eaque maxime ducimus omnis labore
-              iste explicabo deserunt eos repudiandae.
-            </p>
-
-            <div className="mt-6 w-full sm:w-3/4 md:w-2/3">
-              <div className="h-1 bg-red-600"></div>
-            </div>
-          </section>
+          {/* Out Reach Section */}
           <section className="flex h-auto flex-col items-center justify-center bg-zinc-900 px-6 text-center sm:h-screen sm:px-12 md:px-24">
             <div className="mt-40 w-full text-right">
               <h2 className="text-3xl font-normal sm:text-8xl">
@@ -160,6 +113,10 @@ const CAPortal = () => {
               <div className="mb-40 h-1 w-full max-w-[90%] bg-red-600 sm:w-1/2 md:w-1/3"></div>
             </div>
           </section>
+
+          {/* FAQs */}
+          <FAQSection />
+          {/* Contact Us */}
           <ContactUs />
         </main>
       </div>
