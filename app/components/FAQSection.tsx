@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { AnimatePresence, motion } from 'framer-motion';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 interface Testimonial {
   name: string;
@@ -40,23 +42,34 @@ const FAQSection: React.FC<FAQSectionProps> = ({
   ],
   faqs = [
     {
-      question: 'What is CA, and why should I choose it?',
+      question: 'Who can become a College Ambassador?',
       answer:
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?',
     },
     {
-      question: 'How long does it take to complete CA?',
+      question: 'How to become a College Ambassador?',
       answer:
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?',
     },
     {
-      question: 'What support do you provide during the course?',
+      question: 'How many CAs can be there from a college?',
       answer:
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?',
+    },
+    {
+      question: 'What are the conditions under which I will get a CA Certificate?',
+      answer:
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate repellendus magni illo ea animi?',
+    },
+    {
+      question: 'How much do I have to work to Top the Leaderboard?',
+      answer:
+        'Completion of every task on time would keep you on the list of contenders for the top positions to grab the incentives of free training and free courses.',
     },
   ],
 }) => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [expandedFAQ, setExpandedFAQ] = useState<number[]>([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -66,12 +79,21 @@ const FAQSection: React.FC<FAQSectionProps> = ({
     return () => clearInterval(interval);
   }, [testimonials.length]);
 
+  const toggleFAQ = (index: number) => {
+    setExpandedFAQ((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
+    );
+  };
+
   return (
-    <div className="min-h-screen w-full space-y-16 bg-zinc-900 p-8 text-white">
+    <div className="min-h-screen w-full space-y-16 bg-zinc-900 p-8 pt-20 text-white">
       {/* Testimonials Section */}
-      <section className="mb-16">
-        <div className="mx-auto flex flex-col items-center text-center">
-          <h2 className="mb-8 text-4xl font-bold">Testimonials</h2>
+      <section className="relative mb-16">
+        <div className="pointer-events-none absolute left-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 transform px-24 ">
+          <h1 className="text-[12rem] font-bold text-customRed opacity-10">Testimonials</h1>
+        </div>
+        <div className="relative mx-auto flex flex-col items-center text-center">
+          <h2 className="mb-8 text-6xl font-bold">Testimonials</h2>
           <div className="relative flex w-full items-center justify-center">
             {/* Testimonial Card */}
             <div className="relative flex w-[35rem] rounded-2xl bg-[#272727] p-8 shadow-lg">
@@ -101,21 +123,53 @@ const FAQSection: React.FC<FAQSectionProps> = ({
           </div>
         </div>
       </section>
+      <div className="flex w-full justify-center pt-16">
+        <div className="mb-36 h-1 w-full max-w-[90%] bg-red-600 sm:w-1/2 md:w-1/3"></div>
+      </div>
 
       {/* FAQs Section */}
-      <section>
-        <div className="mx-auto flex max-w-4xl flex-col justify-center text-center">
-          <h2 className="mb-8 text-4xl font-bold">FAQs</h2>
-          <div className="grid w-full grid-cols-1 gap-6">
+      <section className="relative mt-16">
+        <div className="pointer-events-none absolute bottom-40 left-60 h-full w-full">
+          <h1 className="text-[12rem] font-bold text-customRed opacity-10">FAQs</h1>
+        </div>
+        <div className="relative mx-auto flex max-w-4xl flex-col justify-center">
+          <h2 className="mb-8 text-6xl font-bold">FAQs</h2>
+          <div className="space-y-6">
             {faqs.map((faq, index) => (
-              <div key={index} className="rounded-lg bg-zinc-800 p-4">
-                <h3 className="mb-2 text-lg font-semibold text-white">{faq.question}</h3>
-                <p className="text-gray-400">{faq.answer}</p>
+              <div
+                key={index}
+                className="relative cursor-pointer rounded-lg bg-zinc-800 p-4"
+                onClick={() => toggleFAQ(index)}
+              >
+                <h3 className="mb-2 flex justify-between text-xl font-semibold text-white">
+                  {faq.question}
+                  {expandedFAQ.includes(index) ? (
+                    <FaChevronUp className="text-xl" />
+                  ) : (
+                    <FaChevronDown className="text-xl" />
+                  )}
+                </h3>
+                <AnimatePresence>
+                  {expandedFAQ.includes(index) && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="overflow-hidden"
+                    >
+                      <div className="py-2 text-gray-400">{faq.answer}</div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ))}
           </div>
         </div>
       </section>
+      <div className="mt-6 flex w-full justify-start pl-16">
+        <div className="mb-16 h-1 w-full max-w-[90%] bg-red-600 sm:w-1/2 md:w-1/3"></div>
+      </div>
     </div>
   );
 };
