@@ -69,7 +69,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
   ],
 }) => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [expandedFAQ, setExpandedFAQ] = useState<number[]>([]);
+  const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -80,9 +80,8 @@ const FAQSection: React.FC<FAQSectionProps> = ({
   }, [testimonials.length]);
 
   const toggleFAQ = (index: number) => {
-    setExpandedFAQ((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
-    );
+    // Modify the toggle logic to ensure only one FAQ is expanded at a time
+    setExpandedFAQ(prevExpanded => prevExpanded === index ? null : index);
   };
 
   return (
@@ -134,7 +133,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
         </div>
         <div className="relative mx-auto flex max-w-4xl flex-col justify-center">
           <h2 className="mb-8 text-6xl font-bold">FAQs</h2>
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {faqs.map((faq, index) => (
               <div
                 key={index}
@@ -143,14 +142,14 @@ const FAQSection: React.FC<FAQSectionProps> = ({
               >
                 <h3 className="mb-2 flex justify-between text-xl font-semibold text-white">
                   {faq.question}
-                  {expandedFAQ.includes(index) ? (
+                  {expandedFAQ === index ? (
                     <FaChevronUp className="text-xl" />
                   ) : (
                     <FaChevronDown className="text-xl" />
                   )}
                 </h3>
                 <AnimatePresence>
-                  {expandedFAQ.includes(index) && (
+                  {expandedFAQ === index && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
