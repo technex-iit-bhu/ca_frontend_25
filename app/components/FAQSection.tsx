@@ -65,7 +65,10 @@ const FAQSection: React.FC<FAQSectionProps> = ({
       question: 'How much do I have to work to Top the Leaderboard?',
       answer:
         'Completion of every task on time would keep you on the list of contenders for the top positions to grab the incentives of free training and free courses.',
-    },
+    },{
+      question: 'some question',
+      answer: 'some answer'
+    }
   ],
 }) => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -80,8 +83,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
   }, [testimonials.length]);
 
   const toggleFAQ = (index: number) => {
-    // Modify the toggle logic to ensure only one FAQ is expanded at a time
-    setExpandedFAQ(prevExpanded => prevExpanded === index ? null : index);
+    setExpandedFAQ((prev) => (prev === index ? null : index)); // Toggle expanded state
   };
 
   return (
@@ -133,36 +135,73 @@ const FAQSection: React.FC<FAQSectionProps> = ({
         </div>
         <div className="relative mx-auto flex max-w-4xl flex-col justify-center">
           <h2 className="mb-8 text-6xl font-bold">FAQs</h2>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="relative cursor-pointer rounded-lg bg-zinc-800 p-4"
-                onClick={() => toggleFAQ(index)}
-              >
-                <h3 className="mb-2 flex justify-between text-xl font-semibold text-white">
-                  {faq.question}
-                  {expandedFAQ === index ? (
-                    <FaChevronUp className="text-xl" />
-                  ) : (
-                    <FaChevronDown className="text-xl" />
-                  )}
-                </h3>
-                <AnimatePresence>
-                  {expandedFAQ === index && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
-                      className="overflow-hidden"
-                    >
-                      <div className="py-2 text-gray-400">{faq.answer}</div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+          {/* Two adjacent grids */}
+          <div className="flex justify-between gap-12">
+            <div className="w-full grid grid-cols-1 gap-6">
+              {/* First Grid of FAQs */}
+              {faqs.slice(0, Math.ceil(faqs.length / 2)).map((faq, index) => (
+                <div
+                  key={index}
+                  className="relative cursor-pointer rounded-lg bg-zinc-800 p-4"
+                  onClick={() => toggleFAQ(index)}
+                >
+                  <h3 className="mb-2 flex justify-between text-xl font-semibold text-white">
+                    {faq.question}
+                    {expandedFAQ === index ? (
+                      <FaChevronUp className="text-xl" />
+                    ) : (
+                      <FaChevronDown className="text-xl" />
+                    )}
+                  </h3>
+                  <AnimatePresence>
+                    {expandedFAQ === index && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        className="overflow-hidden"
+                      >
+                        <div className="py-2 text-gray-400">{faq.answer}</div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+
+            <div className="w-full grid grid-cols-1 gap-6">
+              {/* Second Grid of FAQs */}
+              {faqs.slice(Math.ceil(faqs.length / 2)).map((faq, index) => (
+                <div
+                  key={index}
+                  className="relative cursor-pointer rounded-lg bg-zinc-800 p-4"
+                  onClick={() => toggleFAQ(index + Math.ceil(faqs.length / 2))}
+                >
+                  <h3 className="mb-2 flex justify-between text-xl font-semibold text-white">
+                    {faq.question}
+                    {expandedFAQ === index + Math.ceil(faqs.length / 2) ? (
+                      <FaChevronUp className="text-xl" />
+                    ) : (
+                      <FaChevronDown className="text-xl" />
+                    )}
+                  </h3>
+                  <AnimatePresence>
+                    {expandedFAQ === index + Math.ceil(faqs.length / 2) && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        className="overflow-hidden"
+                      >
+                        <div className="py-2 text-gray-400">{faq.answer}</div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
