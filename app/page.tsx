@@ -93,11 +93,23 @@ const CAPortal = () => {
           {/* Main Technex Info */}
           <TechnexInfo />
 
-          {/* About Technex */}
-          <AboutTechnex />
+          {/* About Technex Section */}
+          <section className="relative" id="about">
+            <div className="pointer-events-none absolute left-1/2 top-0 w-full -translate-x-1/2 transform">
+              <h1 className="text-[18rem] font-bold leading-none text-customRed opacity-10">
+                Technex
+              </h1>
+            </div>
+            <AboutTechnex />
+          </section>
 
-          {/* Out Reach Section */}
-          <section className="flex h-auto flex-col items-center justify-center bg-zinc-900 px-6 text-center sm:h-screen sm:px-12 md:px-24">
+          {/* Our Reach Section */}
+          <section className="relative flex h-auto flex-col items-center justify-center bg-zinc-900 px-6 text-center sm:h-screen sm:px-12 md:px-24">
+            <div className="pointer-events-none absolute right-1/2 top-0 w-full translate-x-1/2 transform">
+              <h1 className="text-right text-[18rem] font-bold leading-none text-customRed opacity-10">
+                Reach
+              </h1>
+            </div>
             <div className="mt-40 w-full text-right">
               <h2 className="text-3xl font-normal sm:text-8xl">
                 <span className="text-red-600">Our</span> Reach
@@ -108,7 +120,6 @@ const CAPortal = () => {
               <StatCircle value={234} label="Indian Colleges" percentage={70} />
               <StatCircle value={987} label="International Colleges" percentage={65} />
             </div>
-
             <div className="mt-6 flex w-full justify-end">
               <div className="mb-40 h-1 w-full max-w-[90%] bg-red-600 sm:w-1/2 md:w-1/3"></div>
             </div>
