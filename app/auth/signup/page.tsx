@@ -1,10 +1,10 @@
 'use client';
 
-import { InputFormField } from '@/app/components/form-field';
+import { InputFormField } from '@/app/layout/form-field';
 import { signup } from '@/app/utils/api';
-import { Button } from '@/app/components/ui/button';
-import { Form } from '@/app/components/ui/form';
-import { Label } from '@/app/components/ui/label';
+import { Button } from '@/components/ui/button';
+import { Form } from '@/components/ui/form';
+import { Label } from '@/components/ui/label';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -68,11 +68,11 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center pt-20">
+    <div className="flex min-h-screen items-center justify-center pt-20 bg-[#191919]">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full max-w-md space-y-8 rounded bg-[#191919] p-8 outline-dotted outline-[#a81f25]"
+          className="w-full max-w-md space-y-8 rounded p-8 outline-dotted outline-[#a81f25]"
         >
           <h2 className="mb-6 text-2xl font-bold text-white">Sign Up</h2>
           <div className="space-y-4">

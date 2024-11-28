@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Navbar } from '@/app/components/Navbar';
+import { Navbar } from '@/app/layout/transparent-navbar-with-logo';
 
 export const metadata: Metadata = {
   title: 'CA Portal',

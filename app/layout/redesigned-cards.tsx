@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/app/components/ui/button';
+import { Button } from '@/components/ui/button';
 
 export function RedesignedCards() {
   // Previous state management code remains the same
