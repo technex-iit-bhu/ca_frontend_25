@@ -1,6 +1,6 @@
 'use client';
 import * as Avatar from '@radix-ui/react-avatar';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Button } from '@/app/components/ui/button';
 import { Textarea } from '@/app/components/ui/textarea';
 import { Skeleton } from '@/app/components/ui/skeleton';
@@ -289,7 +289,7 @@ const ProfileCard = ({
 const ProfilePage: React.FC = () => {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
-  const fetchUserData = async () => {
+  const fetchUserData = useCallback(async () => {
     try {
       const token = localStorage.getItem('token');
       if (!token) {
@@ -300,18 +300,36 @@ const ProfilePage: React.FC = () => {
         throw new Error(data?.message ?? '');
       }
       console.log(data);
-      const muser: User = {};
+      const modifiedUser: User = {
+        name: '',
+        username: '',
+        phone: '',
+        whatsapp: '',
+        institute: '',
+        city: '',
+        postal_code: '',
+        pin_code: '',
+        why_choose_you: '',
+        is_chosen: false,
+        were_ca: false,
+        points: 0,
+        year: 0,
+        branch: '',
+        referral_code: '',
+        email: ''
+      };
       Object.keys(userSchema.shape).forEach((key) => {
         if (key in data.data) {
-          muser[key] = data.data[key];
+          modifiedUser[key] = data.data[key];
         }
       });
-      setUser(muser);
+      setUser(modifiedUser);
     } catch (error) {
       alert(error);
       router.push('/login');
     }
-  };
+  }, [router]);
+
   const updateUserData = async (data: User) => {
     const updatedUserJson = JSON.stringify({ ...user, ...data });
     try {
@@ -331,7 +349,7 @@ const ProfilePage: React.FC = () => {
   };
   useEffect(() => {
     fetchUserData();
-  }, []);
+  }, [fetchUserData]);
   return (
     <div className="mx-8 flex flex-col">
       <div className="relative mt-[3rem] scale-110 transform p-6 sm:mt-[7rem]">
