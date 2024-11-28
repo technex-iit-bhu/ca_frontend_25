@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Dashboard, { Task, User } from '../components/dashboard/dashboard';
+
 import { PulseLoader } from 'react-spinners';
 import { getProfileDetails, getSubmittedTasks, getTasks } from '../utils/api';
+import Dashboard, { Task, User } from '../layout/dashboard/dashboard';
 
 export default function Page() {
   const [user, setUser] = useState<User | null>(null);

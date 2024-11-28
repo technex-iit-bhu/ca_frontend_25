@@ -1,4 +1,4 @@
-import { Task, User } from '../components/dashboard/dashboard';
+import { Task, User } from '../layout/dashboard/dashboard';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 

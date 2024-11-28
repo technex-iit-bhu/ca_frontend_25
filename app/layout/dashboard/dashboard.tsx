@@ -95,7 +95,7 @@ function Dashboard({ user, tasks, submitted_tasks }: DashboardProps) {
               <p
                 className={`stat-n text-[1rem] md:text-[2rem] lg:text-[3rem] ${comingSoon ? 'coming-soon' : ''}`}
               >
-                {comingSoon ? 'Coming Soon' : user.points}
+                {comingSoon ? 'Coming Soon' : user.points || 0}
               </p>
             </div>
           </div>
