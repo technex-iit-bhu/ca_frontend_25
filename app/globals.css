@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap');
 
 html,
 body {
@@ -97,18 +98,14 @@ a {
 
 @font-face {
   font-family: 'Spline Sans';
-  src:
-    url('/fonts/splinesans-regular.woff2') format('woff2'),
-    url('/fonts/splinesans-regular.woff') format('woff');
-  font-weight: 400;
+  src: url('fonts/SplineSans-Light.ttf') format('truetype');
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Spline Sans';
-  src:
-    url('/fonts/splinesans-bold.woff2') format('woff2'),
-    url('/fonts/splinesans-bold.woff') format('woff');
-  font-weight: 700;
+  src: url('fonts/SplineSans-Medium.ttf') format('truetype');
+  font-weight: 500;
   font-style: normal;
 }

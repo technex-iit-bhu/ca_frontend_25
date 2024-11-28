@@ -83,7 +83,7 @@ const CAPortal = () => {
           <Image
             src="/homebg.png"
             alt="Home Background"
-            layout="fill"
+            fill
             objectFit="cover"
             className="opacity-80"
           />

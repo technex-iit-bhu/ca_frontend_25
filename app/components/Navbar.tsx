@@ -8,7 +8,7 @@ import { Button } from '@/app/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/app/components/ui/sheet';
 
 export function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); //to check for logged in...
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <header className="fixed top-0 z-50 w-full border-white/10 bg-black/50 backdrop-blur-lg">
@@ -33,7 +33,7 @@ export function Navbar() {
           </Link>
           <Link
             className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
-            href="#"
+            href="#contact-us"
           >
             Contact Us
           </Link>
