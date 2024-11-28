@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
+import Image from 'next/image';
 
 interface LiveEventCardProps {
   imageUrl: string;
@@ -27,7 +28,7 @@ const LiveEventCard: React.FC<LiveEventCardProps> = ({
     <div className="event-card relative flex h-fit w-[70%] items-center rounded-[50px] md:h-[250px] md:w-[60%] md:p-6 lg:w-[50%]">
       {/* Event Image */}
       <div className="h-full w-[30%] px-2 py-4 lg:py-8">
-        <img src={imageUrl} alt="Event" className="h-full w-full rounded-lg object-contain" />
+        <Image src={imageUrl} alt="Event" layout="fill" className="rounded-lg object-contain" />
       </div>
 
       {/* Event Details */}

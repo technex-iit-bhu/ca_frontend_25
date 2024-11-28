@@ -1,10 +1,10 @@
 'use client';
 import * as Avatar from '@radix-ui/react-avatar';
 import React, { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Form, FormField, FormItem, FormMessage } from '@/components/ui/form';
+import { Button } from '@/app/components/ui/button';
+import { Textarea } from '@/app/components/ui/textarea';
+import { Skeleton } from '@/app/components/ui/skeleton';
+import { Form, FormField, FormItem, FormMessage } from '@/app/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, UseFormReturn } from 'react-hook-form';
 import { z } from 'zod';
@@ -168,11 +168,11 @@ const DetailTextarea = ({ className, field }: { className: string; field: UserFi
               id={field}
               className={className}
               onKeyDown={handleKeyDown}
-              // onInput={handleInput}
+              {...controllerField}
+              value={typeof controllerField.value === 'boolean' ? '' : controllerField.value}
               placeholder={`Set ${metadata.userFriendlyLabel}`}
               disabled={!metadata.editable}
-              style={{ fontSize: '1.125rem', lineHeight: '1.75rem' }} //hardcoding it as of now as passing text-lg in className doesn't work for some reason
-              {...controllerField}
+              style={{ fontSize: '1.125rem', lineHeight: '1.75rem' }}
               ref={(elm) => {
                 controllerField.ref(elm);
                 if (elm) {
@@ -300,7 +300,7 @@ const ProfilePage: React.FC = () => {
         throw new Error(data?.message ?? '');
       }
       console.log(data);
-      const muser: User = {};
+      const muser: User = { username: '' };
       Object.keys(userSchema.shape).forEach((key) => {
         if (key in data.data) {
           muser[key] = data.data[key];

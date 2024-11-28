@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import SectionHandler from './sectionHandler';
 import './dashboard.css';
+import Image from 'next/image';
 
 interface User {
   name: string;
@@ -15,7 +16,7 @@ interface DashboardProps {
 }
 
 // coming soon bool - to be removed later
-let comingSoon = true;
+const comingSoon = true;
 
 function Dashboard({ user }: DashboardProps) {
   const [selectedTab, setSelectedTab] = useState<string>('live');
@@ -33,10 +34,12 @@ function Dashboard({ user }: DashboardProps) {
       <div className="dashboard-div relative mx-auto flex h-[500px] w-[80%] flex-col rounded-[50px] bg-[#222222] p-3 text-white sm:p-4 md:p-6 lg:p-8">
         {/* Profile Section */}
         <div className="absolute top-[-50px] flex h-[120px] w-[120px] items-center justify-center rounded-full border-[3px] border-red-500 bg-black md:left-[5rem] lg:left-[8rem]">
-          <img
+          <Image
             src="/assets/profile.svg"
             alt="Profile"
-            className="h-[100px] w-[100px] rounded-full object-contain"
+            width={100}
+            height={100}
+            className="rounded-full object-contain"
           />
         </div>
         <div className="dashboard-profile mt-[2.5rem] flex w-full items-center justify-between px-[2rem] lg:px-[4rem]">

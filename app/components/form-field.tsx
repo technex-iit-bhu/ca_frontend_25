@@ -1,6 +1,6 @@
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/app/components/ui/form';
+import { Input } from '@/app/components/ui/input';
+import { Textarea } from '@/app/components/ui/textarea';
 
 export const InputFormField = ({
   form,
