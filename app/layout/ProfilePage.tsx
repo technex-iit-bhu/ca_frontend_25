@@ -1,10 +1,10 @@
 'use client';
 import * as Avatar from '@radix-ui/react-avatar';
-import React, { useEffect, useState, useCallback } from 'react';
-import { Button } from '@/app/components/ui/button';
-import { Textarea } from '@/app/components/ui/textarea';
-import { Skeleton } from '@/app/components/ui/skeleton';
-import { Form, FormField, FormItem, FormMessage } from '@/app/components/ui/form';
+import React, { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Form, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, UseFormReturn } from 'react-hook-form';
 import { z } from 'zod';
@@ -12,7 +12,6 @@ import { getProfileDetails, updateProfileDetails } from '@/app/utils/api';
 import { useRouter } from 'next/navigation';
 
 const userSchema = z.object({
-  // TODO: update the optional() in case the backend supports mandatory profile completion in the future
   name: z.string().optional(),
   username: z.string(),
   phone: z.string().optional(),
@@ -168,11 +167,10 @@ const DetailTextarea = ({ className, field }: { className: string; field: UserFi
               id={field}
               className={className}
               onKeyDown={handleKeyDown}
-              {...controllerField}
-              value={typeof controllerField.value === 'boolean' ? '' : controllerField.value}
               placeholder={`Set ${metadata.userFriendlyLabel}`}
               disabled={!metadata.editable}
               style={{ fontSize: '1.125rem', lineHeight: '1.75rem' }}
+              {...controllerField}
               ref={(elm) => {
                 controllerField.ref(elm);
                 if (elm) {
@@ -236,7 +234,6 @@ const ProfileCard = ({
               <div className="w-full border-b-2 border-[#A81F25] pb-6 pr-6 sm:w-2/5 sm:border-b-0 sm:border-r-2">
                 <div className="relative -top-20 inline-flex h-44 w-44 items-center justify-center rounded-full border-4 border-[#A81F25]">
                   <Avatar.Root className="h-36 w-36 overflow-hidden rounded-full">
-                    {/*  no avatar image in api so using a dumb svg */}
                     <Avatar.Image
                       className="h-full w-full bg-[#6B6868] p-4"
                       src="assets/avatar-placeholder.svg"
@@ -289,46 +286,51 @@ const ProfileCard = ({
 const ProfilePage: React.FC = () => {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
-  const fetchUserData = useCallback(async () => {
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchUserData = async () => {
     try {
       const token = localStorage.getItem('token');
       if (!token) {
-        throw new Error('User not logged in.');
+        throw new Error('Not authenticated');
       }
-      const data = await getProfileDetails(token);
-      if (!('data' in data)) {
-        throw new Error(data?.message ?? '');
+
+      const response = await getProfileDetails(token);
+      console.log('API response:', response); // Debugging log
+      if (!response.success) {
+        throw new Error(response.message);
       }
-      console.log(data);
-      const modifiedUser: User = {
-        name: '',
-        username: '',
-        phone: '',
-        whatsapp: '',
-        institute: '',
-        city: '',
-        postal_code: '',
-        pin_code: '',
-        why_choose_you: '',
-        is_chosen: false,
-        were_ca: false,
-        points: 0,
-        year: 0,
-        branch: '',
-        referral_code: '',
-        email: ''
+
+      if (!response.data) {
+        throw new Error('No profile data received');
+      }
+
+      const profileData = response.data;
+      const userData: User = {
+        name: profileData.name,
+        username: profileData.username,
+        phone: profileData.phone ?? '',
+        whatsapp: profileData.whatsapp ?? '',
+        institute: profileData.institute,
+        city: profileData.city ?? '',
+        postal_code: profileData.postal_code ?? '',
+        pin_code: profileData.pin_code ?? '',
+        why_choose_you: profileData.why_choose_you ?? '',
+        is_chosen: profileData.is_chosen ?? false,
+        were_ca: profileData.were_ca ?? false,
+        points: profileData.points ?? 0,
+        year: profileData.year ?? 0,
+        branch: profileData.branch ?? '',
+        referral_code: profileData.referral_code,
+        email: profileData.email,
       };
-      Object.keys(userSchema.shape).forEach((key) => {
-        if (key in data.data) {
-          modifiedUser[key] = data.data[key];
-        }
-      });
-      setUser(modifiedUser);
+      console.log('User data:', userData); // Debugging log
+      setUser(userData);
     } catch (error) {
-      alert(error);
-      router.push('/login');
+      setError(error instanceof Error ? error.message : 'Failed to fetch profile');
+      console.log('Fetch user data error:', error); // Debugging log
     }
-  }, [router]);
+  };
 
   const updateUserData = async (data: User) => {
     const updatedUserJson = JSON.stringify({ ...user, ...data });
@@ -347,9 +349,11 @@ const ProfilePage: React.FC = () => {
       alert('Profile Updation Error: ' + error);
     }
   };
+
   useEffect(() => {
     fetchUserData();
-  }, [fetchUserData]);
+  }, []);
+
   return (
     <div className="mx-8 flex flex-col">
       <div className="relative mt-[3rem] scale-110 transform p-6 sm:mt-[7rem]">

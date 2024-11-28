@@ -1,10 +1,10 @@
 'use client';
 import React, { useEffect } from 'react';
 import Image from 'next/image';
-import ContactUs from '@/app/components/contactUs';
-import TechnexInfo from '@/app/components/TechnexInfo';
-import AboutTechnex from '@/app/components/AboutTechnex';
-import FAQSection from '@/app/components/FAQSection';
+import ContactUs from '@/app/layout/contactUs';
+import TechnexInfo from '@/app/layout/TechnexInfo';
+import AboutTechnex from '@/app/layout/AboutTechnex';
+import FAQSection from '@/app/layout/FAQSection';
 
 interface StatCircleProps {
   value: number;
