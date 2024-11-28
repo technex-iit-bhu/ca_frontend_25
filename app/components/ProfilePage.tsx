@@ -300,7 +300,7 @@ const ProfilePage: React.FC = () => {
         throw new Error(data?.message ?? '');
       }
       console.log(data);
-      const muser: User = { username: '' };
+      const muser: User = {};
       Object.keys(userSchema.shape).forEach((key) => {
         if (key in data.data) {
           muser[key] = data.data[key];
