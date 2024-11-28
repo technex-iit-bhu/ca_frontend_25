@@ -1,14 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Menu, User } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/app/components/ui/sheet';
+import { checkLoginStatus } from '@/app/utils/api';
 
 export function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    checkLoginStatus(localStorage.getItem('token')).then((status) => {
+      setIsLoggedIn(status);
+    });
+  }, []);
 
   return (
     <header className="fixed top-0 z-50 w-full border-white/10 bg-black/50 backdrop-blur-lg">
@@ -52,22 +59,23 @@ export function Navbar() {
         </nav>
         <div className="flex items-center gap-4">
           {isLoggedIn ? (
-            <Button
-              className="hidden rounded-full border-4 border-red-500 bg-white py-6 lg:flex"
-              variant="ghost"
-            >
-              <User className="h-18 w-18" />
-            </Button>
+            <Link href="/profile">
+              <Button
+                className="hidden rounded-full border-4 border-red-500 bg-white py-6 lg:flex"
+                variant="ghost"
+              >
+                <User className="h-18 w-18" />
+              </Button>
+            </Link>
           ) : (
-            <Button
-              className="hidden rounded-full border border-b-white bg-transparent text-lg text-white hover:bg-red-500 lg:flex"
-              variant="ghost"
-              onClick={() => {
-                setIsLoggedIn(true);
-              }}
-            >
-              Login
-            </Button>
+            <Link href="/auth/signin">
+              <Button
+                className="hidden rounded-full border border-b-white bg-transparent text-lg text-white hover:bg-red-500 lg:flex"
+                variant="ghost"
+              >
+                Login
+              </Button>
+            </Link>
           )}
           <Sheet>
             <SheetTrigger asChild>
@@ -85,14 +93,14 @@ export function Navbar() {
                 {isLoggedIn ? (
                   <Link
                     className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
-                    href="#"
+                    href="/profile"
                   >
                     Profile
                   </Link>
                 ) : (
                   <Link
                     className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
-                    href="#"
+                    href="/auth/signin"
                   >
                     Log In
                   </Link>

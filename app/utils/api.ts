@@ -63,3 +63,7 @@ export async function signup(userData: UserData) {
   });
   return res.json();
 }
+
+export async function checkLoginStatus(localStorage_token: string | null) {
+  return !!(localStorage_token && "data" in await getProfileDetails(localStorage_token));
+}
