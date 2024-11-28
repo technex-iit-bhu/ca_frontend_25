@@ -169,7 +169,7 @@ const DetailTextarea = ({ className, field }: { className: string; field: UserFi
               className={className}
               onKeyDown={handleKeyDown}
               {...controllerField}
-              value={typeof controllerField.value === 'boolean' ? '' : controllerField.value}
+              value={typeof controllerField.value === 'boolean' ? (controllerField.value?'Yes':'No') : controllerField.value}
               placeholder={`Set ${metadata.userFriendlyLabel}`}
               disabled={!metadata.editable}
               style={{ fontSize: '1.125rem', lineHeight: '1.75rem' }}
@@ -178,9 +178,9 @@ const DetailTextarea = ({ className, field }: { className: string; field: UserFi
                 if (elm) {
                   elm.style.height = 'auto';
                   elm.style.height = `${elm.scrollHeight}px`;
-                  setUpdateProfileButtonVisible?.(true);
                 }
               }}
+              onInput={()=>{setUpdateProfileButtonVisible?.(true);}}
             />
             <FormMessage className="ml-5" />
           </FormItem>
