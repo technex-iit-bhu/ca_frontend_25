@@ -32,6 +32,7 @@ export default function SignInPage() {
     const response = await login(data.username, data.password);
     if (response.token) {
       localStorage.setItem('token', response.token);
+      window.dispatchEvent(new Event("signin"));
       router.push('/');
     } else {
       form.setError('username', { message: response.message });
