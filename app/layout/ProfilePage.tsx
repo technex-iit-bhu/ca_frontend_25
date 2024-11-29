@@ -171,14 +171,15 @@ const DetailTextarea = ({ className, field }: { className: string; field: UserFi
               disabled={!metadata.editable}
               style={{ fontSize: '1.125rem', lineHeight: '1.75rem' }}
               {...controllerField}
+              value={typeof controllerField.value === 'boolean' ? (controllerField.value?'Yes':'No') : controllerField.value}
               ref={(elm) => {
                 controllerField.ref(elm);
                 if (elm) {
                   elm.style.height = 'auto';
                   elm.style.height = `${elm.scrollHeight}px`;
-                  setUpdateProfileButtonVisible?.(true);
                 }
               }}
+              onInput={()=>{setUpdateProfileButtonVisible?.(true);}}
             />
             <FormMessage className="ml-5" />
           </FormItem>
@@ -205,9 +206,11 @@ const DetailElement = ({ field }: { field: UserField }) => {
 const ProfileCard = ({
   user,
   onProfileFormSubmit,
+  errorFetchingProfile
 }: {
   user: User | null;
   onProfileFormSubmit: (data: User) => void;
+  errorFetchingProfile: string | null;
 }) => {
   const [updateProfileButtonVisible, _updateProfileButtonVisible] = useState(false);
   setUpdateProfileButtonVisible = _updateProfileButtonVisible;
@@ -272,12 +275,20 @@ const ProfileCard = ({
           </form>
         </Form>
       ) : (
-        Array.from({ length: 3 }).map((_, i) => (
-          <Skeleton
-            key={i}
-            className="my-2 h-12 w-96 bg-[#A81F25] bg-opacity-20 sm:w-[36rem] lg:w-[49rem]"
-          />
-        ))
+        <>
+          {errorFetchingProfile ? (
+            <span className="text-xl mb-2 text-red-600">{errorFetchingProfile}</span>
+          ) : (
+            <span className="text-xl mb-2 text-white">Fetching user details, please wait...</span>
+          )}
+          
+          {Array.from({ length: 3 }).map((_, i) => (
+            <Skeleton
+              key={i}
+              className="my-2 h-12 w-96 bg-[#A81F25] bg-opacity-20 sm:w-[36rem] lg:w-[49rem]"
+            />
+          ))}
+        </>
       )}
     </div>
   );
@@ -286,7 +297,7 @@ const ProfileCard = ({
 const ProfilePage: React.FC = () => {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [errorFetchingProfile, setErrorFetchingProfile] = useState<string | null>(null);
 
   const fetchUserData = async () => {
     try {
@@ -297,9 +308,6 @@ const ProfilePage: React.FC = () => {
 
       const response = await getProfileDetails(token);
       console.log('API response:', response); // Debugging log
-      if (!response.success) {
-        throw new Error(response.message);
-      }
 
       if (!response.data) {
         throw new Error('No profile data received');
@@ -309,25 +317,25 @@ const ProfilePage: React.FC = () => {
       const userData: User = {
         name: profileData.name,
         username: profileData.username,
-        phone: profileData.phone ?? '',
-        whatsapp: profileData.whatsapp ?? '',
+        phone: profileData.phone,
+        whatsapp: profileData.whatsapp,
         institute: profileData.institute,
-        city: profileData.city ?? '',
-        postal_code: profileData.postal_code ?? '',
-        pin_code: profileData.pin_code ?? '',
-        why_choose_you: profileData.why_choose_you ?? '',
-        is_chosen: profileData.is_chosen ?? false,
-        were_ca: profileData.were_ca ?? false,
-        points: profileData.points ?? 0,
-        year: profileData.year ?? 0,
-        branch: profileData.branch ?? '',
+        city: profileData.city,
+        postal_code: profileData.postal_code,
+        pin_code: profileData.pin_code,
+        why_choose_you: profileData.why_choose_you,
+        is_chosen: profileData.is_chosen,
+        were_ca: profileData.were_ca,
+        points: profileData.points,
+        year: profileData.year,
+        branch: profileData.branch,
         referral_code: profileData.referral_code,
         email: profileData.email,
       };
       console.log('User data:', userData); // Debugging log
       setUser(userData);
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Failed to fetch profile');
+      setErrorFetchingProfile('Failed to fetch profile' + (error instanceof Error ? error.message : ''));
       console.log('Fetch user data error:', error); // Debugging log
     }
   };
@@ -362,7 +370,7 @@ const ProfilePage: React.FC = () => {
         </span>
         <span className="text-6xl text-white">Profile</span>
       </div>
-      <ProfileCard user={user} onProfileFormSubmit={updateUserData} />
+      <ProfileCard user={user} onProfileFormSubmit={updateUserData} errorFetchingProfile={errorFetchingProfile} />
       <Button
         className="mx-auto my-8 self-center rounded-3xl bg-[#A81F25] px-10 py-6 text-3xl"
         onClick={() => router.push('/')} // TODO ensure the link to dashboard is correct
