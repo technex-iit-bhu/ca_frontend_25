@@ -33,31 +33,31 @@ export function Navbar() {
         </div>
         <nav className="ml-auto mr-8 hidden gap-8 lg:flex">
           <Link
-            className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+            className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
             href="/"
           >
             About
           </Link>
           <Link
-            className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+            className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
             href="/"
           >
             Incentives
           </Link>
           <Link
-            className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+            className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
             href="/"
           >
             Contact Us
           </Link>
           <Link
-            className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+            className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
             href="/"
           >
             FAQs
           </Link>
           <Link
-            className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+            className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
             href="/"
           >
             Leaderboard
@@ -67,14 +67,14 @@ export function Navbar() {
           {isLoggedIn ? (
             <>
             <Button
-              className="hidden rounded-full border-4 border-red-500 bg-white py-6 lg:flex"
+              className="hidden rounded-full border-4 border-customRed bg-white py-6 lg:flex"
               variant="ghost"
               onClick={handleLogout}
             >
               Logout
             </Button>
             <Button
-              className="hidden rounded-full border-4 border-red-500 bg-white py-6 lg:flex"
+              className="hidden rounded-full border-4 border-customRed bg-white py-6 lg:flex"
               variant="ghost"
               onClick={() => router.push('/profile')}
             >
@@ -84,14 +84,14 @@ export function Navbar() {
           ) : (
             <>
             <Button
-              className="hidden rounded-full border border-b-white bg-transparent text-lg text-white hover:bg-red-500 lg:flex"
+              className="hidden rounded-full border border-b-white bg-transparent text-lg text-white hover:bg-customRed lg:flex"
               variant="ghost"
               onClick={() => router.push('/auth/signup')}
             >
               Signup
             </Button>
             <Button
-              className="hidden rounded-full border border-b-white bg-transparent text-lg text-white hover:bg-red-500 lg:flex"
+              className="hidden rounded-full border border-b-white bg-transparent text-lg text-white hover:bg-customRed lg:flex"
               variant="ghost"
               onClick={() => router.push('/auth/signin')}
             >
@@ -115,13 +115,13 @@ export function Navbar() {
                 {isLoggedIn ? (
                   <>
                     <Link
-                      className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+                      className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
                       href="/profile"
                     >
                       Profile
                     </Link>
                     <Button
-                      className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+                      className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
                       variant="ghost"
                       onClick={handleLogout}
                     >
@@ -131,13 +131,13 @@ export function Navbar() {
                 ) : (
                   <>
                     <Link
-                      className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+                      className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
                       href="/auth/signup"
                     >
                       Signup
                     </Link>
                     <Link
-                      className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+                      className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
                       href="/auth/signin"
                     >
                       Log In
@@ -145,31 +145,31 @@ export function Navbar() {
                   </>
                 )}
                 <Link
-                  className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+                  className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
                   href="/"
                 >
                   About
                 </Link>
                 <Link
-                  className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+                  className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
                   href="/"
                 >
                   Incentives
                 </Link>
                 <Link
-                  className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+                  className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
                   href="/"
                 >
                   Contact Us
                 </Link>
                 <Link
-                  className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+                  className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
                   href="/"
                 >
                   FAQs
                 </Link>
                 <Link
-                  className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+                  className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
                   href="/"
                 >
                   Leaderboard

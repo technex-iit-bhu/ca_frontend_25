@@ -30,7 +30,7 @@ const formSchema = z
     phoneNumber: z.string().length(10, { message: 'Phone number must be 10 digits.' }),
     whatsappNumber: z.string().length(10, { message: 'Whatsapp number must be 10 digits.' }),
     institute: z.string().min(1, { message: 'Institute is required.' }),
-    referralCode: z.string().min(1, { message: 'Referral code is required.' }),
+    referralCode: z.string().optional(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: 'Passwords do not match',
@@ -59,7 +59,14 @@ export default function SignupPage() {
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 
   const onSubmit = async (signupData: FormData) => {
-    const response = await signup(signupData);
+    const userData = {
+      ...signupData,
+      rank: 0,
+      points: 0,
+      ca_id: '',
+      referralCode: signupData.referralCode || '',
+    }
+    const response = await signup(userData);
     if (response.message === 'User created successfully') {
       router.push('/auth/signin');
     } else {
