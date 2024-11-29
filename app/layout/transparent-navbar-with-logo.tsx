@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Menu, User } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 
@@ -74,18 +74,19 @@ export function Navbar() {
           {isLoggedIn ? (
             <>
             <Button
-              className="hidden rounded-full border-4 border-red-500 bg-white py-6 lg:flex"
+              className="hidden rounded-full border-4 border-red-500 bg-opacity-0 text-white py-6 lg:flex"
               variant="ghost"
               onClick={handleLogout}
             >
               Logout
             </Button>
             <Button
-              className="hidden rounded-full border-4 border-red-500 bg-white py-6 lg:flex"
+              className="relative hidden rounded-full border-4 border-red-500 bg-[#191919] p-6 lg:flex"
               variant="ghost"
               onClick={() => router.push('/profile')}
             >
-              <User className="h-18 w-18" />
+              
+                <Image src="/assets/profile-user-1.svg" alt="User Profile" fill objectFit="cover" className="p-[0.125rem]" />
             </Button>
             </>
           ) : (

@@ -238,8 +238,8 @@ const ProfileCard = ({
                 <div className="relative -top-20 inline-flex h-44 w-44 items-center justify-center rounded-full border-4 border-[#A81F25]">
                   <Avatar.Root className="h-36 w-36 overflow-hidden rounded-full">
                     <Avatar.Image
-                      className="h-full w-full bg-[#6B6868] p-4"
-                      src="assets/avatar-placeholder.svg"
+                      className="h-full w-full bg-[#191919] scale-105 object-cover"
+                      src="assets/profile-user-2.svg"
                     />
                   </Avatar.Root>
                 </div>
