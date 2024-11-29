@@ -12,9 +12,16 @@ export function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
+  const updateLoginStatus = () => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token);
+  };
+  
+  useEffect(() => {
+    updateLoginStatus();
+    window.addEventListener('signin', () => {
+      updateLoginStatus();
+    });
   }, []);
 
   const handleLogout = () => {
