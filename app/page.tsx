@@ -1,16 +1,62 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import ContactUs from '@/app/layout/contactUs';
 import TechnexInfo from '@/app/layout/TechnexInfo';
 import AboutTechnex from '@/app/layout/AboutTechnex';
 import FAQSection from '@/app/layout/FAQSection';
+import { ChevronsDown, ChevronsUp } from 'lucide-react';
 
 interface StatCircleProps {
   value: number;
   percentage: number;
   label: string;
 }
+
+const ScrollChevron: React.FC = () => {
+  const [currentSection, setCurrentSection] = useState(0);
+  const sectionsRef = useRef<HTMLElement[]>([]);
+
+  const sectionIds = ['technex-info', 'about', 'our-reach', 'faqs', 'contact-us'];
+
+  useEffect(() => {
+    sectionsRef.current = sectionIds
+      .map((id) => document.getElementById(id) as HTMLElement)
+      .filter((section) => section !== null);
+  }, []);
+
+  const scrollToNextSection = () => {
+    if (sectionsRef.current.length === 0) return;
+
+    // Increment section index, loop back to 0 if at the end
+    const nextSectionIndex = (currentSection + 1) % sectionsRef.current.length;
+
+    // Scroll to the next section
+    sectionsRef.current[nextSectionIndex].scrollIntoView({
+      behavior: 'smooth',
+    });
+
+    // Update current section
+    setCurrentSection(nextSectionIndex);
+  };
+
+  // Determine which icon to use based on the current section
+  const isLastSection = currentSection === sectionsRef.current.length - 1;
+  const ChevronIcon = isLastSection ? ChevronsUp : ChevronsDown;
+
+  return (
+    <div
+      onClick={scrollToNextSection}
+      className="fixed bottom-6 left-1/2 z-10 -translate-x-1/2 transform cursor-pointer transition-all duration-500"
+    >
+      <ChevronIcon
+        className={`animate-bounce text-5xl text-red-600 sm:text-6xl ${
+          isLastSection ? 'rotate-180' : ''
+        }`}
+      />
+    </div>
+  );
+};
 
 const StatCircle: React.FC<StatCircleProps> = ({ value, percentage, label }) => {
   const radius = 15.9155;
@@ -49,32 +95,6 @@ const StatCircle: React.FC<StatCircleProps> = ({ value, percentage, label }) => 
 };
 
 const CAPortal = () => {
-  const handleScroll = () => {
-    const firstSection = document.getElementById('first-section') as HTMLElement;
-    const aboutSection = document.getElementById('about') as HTMLElement;
-
-    if (!firstSection || !aboutSection) return;
-
-    const scrollPosition = window.scrollY;
-    const firstSectionHeight = firstSection.offsetHeight;
-
-    if (
-      scrollPosition + window.innerHeight >= firstSectionHeight &&
-      !aboutSection.classList.contains('scrolled')
-    ) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-      aboutSection.classList.add('scrolled');
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
     <>
       <div className="relative h-screen w-full overflow-hidden bg-gray-900 font-sans text-white">
@@ -90,8 +110,12 @@ const CAPortal = () => {
         </div>
 
         <main className="relative h-full overflow-y-auto">
+          <ScrollChevron />
+
           {/* Main Technex Info */}
-          <TechnexInfo />
+          <div id="technex-info">
+            <TechnexInfo />
+          </div>
 
           {/* About Technex Section */}
           <section className="relative" id="about">
@@ -103,8 +127,10 @@ const CAPortal = () => {
             <AboutTechnex />
           </section>
 
-          {/* Our Reach Section */}
-          <section className="relative flex h-auto flex-col items-center justify-center bg-zinc-900 px-6 text-center sm:h-screen sm:px-12 md:px-24">
+          <section
+            className="relative flex h-auto flex-col items-center justify-center bg-zinc-900 px-6 text-center sm:h-screen sm:px-12 md:px-24"
+            id="our-reach"
+          >
             <div className="pointer-events-none absolute right-1/2 top-0 w-full translate-x-1/2 transform">
               <h1 className="text-right text-[18rem] font-bold leading-none text-customRed opacity-10">
                 Reach
@@ -125,10 +151,8 @@ const CAPortal = () => {
             </div>
           </section>
 
-          {/* FAQs */}
           <FAQSection />
 
-          {/* Contact Us */}
           <ContactUs />
         </main>
       </div>

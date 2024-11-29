@@ -129,7 +129,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
       </div>
 
       {/* FAQs Section */}
-      <section className="relative mt-16">
+      <section className="relative mt-16" id="faqs">
         <div className="pointer-events-none absolute bottom-40 left-60 h-full w-full">
           <h1 className="text-[12rem] font-bold text-customRed opacity-10">FAQs</h1>
         </div>
