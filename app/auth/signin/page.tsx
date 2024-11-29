@@ -2,8 +2,8 @@
 
 import { InputFormField } from '@/app/layout/form-field';
 import { login } from '@/app/utils/api';
-import { Button } from '@/app/components/ui/button';
-import { Form } from '@/app/components/ui/form';
+import { Button } from '@/components/ui/button';
+import { Form } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -39,7 +39,7 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center pt-20 bg-[#191919]">
+    <div className="flex min-h-screen items-center justify-center bg-[#191919] pt-20">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

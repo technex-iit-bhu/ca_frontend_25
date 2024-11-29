@@ -1,7 +1,9 @@
-const BASE_URL = 'http://localhost:6969/api/user'; // TODO change backend url
+import { Task, User } from '../layout/dashboard/dashboard';
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function getProfileDetails(token: string) {
-  const res = await fetch(`${BASE_URL}/profile`, {
+  const res = await fetch(`${BASE_URL}/user/profile`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -12,7 +14,7 @@ export async function getProfileDetails(token: string) {
 }
 
 export async function updateProfileDetails(token: string, data: string) {
-  return await fetch(`${BASE_URL}/update`, {
+  return await fetch(`${BASE_URL}/user/update`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -23,7 +25,7 @@ export async function updateProfileDetails(token: string, data: string) {
 }
 
 export async function login(username: string, password: string) {
-  const res = await fetch(`${BASE_URL}/login`, {
+  const res = await fetch(`${BASE_URL}/user/login`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -33,33 +35,35 @@ export async function login(username: string, password: string) {
   return res.json();
 }
 
-interface UserData {
-  name: string;
-  username: string;
-  password: string;
-  phoneNumber: string;
-  whatsappNumber: string;
-  institute: string;
-  city?: string;
-  postal_address?: string;
-  pin_code?: string;
-  whyChooseYou?: string;
-  wereCA?: boolean;
-  year?: number;
-  branch?: string;
-  referralCode: string;
-  email: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
-
-export async function signup(userData: UserData) {
-  const res = await fetch(`${BASE_URL}/register`, {
+export async function signup(userData: User) {
+  const res = await fetch(`${BASE_URL}/user/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(userData),
+  });
+  return res.json();
+}
+
+export async function getTasks(token: string): Promise<Task[]> {
+  const res = await fetch(`${BASE_URL}/tasks`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.json();
+}
+
+export async function getSubmittedTasks(token: string): Promise<Task[]> {
+  const res = await fetch(`${BASE_URL}/submissions/get_user_submissions`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
   });
   return res.json();
 }

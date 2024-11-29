@@ -3,24 +3,51 @@
 import { useState } from 'react';
 import SectionHandler from './sectionHandler';
 import './dashboard.css';
-import Image from 'next/image';
 
-interface User {
+export interface User {
   name: string;
+  username: string;
+  password: string;
+  phoneNumber: string;
+  whatsappNumber: string;
+  institute: string;
+  city?: string;
+  postal_address?: string;
+  pin_code?: string;
+  whyChooseYou?: string;
+  wereCA?: boolean;
+  year?: number;
+  branch?: string;
+  referralCode: string;
+  email: string;
   rank: number;
-  // more fields to be added
+  points: number;
+  ca_id: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface Task {
+  id: number;
+  title: string;
+  description: string;
+  points: number;
+  deadline: string;
+  image_url: string;
 }
 
 interface DashboardProps {
   user: User;
+  tasks: Task[];
+  submitted_tasks: Task[];
 }
 
 // coming soon bool - to be removed later
-const comingSoon = true;
+let comingSoon = false;
 
-function Dashboard({ user }: DashboardProps) {
+function Dashboard({ user, tasks, submitted_tasks }: DashboardProps) {
   const [selectedTab, setSelectedTab] = useState<string>('live');
-
+  console.log(user, tasks, submitted_tasks);
   return (
     <div className="min-h-screen w-screen bg-[#191919] pt-[6rem] md:pb-[3rem] lg:pb-[5rem]">
       <div className="relative md:pb-[13rem] lg:pb-[17rem]">
@@ -34,35 +61,33 @@ function Dashboard({ user }: DashboardProps) {
       <div className="dashboard-div relative mx-auto flex h-[500px] w-[80%] flex-col rounded-[50px] bg-[#222222] p-3 text-white sm:p-4 md:p-6 lg:p-8">
         {/* Profile Section */}
         <div className="absolute top-[-50px] flex h-[120px] w-[120px] items-center justify-center rounded-full border-[3px] border-red-500 bg-black md:left-[5rem] lg:left-[8rem]">
-          <Image
+          <img
             src="/assets/profile.svg"
             alt="Profile"
-            width={100}
-            height={100}
-            className="rounded-full object-contain"
+            className="h-[100px] w-[100px] rounded-full object-contain"
           />
         </div>
         <div className="dashboard-profile mt-[2.5rem] flex w-full items-center justify-between px-[2rem] lg:px-[4rem]">
           <div className="dash-name text-white">
             <h1 className="text-lg font-bold md:text-xl lg:text-3xl">{user.name}</h1>
-            <p className="leading-[1.5rem]">Rank : {user.rank}</p>
-            <p className="leading-[1.5rem]">CA Id: coming soon!</p>
+            <p className="leading-[1.5rem]">Rank : {user.rank || 0}</p>
+            <p className="leading-[1.5rem]">CA Id: {user.ca_id}</p>
           </div>
           <div className="stats flex items-start gap-x-3 px-2 lg:gap-x-6 lg:px-4">
             <div className="text-bold my-auto flex flex-col items-center p-3 lg:p-6">
               <p className="stat-heading text-[0.8rem] md:text-[1rem]">Tasks done</p>
               <p
-                className={`stat-n text-[1rem] md:text-[2rem] lg:text-[3rem] ${comingSoon ? 'coming-soon' : ''}`}
+                className={`stat-n text-center text-[1rem] md:text-[2rem] lg:text-[2.5rem] ${comingSoon ? 'coming-soon' : ''}`}
               >
-                Coming Soon
+                {submitted_tasks.length}
               </p>
             </div>
             <div className="text-bold my-auto flex flex-col items-center p-3 lg:p-6">
               <p className="stat-heading text-[0.8rem] md:text-[1rem]">Total Tasks</p>
               <p
-                className={`stat-n text-[1rem] md:text-[2rem] lg:text-[3rem] ${comingSoon ? 'coming-soon' : ''}`}
+                className={`stat-n text-center text-[1rem] md:text-[2rem] lg:text-[2.5rem] ${comingSoon ? 'coming-soon' : ''}`}
               >
-                Coming Soon
+                {tasks.length}
               </p>
             </div>
             <div className="text-bold my-auto flex flex-col items-center p-3 lg:p-6">
@@ -70,7 +95,7 @@ function Dashboard({ user }: DashboardProps) {
               <p
                 className={`stat-n text-[1rem] md:text-[2rem] lg:text-[3rem] ${comingSoon ? 'coming-soon' : ''}`}
               >
-                Coming Soon
+                {comingSoon ? 'Coming Soon' : user.points || 0}
               </p>
             </div>
           </div>
