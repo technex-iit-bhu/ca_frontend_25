@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Menu, User, LayoutDashboard, UserCircle } from 'lucide-react';
+import { Menu, LayoutDashboard, UserCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import {
@@ -20,9 +20,16 @@ export function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
+  const updateLoginStatus = () => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token);
+  };
+
+  useEffect(() => {
+    updateLoginStatus();
+    window.addEventListener('signin', () => {
+      updateLoginStatus();
+    });
   }, []);
 
   const handleLogout = () => {
@@ -41,32 +48,32 @@ export function Navbar() {
         </div>
         <nav className="ml-auto mr-8 hidden gap-8 lg:flex">
           <Link
-            className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
+            className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
             href="/#about"
           >
             About
           </Link>
           <Link
-            className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
-            href="/#incentives"
+            className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+            href="/incentives"
           >
             Incentives
           </Link>
           <Link
-            className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
+            className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
             href="/#contact-us"
           >
             Contact Us
           </Link>
           <Link
-            className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
+            className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
             href="/#faqs"
           >
             FAQs
           </Link>
           <Link
-            className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
-            href="/#"
+            className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+            href="/leaderboard"
           >
             Leaderboard
           </Link>
@@ -75,7 +82,7 @@ export function Navbar() {
           {isLoggedIn ? (
             <>
               <Button
-                className="hidden rounded-full border-4 border-customRed bg-white py-6 lg:flex"
+                className="hidden rounded-full border-4 border-red-500 bg-opacity-0 py-6 text-white lg:flex"
                 variant="ghost"
                 onClick={handleLogout}
               >
@@ -84,11 +91,16 @@ export function Navbar() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
-                    className="hidden rounded-full border-4 border-customRed bg-white py-6 lg:flex"
+                    className="relative hidden rounded-full border-4 border-red-500 bg-[#191919] p-6 lg:flex"
                     variant="ghost"
-                    onClick={() => router.push('/profile')}
                   >
-                    <User className="h-18 w-18" />
+                    <Image
+                      src="/assets/profile-user-1.svg"
+                      alt="User Profile"
+                      fill
+                      objectFit="cover"
+                      className="p-[0.125rem]"
+                    />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56 border-gray-800 bg-black/80 text-white">
@@ -112,14 +124,14 @@ export function Navbar() {
           ) : (
             <>
               <Button
-                className="hidden rounded-full border border-b-white bg-transparent text-lg text-white hover:bg-customRed lg:flex"
+                className="hidden rounded-full border border-b-white bg-transparent text-lg text-white hover:bg-red-500 lg:flex"
                 variant="ghost"
                 onClick={() => router.push('/auth/signup')}
               >
                 Signup
               </Button>
               <Button
-                className="hidden rounded-full border border-b-white bg-transparent text-lg text-white hover:bg-customRed lg:flex"
+                className="hidden rounded-full border border-b-white bg-transparent text-lg text-white hover:bg-red-500 lg:flex"
                 variant="ghost"
                 onClick={() => router.push('/auth/signin')}
               >
@@ -143,13 +155,13 @@ export function Navbar() {
                 {isLoggedIn ? (
                   <>
                     <Link
-                      className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
+                      className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
                       href="/profile"
                     >
                       Profile
                     </Link>
                     <Button
-                      className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
+                      className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
                       variant="ghost"
                       onClick={handleLogout}
                     >
@@ -159,13 +171,13 @@ export function Navbar() {
                 ) : (
                   <>
                     <Link
-                      className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
+                      className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
                       href="/auth/signup"
                     >
                       Signup
                     </Link>
                     <Link
-                      className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
+                      className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
                       href="/auth/signin"
                     >
                       Log In
@@ -173,32 +185,32 @@ export function Navbar() {
                   </>
                 )}
                 <Link
-                  className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
+                  className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
                   href="/#about"
                 >
                   About
                 </Link>
                 <Link
-                  className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
-                  href="/#incentives"
+                  className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+                  href="/incentives"
                 >
                   Incentives
                 </Link>
                 <Link
-                  className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
+                  className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
                   href="/#contact-us"
                 >
                   Contact Us
                 </Link>
                 <Link
-                  className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
+                  className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
                   href="/#faqs"
                 >
                   FAQs
                 </Link>
                 <Link
-                  className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
-                  href="/#"
+                  className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+                  href="/leaderboard"
                 >
                   Leaderboard
                 </Link>
