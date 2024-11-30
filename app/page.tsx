@@ -17,9 +17,8 @@ const ScrollChevron: React.FC = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const sectionsRef = useRef<HTMLElement[]>([]);
 
-  const sectionIds = ['technex-info', 'about', 'our-reach', 'faqs', 'contact-us'];
-
   useEffect(() => {
+    const sectionIds = ['technex-info', 'about', 'our-reach', 'faqs', 'contact-us'];
     sectionsRef.current = sectionIds
       .map((id) => document.getElementById(id) as HTMLElement)
       .filter((section) => section !== null);

@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import Image from 'next/image';
 
 const passwordSchema = z
   .string()
@@ -57,15 +58,17 @@ export default function SignupPage() {
     },
   });
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (signupData: FormData) => {
+    setIsLoading(true);
     const userData = {
       ...signupData,
       rank: 0,
       points: 0,
       ca_id: '',
       referralCode: signupData.referralCode || '',
-    }
+    };
     const response = await signup(userData);
     if (response.message === 'User created successfully') {
       router.push('/auth/signin');
@@ -75,7 +78,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center pt-20 bg-[#191919]">
+    <div className="flex min-h-screen items-center justify-center bg-[#191919] pt-20">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -154,9 +157,19 @@ export default function SignupPage() {
           <Button
             type="submit"
             className="w-full rounded bg-[#a81f25] p-2 text-white hover:bg-[#8e1a1f]"
-            disabled={!isCheckboxChecked}
+            disabled={!isCheckboxChecked || isLoading}
           >
-            Sign Up
+            {isLoading ? (
+              <Image
+                src="/spiral-loading.gif"
+                alt="Loading..."
+                width={48}
+                height={48}
+                className="mx-auto"
+              />
+            ) : (
+              'Sign Up'
+            )}
           </Button>
         </form>
       </Form>
