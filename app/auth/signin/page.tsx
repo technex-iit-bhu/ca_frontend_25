@@ -50,7 +50,7 @@ export default function SignInPage() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full max-w-md space-y-8 rounded p-8 outline-dotted outline-[#a81f25]"
         >
-          <h2 className="mb-6 text-2xl font-bold text-white">Login</h2>
+          <h2 className="mb-6 text-center text-2xl font-bold text-white">Login</h2>
           <div className="space-y-4">
             <InputFormField
               form={form}
@@ -83,6 +83,12 @@ export default function SignInPage() {
               'Login'
             )}
           </Button>
+          <div className="text-center">
+            <span className='text-white'>New to Technex? Signup</span>
+            <a href="/auth/signup" className="text-customRed pl-2">
+              HERE
+            </a>
+          </div>
         </form>
       </Form>
     </div>

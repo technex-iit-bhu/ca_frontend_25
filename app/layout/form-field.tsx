@@ -30,7 +30,7 @@ export const InputFormField = ({
               type={type}
               placeholder={placeholder}
               {...field}
-              className="bg-[#2e2e2e] text-white"
+              className="bg-[#2e2e2e] text-white border-rose-900 rounded-lg"
             />
           ) : (
             <Textarea placeholder={placeholder} {...field} className="bg-[#2e2e2e] text-white" />

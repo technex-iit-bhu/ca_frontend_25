@@ -171,6 +171,12 @@ export default function SignupPage() {
               'Sign Up'
             )}
           </Button>
+          <div className="text-center">
+            <span className='text-white'>Already a member? Login</span>
+            <a href="/auth/signin" className="text-customRed pl-2">
+              HERE
+            </a>
+          </div>
         </form>
       </Form>
     </div>

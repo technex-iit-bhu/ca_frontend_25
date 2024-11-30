@@ -102,9 +102,9 @@ const CAPortal = () => {
           <Image
             src="/homebg.png"
             alt="Home Background"
-            fill
+            layout="fill"
             objectFit="cover"
-            className="opacity-80"
+            className="z-0 opacity-80"
           />
         </div>
 
@@ -131,12 +131,12 @@ const CAPortal = () => {
             id="our-reach"
           >
             <div className="pointer-events-none absolute right-1/2 top-0 w-full translate-x-1/2 transform">
-              <h1 className="text-right text-[18rem] font-bold leading-none text-customRed opacity-10">
+              <h1 className="text-right text-[18rem] font-bold leading-none text-customRed opacity-10 overflow-hidden overflow-x-hidden">
                 Reach
               </h1>
             </div>
             <div className="mt-40 w-full text-right">
-              <h2 className="text-3xl font-normal sm:text-8xl">
+              <h2 className="text-3xl font-normal sm:text-8xl overflow-hidden overflow-x-hidden">
                 <span className="text-red-600">Our</span> Reach
               </h2>
             </div>
