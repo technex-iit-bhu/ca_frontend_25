@@ -4,9 +4,17 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Menu, User } from 'lucide-react';
+import { Menu, User, LayoutDashboard, UserCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 export function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,31 +42,31 @@ export function Navbar() {
         <nav className="ml-auto mr-8 hidden gap-8 lg:flex">
           <Link
             className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
-            href="/"
+            href="/#about"
           >
             About
           </Link>
           <Link
             className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
-            href="/"
+            href="/#incentives"
           >
             Incentives
           </Link>
           <Link
             className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
-            href="/"
+            href="/#contact-us"
           >
             Contact Us
           </Link>
           <Link
             className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
-            href="/"
+            href="/#faqs"
           >
             FAQs
           </Link>
           <Link
             className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
-            href="/"
+            href="/#"
           >
             Leaderboard
           </Link>
@@ -66,37 +74,57 @@ export function Navbar() {
         <div className="flex items-center gap-4">
           {isLoggedIn ? (
             <>
-            <Button
-              className="hidden rounded-full border-4 border-customRed bg-white py-6 lg:flex"
-              variant="ghost"
-              onClick={handleLogout}
-            >
-              Logout
-            </Button>
-            <Button
-              className="hidden rounded-full border-4 border-customRed bg-white py-6 lg:flex"
-              variant="ghost"
-              onClick={() => router.push('/profile')}
-            >
-              <User className="h-18 w-18" />
-            </Button>
+              <Button
+                className="hidden rounded-full border-4 border-customRed bg-white py-6 lg:flex"
+                variant="ghost"
+                onClick={handleLogout}
+              >
+                Logout
+              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    className="hidden rounded-full border-4 border-customRed bg-white py-6 lg:flex"
+                    variant="ghost"
+                    onClick={() => router.push('/profile')}
+                  >
+                    <User className="h-18 w-18" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56 border-gray-800 bg-black/80 text-white">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator className="bg-gray-700" />
+                  <DropdownMenuItem className="focus:bg-red-500/20 focus:text-white">
+                    <Link href="/dashboard" className="flex w-full items-center gap-2">
+                      <LayoutDashboard className="mr-2 h-4 w-4" />
+                      <span>Dashboard</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="focus:bg-red-500/20 focus:text-white">
+                    <Link href="/profile" className="flex w-full items-center gap-2">
+                      <UserCircle className="mr-2 h-4 w-4" />
+                      <span>Profile</span>
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </>
           ) : (
             <>
-            <Button
-              className="hidden rounded-full border border-b-white bg-transparent text-lg text-white hover:bg-customRed lg:flex"
-              variant="ghost"
-              onClick={() => router.push('/auth/signup')}
-            >
-              Signup
-            </Button>
-            <Button
-              className="hidden rounded-full border border-b-white bg-transparent text-lg text-white hover:bg-customRed lg:flex"
-              variant="ghost"
-              onClick={() => router.push('/auth/signin')}
-            >
-              Login
-            </Button>
+              <Button
+                className="hidden rounded-full border border-b-white bg-transparent text-lg text-white hover:bg-customRed lg:flex"
+                variant="ghost"
+                onClick={() => router.push('/auth/signup')}
+              >
+                Signup
+              </Button>
+              <Button
+                className="hidden rounded-full border border-b-white bg-transparent text-lg text-white hover:bg-customRed lg:flex"
+                variant="ghost"
+                onClick={() => router.push('/auth/signin')}
+              >
+                Login
+              </Button>
             </>
           )}
           <Sheet>
@@ -146,31 +174,31 @@ export function Navbar() {
                 )}
                 <Link
                   className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
-                  href="/"
+                  href="/#about"
                 >
                   About
                 </Link>
                 <Link
                   className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
-                  href="/"
+                  href="/#incentives"
                 >
                   Incentives
                 </Link>
                 <Link
                   className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
-                  href="/"
+                  href="/#contact-us"
                 >
                   Contact Us
                 </Link>
                 <Link
                   className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
-                  href="/"
+                  href="/#faqs"
                 >
                   FAQs
                 </Link>
                 <Link
                   className="text-lg font-medium text-white/90 transition-colors hover:text-customRed"
-                  href="/"
+                  href="/#"
                 >
                   Leaderboard
                 </Link>
