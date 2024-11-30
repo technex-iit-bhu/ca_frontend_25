@@ -6,6 +6,7 @@ import TechnexInfo from '@/app/layout/TechnexInfo';
 import AboutTechnex from '@/app/layout/AboutTechnex';
 import FAQSection from '@/app/layout/FAQSection';
 import { ChevronsDown, ChevronsUp } from 'lucide-react';
+import WhyCA from './layout/WhyCA';
 
 interface StatCircleProps {
   value: number;
@@ -131,12 +132,12 @@ const CAPortal = () => {
             id="our-reach"
           >
             <div className="pointer-events-none absolute right-1/2 top-0 w-full translate-x-1/2 transform">
-              <h1 className="text-right text-[18rem] font-bold leading-none text-customRed opacity-10 overflow-hidden overflow-x-hidden">
+              <h1 className="overflow-hidden overflow-x-hidden text-right text-[18rem] font-bold leading-none text-customRed opacity-10">
                 Reach
               </h1>
             </div>
             <div className="mt-40 w-full text-right">
-              <h2 className="text-3xl font-normal sm:text-8xl overflow-hidden overflow-x-hidden">
+              <h2 className="overflow-hidden overflow-x-hidden text-3xl font-normal sm:text-8xl">
                 <span className="text-red-600">Our</span> Reach
               </h2>
             </div>
@@ -148,6 +149,13 @@ const CAPortal = () => {
             <div className="mt-6 flex w-full justify-end">
               <div className="mb-40 h-1 w-full max-w-[90%] bg-red-600 sm:w-1/2 md:w-1/3"></div>
             </div>
+          </section>
+
+          <section className="relative" id="about">
+            <div className="pointer-events-none absolute left-[14rem] -top-[10rem] w-full -translate-x-[8rem] transform">
+              <h1 className="text-[18rem] font-bold leading-none text-customRed opacity-10">CA</h1>
+            </div>
+            <WhyCA />
           </section>
 
           <FAQSection />

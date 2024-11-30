@@ -87,7 +87,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
   };
 
   return (
-    <div className="min-h-screen w-full space-y-16 bg-zinc-900 p-8 pt-20 text-white">
+    <div className="min-h-screen w-full space-y-16 bg-zinc-900 p-8 pt-[15rem] text-white">
       {/* Testimonials Section */}
       <section className="relative mb-16">
         <div className="pointer-events-none absolute left-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 transform px-24 overflow-hidden overflow-x-hidden">
