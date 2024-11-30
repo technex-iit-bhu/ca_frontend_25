@@ -20,6 +20,19 @@ export function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/#')) {
+      e.preventDefault();
+      const targetId = href.split('#')[1];
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      router.push(href);
+    }
+  };
+
   const updateLoginStatus = () => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token);
@@ -42,7 +55,7 @@ export function Navbar() {
     <header className="fixed top-0 z-50 w-full border-white/10 bg-black/50 backdrop-blur-lg">
       <div className="flex h-20 items-center justify-between px-4 md:px-6">
         <div className="flex items-center gap-2">
-          <Link href="/">
+          <Link href="/" onClick={(e) => handleAnchorClick(e, '/')}>
             <Image src={'/technex_logo.svg'} alt="Technex Logo" width={240} height={60} />
           </Link>
         </div>
@@ -50,6 +63,7 @@ export function Navbar() {
           <Link
             className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
             href="/#about"
+            onClick={(e) => handleAnchorClick(e, '/#about')}
           >
             About
           </Link>
@@ -62,12 +76,14 @@ export function Navbar() {
           <Link
             className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
             href="/#contact-us"
+            onClick={(e) => handleAnchorClick(e, '/#contact-us')}
           >
             Contact Us
           </Link>
           <Link
             className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
             href="/#faqs"
+            onClick={(e) => handleAnchorClick(e, '/#faqs')}
           >
             FAQs
           </Link>
@@ -187,6 +203,7 @@ export function Navbar() {
                 <Link
                   className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
                   href="/#about"
+                  onClick={(e) => handleAnchorClick(e, '/#about')}
                 >
                   About
                 </Link>
@@ -199,12 +216,14 @@ export function Navbar() {
                 <Link
                   className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
                   href="/#contact-us"
+                  onClick={(e) => handleAnchorClick(e, '/#contact-us')}
                 >
                   Contact Us
                 </Link>
                 <Link
                   className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
                   href="/#faqs"
+                  onClick={(e) => handleAnchorClick(e, '/#faqs')}
                 >
                   FAQs
                 </Link>

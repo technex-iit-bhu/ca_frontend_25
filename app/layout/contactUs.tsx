@@ -19,7 +19,7 @@ const ContactUs: React.FC = () => {
         </div>
 
         {/* Contact Information Centered */}
-        <div className="mt-8 flex flex-col items-center justify-center gap-10 px-4 md:flex-row md:space-x-10 md:px-0">
+        <div className="mt-8 flex flex-col items-center justify-center gap-10 px-4 md:flex-row md:space-x-10 md:px-0 animate-pulse">
           {/* Contact Card 1 */}
           <div className="flex flex-col items-center space-y-2 md:flex-row md:items-center md:space-x-4">
             <FaPhoneAlt className="text-3xl text-gray-400" />
