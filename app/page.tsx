@@ -8,6 +8,38 @@ import FAQSection from '@/app/layout/FAQSection';
 import { ChevronsDown, ChevronsUp } from 'lucide-react';
 import WhyCA from './layout/WhyCA';
 
+export const HeadingTexts = ({
+  bgText,
+  whiteText,
+  redText,
+  align,
+}: {
+  bgText: string;
+  whiteText: string;
+  redText: string;
+  align: 'left' | 'right';
+}) => (
+  <div
+    className={`flex flex-col ${
+      align === 'right' ? 'items-end' : 'items-start'
+    } -space-y-14 pb-10 sm:-space-y-32 lg:-space-y-36`}
+  >
+    <h1 className="text-[5rem] sm:text-[212px] lg:text-[13rem]">
+      <span
+        className="block opacity-20"
+        style={{
+          color: '#A81F25',
+        }}
+      >
+        {bgText}
+      </span>
+    </h1>
+    <span className="z-10 ml-3 mr-1 transform select-none text-2xl text-white transition duration-700 hover:scale-110 sm:mr-2 sm:pl-1 sm:text-[60px] md:pl-3 md:text-[73px]">
+      {whiteText} <span className="text-red-600">{redText}</span>
+    </span>
+  </div>
+);
+
 interface StatCircleProps {
   value: number;
   percentage: number;
@@ -119,42 +151,27 @@ const CAPortal = () => {
 
           {/* About Technex Section */}
           <section className="relative" id="about">
-            <div className="pointer-events-none absolute left-1/2 top-0 w-full -translate-x-1/2 transform">
-              <h1 className="text-[18rem] font-bold leading-none text-customRed opacity-10">
-                Technex
-              </h1>
-            </div>
             <AboutTechnex />
           </section>
 
+          <div className="bg-zinc-900">
+            <HeadingTexts bgText="Reach" whiteText="Our" redText="Reach" align="right" />
+          </div>
           <section
             className="relative flex h-auto flex-col items-center justify-center bg-zinc-900 px-6 text-center sm:h-screen sm:px-12 md:px-24"
             id="our-reach"
           >
-            <div className="pointer-events-none absolute right-1/2 top-0 w-full translate-x-1/2 transform">
-              <h1 className="overflow-hidden overflow-x-hidden text-right text-[18rem] font-bold leading-none text-customRed opacity-10">
-                Reach
-              </h1>
-            </div>
-            <div className="mt-40 w-full text-right">
-              <h2 className="overflow-hidden overflow-x-hidden text-3xl font-normal sm:text-8xl">
-                <span className="text-red-600">Our</span> Reach
-              </h2>
-            </div>
-            <div className="my-32 flex flex-col items-center justify-center space-y-12 sm:flex-row sm:space-x-12 sm:space-y-0">
+            <div className="flex flex-col items-center justify-center space-y-12 sm:flex-row sm:space-x-12 sm:space-y-0 md:py-20">
               <StatCircle value={69} label="College Ambassadors" percentage={60} />
               <StatCircle value={234} label="Indian Colleges" percentage={70} />
               <StatCircle value={987} label="International Colleges" percentage={65} />
             </div>
-            <div className="mt-6 flex w-full justify-end">
-              <div className="mb-40 h-1 w-full max-w-[90%] bg-red-600 sm:w-1/2 md:w-1/3"></div>
+            <div className="flex w-full justify-end">
+              <div className="h-1 w-full max-w-[90%] bg-red-600 sm:w-1/2 md:w-1/3"></div>
             </div>
           </section>
 
           <section className="relative" id="about">
-            <div className="pointer-events-none absolute left-[14rem] -top-[10rem] w-full -translate-x-[8rem] transform">
-              <h1 className="text-[18rem] font-bold leading-none text-customRed opacity-10">CA</h1>
-            </div>
             <WhyCA />
           </section>
 
