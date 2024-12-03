@@ -167,7 +167,7 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-[300px] border-l border-gray-800 bg-black/60 backdrop-blur-lg sm:w-[400px]"
+              className="w-[300px] border-l border-gray-800 bg-black/60 backdrop-blur-lg sm:w-[400px] text-white"
             >
               <SheetTitle className="text-white">Navigation Menu</SheetTitle>
               <nav className="mt-4 grid gap-6">
