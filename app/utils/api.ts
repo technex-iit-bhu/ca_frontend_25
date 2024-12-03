@@ -3,6 +3,7 @@ import { Task, User } from '../layout/dashboard/dashboard';
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 console.log('API Base URL:', process.env.NEXT_PUBLIC_API_BASE_URL);
 
+
 export async function getProfileDetails(token: string) {
   const res = await fetch(`${BASE_URL}/user/profile`, {
     method: 'GET',
