@@ -21,15 +21,18 @@ export function Navbar() {
   const router = useRouter();
 
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith('/#')) {
-      e.preventDefault();
-      const targetId = href.split('#')[1];
+    e.preventDefault();
+
+    const targetPath = href.split('#')[0];
+    const targetId = href.split('#')[1];
+
+    if (window.location.pathname !== targetPath) {
+      router.push(href);
+    } else {
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
         targetElement.scrollIntoView({ behavior: 'smooth' });
       }
-    } else {
-      router.push(href);
     }
   };
 
