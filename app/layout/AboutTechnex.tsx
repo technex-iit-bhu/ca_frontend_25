@@ -1,4 +1,4 @@
-import { HeadingTexts } from '../page';
+import { HeadingTexts } from './HeadingTexts';
 
 export default function AboutTechnex() {
   return (

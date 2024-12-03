@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import { HeadingTexts } from '../page';
+import { HeadingTexts } from './HeadingTexts';
 interface Testimonial {
   name: string;
   surname: string;

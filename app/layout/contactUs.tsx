@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaPhoneAlt } from 'react-icons/fa';
 import Footer from './Footer';
-import { HeadingTexts } from '../page';
+import { HeadingTexts } from './HeadingTexts';
 
 const ContactUs: React.FC = () => {
   return (
