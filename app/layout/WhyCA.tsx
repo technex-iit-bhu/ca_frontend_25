@@ -8,7 +8,7 @@ export default function WhyCA() {
       <HeadingTexts bgText="CA" whiteText="Why" redText="CA?" align="left" />
       <p className="mt-4 max-w-2xl text-white sm:text-xl md:text-2xl">
         <span className="text-customRed">
-          Become a Campus Ambassador (CA) for Technex'25 and become the driving force behind one of
+          Become a Campus Ambassador (CA) for Technex&apos;25 and become the driving force behind one of
           Asia&apos; s oldest and most celebrated techno-management fests on your campus.
         </span>{' '}
         This is your opportunity to lead with purpose by organizing events, promoting Technex, and

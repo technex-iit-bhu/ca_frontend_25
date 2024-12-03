@@ -373,7 +373,7 @@ const ProfilePage: React.FC = () => {
       <ProfileCard user={user} onProfileFormSubmit={updateUserData} errorFetchingProfile={errorFetchingProfile} />
       <Button
         className="mx-auto my-8 self-center rounded-3xl bg-[#A81F25] px-10 py-6 text-3xl"
-        onClick={() => router.push('/')} // TODO ensure the link to dashboard is correct
+        onClick={() => router.push('/dashboard')}
       >
         Dashboard
       </Button>

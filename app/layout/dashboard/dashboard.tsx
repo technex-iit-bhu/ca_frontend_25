@@ -105,14 +105,13 @@ function Dashboard({ user, tasks, submitted_tasks }: DashboardProps) {
             </div>
           </div>
         </div>
-        {/* Milestone and Rewards Sections */}
-        <div>
+        {/* Milestone and Rewards Sections : TODO : Implement in future*/}
+        {/* <div>
           <div className="milestone mt-6 flex items-center justify-between rounded-[50px] bg-[#191919] p-6">
             <div>
               <h3 className="text-lg font-bold leading-4">Next Milestone</h3>
               <p className="mt-3 max-w-[75%] break-words text-xs md:max-w-[60%] md:text-sm">
-                Go and find a girl you virgin. Go and earn some money, so that at least someone is
-                attracted to your money if not YOU!
+                COMING SOON
               </p>
             </div>
             <button className="mt-2 rounded-full bg-[#A81F2591] px-4 py-2 text-white hover:bg-red-500">
@@ -125,7 +124,7 @@ function Dashboard({ user, tasks, submitted_tasks }: DashboardProps) {
               Awards
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Tab and Events Section */}
