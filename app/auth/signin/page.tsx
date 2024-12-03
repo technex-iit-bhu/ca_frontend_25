@@ -39,6 +39,7 @@ export default function SignInPage() {
       window.dispatchEvent(new Event('signin'));
       router.push('/');
     } else {
+      setIsLoading(false);
       form.setError('username', { message: response.message });
     }
   };

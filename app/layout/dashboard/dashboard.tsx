@@ -48,9 +48,6 @@ const comingSoon = false;
 
 function Dashboard({ user, tasks, submitted_tasks }: DashboardProps) {
   const [selectedTab, setSelectedTab] = useState<string>('live');
-  console.log("user : ", user)
-  console.log("tasks : ", tasks)
-  console.log("submitted_tasks : ", submitted_tasks)
   return (
     <div className="min-h-screen w-screen bg-[#191919] pt-[6rem] md:pb-[3rem] lg:pb-[5rem]">
       <div className="relative md:pb-[13rem] lg:pb-[17rem]">

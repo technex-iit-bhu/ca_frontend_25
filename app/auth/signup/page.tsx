@@ -73,6 +73,7 @@ export default function SignupPage() {
     if (response.message === 'User created successfully') {
       router.push('/auth/signin');
     } else {
+      setIsLoading(false);
       form.setError('username', { message: response.message });
     }
   };
