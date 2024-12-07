@@ -1,20 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
-.dashboard-div {
-  background: linear-gradient(
-    180deg,
-    rgba(100, 100, 100, 0.4) 0%,
-    rgba(100, 100, 100, 0.35) 18.35%,
-    rgba(100, 100, 100, 0.29) 35.18%,
-    rgba(100, 100, 100, 0.2) 50.96%,
-    rgba(100, 100, 100, 0.1) 68.32%,
-    rgba(100, 100, 100, 0.05) 83.58%,
-    rgba(100, 100, 100, 0) 100%
-  );
+.bg-translucent {
+  background-color: rgba(4, 4, 0, 0.5); /* Adjust the last value for desired transparency */
 }
+
 .stats div {
   background-color: #191919;
   color: white;

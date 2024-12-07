@@ -365,7 +365,7 @@ const ProfilePage: React.FC = () => {
 
   return (
     <div className="my-[8rem] mx-8 flex flex-col">
-      <div className='pb-3 md:pb-[12rem] font-signika'>
+      <div className='pb-3 md:pb-[12rem]'>
         <HeadingTexts redText="" whiteText="Profile" align="left" />
       </div>
       <ProfileCard user={user} onProfileFormSubmit={updateUserData} errorFetchingProfile={errorFetchingProfile} />

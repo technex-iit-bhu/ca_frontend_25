@@ -13,7 +13,7 @@ export default function TechnexInfo() {
         objectFit="cover"
         className="z-[0]"
       />
-      <h1 className="text-3xl font-normal sm:text-4xl md:text-5xl z-[0]">
+      <h1 className="text-3xl font-normal sm:text-4xl md:text-5xl z-[0] font-signika">
         <span className="text-red-600">Tech</span> <span className="text-white">Trek Pioneer</span>
       </h1>
       <p className="max-w-xl rounded-[20px] bg-black bg-opacity-80 p-4 text-lg sm:text-xl md:text-2xl z-[0]">
