@@ -3,34 +3,43 @@ export default function WhyCA() {
   return (
     <section
       id="about"
-      className="flex h-auto flex-col items-start justify-center bg-zinc-900 px-6 text-left sm:h-screen sm:px-12 md:px-24"
+      className="flex h-auto flex-col justify-center px-6 text-left sm:h-screen sm:px-12 md:px-24"
     >
-      <HeadingTexts bgText="CA" whiteText="Why" redText="CA?" align="left" />
-      <p className="mt-4 max-w-2xl text-white sm:text-xl md:text-2xl">
-        <span className="text-customRed">
-          Become a Campus Ambassador (CA) for Technex&apos;25 and become the driving force behind one of
-          Asia&apos; s oldest and most celebrated techno-management fests on your campus.
-        </span>{' '}
-        This is your opportunity to lead with purpose by organizing events, promoting Technex, and
-        energizing your campus community. As a CA, you&apos; ll connect with fellow ambassadors, the
-        Technex team, and industry experts, building a professional network that could shape your
-        future. It&apos; s more than just a role—it&apos; s a chance to inspire, innovate, and make
-        a lasting impact.
-      </p>
-      <br />
-      <p className="mt-4 max-w-2xl text-white sm:text-xl md:text-2xl">
-        The Technex CA Program offers a platform to develop essential skills like{' '}
-        <span className="text-customRed">leadership</span>,{' '}
-        <span className="text-customRed">communication</span>, and{' '}
-        <span className="text-customRed">organization through real-world experience</span>. Be at
-        the forefront of innovation by connecting your peers to a world of creativity and
-        opportunity, all while gaining recognition and leaving your mark. If you are ready to
-        embrace challenges, grow personally and professionally, and create unforgettable memories,
-        this program is your gateway to excellence.
-      </p>
-
-      <div className="mt-6 w-full sm:w-3/4 md:w-2/3">
-        <div className="h-1 bg-red-600"></div>
+      <HeadingTexts whiteText="Why" redText="CA?" align="center" />
+      <div className="max-w-max rounded-[20px] bg-black bg-opacity-80 p-4 my-10">
+        <p className="mt-4 text-white sm:text-lg md:text-xl">
+          The Campus Ambassador Program for Technex&apos;23 offers an exciting chance to become an
+          essential part of the organizing team behind India&apos;s premier technical and innovation
+          fest. As a Campus Ambassador,{' '}
+          <span className="text-customRed">
+            you&apos;ll lead your college&apos;s contingent at Technex
+          </span>
+          , promoting the event within your institution. This role allows you to{' '}
+          <span className="text-customRed">
+            develop communication and managerial skills by interacting with students from diverse
+            backgrounds.
+          </span>
+        </p>
+        <br />
+        <p className="mt-4 text-white sm:text-lg md:text-xl">
+          You&apos;ll also showcase your{' '}
+          <span className="text-customRed">
+            leadership abilities, inspiring and motivating your peers
+          </span>{' '}
+          to participate. As a Campus Ambassador, you can{' '}
+          <span className="text-customRed">
+            organize workshops and events, gaining hands-on experience in event planning.
+          </span>{' '}
+          You&apos;ll be the face of Technex&apos;23 in your college, serving as a source of
+          information, motivation, and a connector. This program is an incredible opportunity to{' '}
+          <span className="text-customRed">grow both personally and professionally</span> while
+          playing a pivotal role in promoting technology and innovation at your college. Seize this
+          chance to be a leader and influencer in your college&apos;s journey towards
+          Technex&apos;23.
+        </p>
+      </div>
+      <div className="mt-6 w-[35%] text-left">
+        <div className="h-1 w-full border-l-4 bg-red-600"></div>
       </div>
     </section>
   );

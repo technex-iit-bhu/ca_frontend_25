@@ -4,7 +4,7 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/f
 import { FaXTwitter } from 'react-icons/fa6';
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-customGray text-white p-[1rem]">
+    <footer className="text-white p-[1rem]">
       <div className="container mx-auto flex flex-col items-center justify-center md:flex-row md:gap-8">
         {/* Logo and Council Information */}
         <div className="flex flex-col items-center md:mb-0 md:items-start">

@@ -60,5 +60,9 @@ export default function Page() {
 
   if (error) return <div>{error}</div>;
 
-  return <Dashboard user={user as User} tasks={tasks} submitted_tasks={submittedTasks} />;
+  return (
+    <div className="bg-[url('/dashbg.png')] bg-cover bg-center bg-no-repeat">
+      <Dashboard user={user as User} tasks={tasks} submitted_tasks={submittedTasks} />;
+    </div>
+  );
 }

@@ -10,6 +10,7 @@ import { useForm, UseFormReturn } from 'react-hook-form';
 import { z } from 'zod';
 import { getProfileDetails, updateProfileDetails } from '@/app/utils/api';
 import { useRouter } from 'next/navigation';
+import { HeadingTexts } from './HeadingTexts';
 
 const userSchema = z.object({
   name: z.string().optional(),
@@ -169,7 +170,7 @@ const DetailTextarea = ({ className, field }: { className: string; field: UserFi
               onKeyDown={handleKeyDown}
               placeholder={`Set ${metadata.userFriendlyLabel}`}
               disabled={!metadata.editable}
-              style={{ fontSize: '1.125rem', lineHeight: '1.75rem' }}
+              style={{ fontSize: '1rem', lineHeight: '1.75rem' }}
               {...controllerField}
               value={typeof controllerField.value === 'boolean' ? (controllerField.value?'Yes':'No') : controllerField.value}
               ref={(elm) => {
@@ -363,12 +364,9 @@ const ProfilePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="mx-8 flex flex-col">
-      <div className="relative mt-[3rem] scale-110 transform p-6 sm:mt-[7rem]">
-        <span className="pointer-events-none absolute -bottom-2 left-5 m-0 select-none p-0 text-[6.5rem] font-bold text-[#A81F25] opacity-20 sm:-bottom-8 sm:left-4 sm:text-[10rem]">
-          Profile
-        </span>
-        <span className="text-6xl text-white">Profile</span>
+    <div className="my-[8rem] mx-8 flex flex-col">
+      <div className='pb-3 md:pb-[12rem] font-signika'>
+        <HeadingTexts redText="" whiteText="Profile" align="left" />
       </div>
       <ProfileCard user={user} onProfileFormSubmit={updateUserData} errorFetchingProfile={errorFetchingProfile} />
       <Button

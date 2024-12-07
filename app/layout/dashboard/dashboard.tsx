@@ -4,7 +4,7 @@ import { useState } from 'react';
 import SectionHandler from './sectionHandler';
 import './dashboard.css';
 import Image from 'next/image';
-
+import { HeadingTexts } from '../HeadingTexts';
 export interface User {
   name: string;
   username: string;
@@ -49,18 +49,21 @@ const comingSoon = false;
 function Dashboard({ user, tasks, submitted_tasks }: DashboardProps) {
   const [selectedTab, setSelectedTab] = useState<string>('live');
   return (
-    <div className="min-h-screen w-screen bg-[#191919] pt-[6rem] md:pb-[3rem] lg:pb-[5rem]">
-      <div className="relative md:pb-[13rem] lg:pb-[17rem]">
+    <div className="min-h-screen w-screen pt-[6rem] md:pb-[3rem] lg:pb-[5rem] px-8 flex flex-col">
+      {/* <div className="relative md:pb-[13rem] lg:pb-[17rem]">
         <h1 className="redh absolute left-[4rem] top-[0.5rem] z-10 text-[6rem] font-bold text-[#A81F2533] lg:text-[9rem]">
           Dashboard
         </h1>
         <h1 className="whiteh absolute left-[4.5rem] top-[4.7rem] z-20 text-5xl text-white lg:top-[7.2rem] lg:text-6xl">
           Dashboard
         </h1>
+      </div> */}
+      <div className='pb-3 md:pb-[12rem]'>
+        <HeadingTexts redText="" whiteText="Dashboard" align="left" />
       </div>
       <div className="dashboard-div relative mx-auto flex h-[500px] w-[80%] flex-col rounded-[50px] bg-[#222222] p-3 text-white sm:p-4 md:p-6 lg:p-8">
         {/* Profile Section */}
-        <div className="absolute top-[-50px] flex h-[120px] w-[120px] items-center justify-center rounded-full border-[3px] border-red-500 bg-black md:left-[5rem] lg:left-[8rem]">
+        <div className="absolute top-[-50px] flex h-[80px] w-[80px] items-center justify-center rounded-full border-[3px] border-red-500 bg-black md:left-[5rem] md:h-[100px] md:w-[100px] lg:left-[8rem]">
           <Image
             src="/assets/profile.svg"
             alt="Profile"

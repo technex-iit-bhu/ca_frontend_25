@@ -12,7 +12,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Spline Sans', 'Arial', 'Helvetica', 'sans-serif'],
+        sans: ['Pixelify'],
       },
       borderRadius: {
         lg: 'var(--radius)',

@@ -4,11 +4,10 @@ import Image from 'next/image';
 import ContactUs from '@/app/layout/contactUs';
 import TechnexInfo from '@/app/layout/TechnexInfo';
 import AboutTechnex from '@/app/layout/AboutTechnex';
-import FAQSection from '@/app/layout/FAQSection';
+import FAQandTestimonials from '@/app/layout/FAQandTestimonials';
 import { ChevronsDown, ChevronsUp } from 'lucide-react';
 import WhyCA from './layout/WhyCA';
 import { HeadingTexts } from './layout/HeadingTexts';
-
 
 interface StatCircleProps {
   value: number;
@@ -68,7 +67,7 @@ const StatCircle: React.FC<StatCircleProps> = ({ value, percentage, label }) => 
   return (
     <>
       <div className="flex flex-col items-center">
-        <div className="relative flex h-32 w-32 items-center justify-center sm:h-40 sm:w-40 md:h-48 md:w-48">
+        <div className="relative flex h-32 w-32 items-center justify-center rounded-full border-[#A81F25] bg-[#191919] opacity-90 sm:h-40 sm:w-40 md:h-48 md:w-48">
           <svg className="absolute h-full w-full" viewBox="0 0 36 36">
             <path
               className="text-gray-700"
@@ -99,15 +98,15 @@ const StatCircle: React.FC<StatCircleProps> = ({ value, percentage, label }) => 
 const CAPortal = () => {
   return (
     <>
-      <div className="relative h-screen w-full overflow-hidden bg-gray-900 font-sans text-white">
+      <div className="relative h-screen w-full overflow-hidden bg-gray-900 font-spline text-white">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-black opacity-80"></div>
+          <div className="absolute inset-0"></div>
           <Image
-            src="/homebg.png"
+            src="/sunbg.png"
             alt="Home Background"
             layout="fill"
             objectFit="cover"
-            className="z-0 opacity-80"
+            className="z-[-1]"
           />
         </div>
 
@@ -120,18 +119,16 @@ const CAPortal = () => {
           </div>
 
           {/* About Technex Section */}
-          <section className="relative" id="about">
+          <div className="relative" id="about">
             <AboutTechnex />
-          </section>
-
-          <div className="bg-zinc-900">
-            <HeadingTexts bgText="Reach" whiteText="Our" redText="Reach" align="right" />
           </div>
-          <section
-            className="relative flex h-auto flex-col items-center justify-center bg-zinc-900 px-6 text-center sm:h-screen sm:px-12 md:px-24"
-            id="our-reach"
-          >
-            <div className="flex flex-col items-center justify-center space-y-12 sm:flex-row sm:space-x-12 sm:space-y-0 md:py-20">
+
+          <div className="pt-10 md:pt-0">
+            <HeadingTexts whiteText="Our" redText="Reach" align="center" />
+          </div>
+          <div id="our-reach" className="">
+            {/* <div className="flex flex-col items-center justify-center space-y-12 p-4 sm:flex-row sm:space-x-12 sm:space-y-0 md:p-10 md:pb-20"> */}
+            <div className="relative flex h-auto flex-col items-center justify-center px-6 text-center sm:h-screen sm:px-12 md:px-24 pb-4">
               <StatCircle value={69} label="College Ambassadors" percentage={60} />
               <StatCircle value={234} label="Indian Colleges" percentage={70} />
               <StatCircle value={987} label="International Colleges" percentage={65} />
@@ -139,13 +136,13 @@ const CAPortal = () => {
             <div className="flex w-full justify-end">
               <div className="h-1 w-full max-w-[90%] bg-red-600 sm:w-1/2 md:w-1/3"></div>
             </div>
-          </section>
+          </div>
 
-          <section className="relative" id="about">
+          <div id="about" className="mt-10">
             <WhyCA />
-          </section>
+          </div>
 
-          <FAQSection />
+          <FAQandTestimonials />
 
           <ContactUs />
         </main>

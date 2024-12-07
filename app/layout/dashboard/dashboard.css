@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fira+Code:wght@300..700&family=Sedgwick+Ave&family=Spline+Sans:wght@300..700&family=Unica+One&family=VT323&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 .dashboard-div {
   background: linear-gradient(
     180deg,
@@ -20,11 +19,9 @@
   background-color: #191919;
   color: white;
   margin-bottom: 2rem;
-  font-family: 'Sedgwick Ave', cursive;
+  font-family: 'Pixelify Sans', cursive;
   font-weight: 400;
-  font-style: normal;
-  font-style: italic;
-  font-weight: 300;
+  font-style: italic; /* Removed duplicate font-style and font-weight */
   @apply h-[80px] w-[100px] rounded-[30px] md:h-[120px] md:w-[140px] md:rounded-[40px] lg:h-[135px] lg:w-[155px] lg:rounded-[50px];
 }
 .event-card {
