@@ -4,7 +4,7 @@ export default function TechnexInfo() {
   return (
     <section
       id="first-section"
-      className="flex h-screen flex-col items-start justify-center space-y-6 px-6 text-left sm:px-12 md:px-24"
+      className="flex h-screen flex-col items-start justify-center space-y-6 px-6 text-left sm:px-12 md:px-24 pt-8 md:pt-0"
     >
       <h1 className="text-4xl font-normal sm:text-5xl md:text-6xl">
         <span className="text-red-600">Tech</span> <span className="text-white">Trek Pioneer</span>

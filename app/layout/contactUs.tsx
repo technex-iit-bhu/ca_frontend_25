@@ -8,7 +8,9 @@ const ContactUs: React.FC = () => {
     <>
       <div className="relative bg-zinc-900 text-white" id="contact-us">
         {/* Background "Contact" Text */}
-        <HeadingTexts bgText="Contact" redText="Us" whiteText="Contact" align="right" />
+        <div className="lg:text-[11rem text-[3rem] sm:text-[144px]">
+          <HeadingTexts bgText="Contact" redText="Us" whiteText="Contact" align="right" />
+        </div>
 
         {/* Contact Information Centered */}
         <div className="mt-8 flex animate-pulse flex-col items-center justify-center gap-10 px-4 md:flex-row md:space-x-10 md:px-0">

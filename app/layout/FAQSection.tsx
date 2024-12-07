@@ -174,7 +174,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
         </div>
         <div className="relative mx-auto flex max-w-4xl flex-col justify-center">
           {/* Two adjacent grids */}
-          <div className="flex justify-between gap-12">
+          <div className="flex flex-col md:flex-row justify-between gap-12">
             <div className="grid w-full grid-cols-1 gap-6">
               {/* First Grid of FAQs */}
               {faqs.slice(0, Math.ceil(faqs.length / 2)).map((faq, index) => (
