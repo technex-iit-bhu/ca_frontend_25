@@ -86,7 +86,7 @@ const Incentives: React.FC = () => {
         objectFit="cover"
         className="z-[-1]"
       />
-      <div className="mt-24 w-72 rounded-3xl bg-[#272727] px-6 py-3 text-white">
+      <div className="mt-24 w-72 rounded-3xl bg-[#272727] px-6 py-3 text-white ml-7">
         <h1 className="text-4xl font-extrabold md:text-5xl">Incentives</h1>
       </div>
       <ScrollArea.Root className="relative top-5 h-64 w-full overflow-hidden">
