@@ -1,5 +1,5 @@
 import { Leaderboard, LeaderboardEntry } from '../layout/Leaderboard';
-
+import Image from 'next/image';
 export default function LeaderboardPage() {
   const leaderboard: LeaderboardEntry[] = [
     { name: "Vaibhav Tripathi", ca_id: "00000000", points: 1552, rank: 1 },
