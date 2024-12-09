@@ -3,6 +3,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import Image from 'next/image';
 import { ChevronsLeft, ChevronsRight } from 'lucide-react';
+import Responsibility from '../layout/Responsibilities';
+import Footer from '../layout/Footer';
 
 interface Incentive {
   title: string;
@@ -35,6 +37,7 @@ const Incentives: React.FC = () => {
   const startScrolling = (direction: 'left' | 'right') => {
     const scrollArea = scrollAreaRef.current;
     const scrollAreaLayer2 = scrollAreaRefLayer2.current;
+
     if (!scrollArea || !scrollAreaLayer2) return;
 
     const scrollAmount = 10;
@@ -77,16 +80,17 @@ const Incentives: React.FC = () => {
   };
 
   return (
-    <div className="font-spline relative h-screen w-full overflow-hidden text-white">
-      <div className="absolute inset-0"></div>
-      <Image
-        src="/dashbg.png"
-        alt="Home Background"
-        layout="fill"
-        objectFit="cover"
-        className="z-[-1]"
-      />
-      <div className="mt-24 w-72 rounded-3xl bg-[#272727] px-6 py-3 text-white ml-7">
+    <div className="font-spline relative min-h-screen w-full overflow-hidden text-white">
+      <div className="fixed inset-0 z-[-1]">
+        <Image
+          src="/dashbg.png"
+          alt="Home Background"
+          layout="fill"
+          objectFit="cover"
+          className="z-[-1]"
+        />
+      </div>
+      <div className="ml-7 mt-24 w-72 rounded-3xl bg-[#272727] px-6 py-3 text-white">
         <h1 className="text-4xl font-extrabold md:text-5xl">Incentives</h1>
       </div>
       <ScrollArea.Root className="relative top-5 h-64 w-full overflow-hidden">
@@ -161,6 +165,10 @@ const Incentives: React.FC = () => {
           </div>
         </ScrollArea.Viewport>
       </ScrollArea.Root>
+      <Responsibility />
+      <div className="pt-40">
+        <Footer />
+      </div>
     </div>
   );
 };
