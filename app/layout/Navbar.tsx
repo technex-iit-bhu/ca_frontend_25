@@ -15,6 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { validateToken } from '../utils/token';
 
 export function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,7 +39,7 @@ export function Navbar() {
 
   const updateLoginStatus = () => {
     const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token);
+    setIsLoggedIn(validateToken(token));
   };
 
   useEffect(() => {

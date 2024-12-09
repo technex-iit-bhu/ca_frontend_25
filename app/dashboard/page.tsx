@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 
 import { PulseLoader } from 'react-spinners';
 import { getProfileDetails, getSubmittedTasks, getTasks } from '../utils/api';
+import { validateToken } from '../utils/token';
 import Dashboard, { Task, User } from '../layout/dashboard/dashboard';
 
 export default function Page() {
@@ -18,7 +19,7 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem('token');
-      if (!token) {
+      if (!token || !validateToken(token)) {
         router.push('/auth/signin');
         return;
       }
