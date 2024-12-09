@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 .bg-translucent {
-  background-color: rgba(4, 4, 0, 0.5); /* Adjust the last value for desired transparency */
+  background-color: rgba(4, 4, 0, 0.5);
 }
 
 .stats div {
@@ -13,9 +13,10 @@
   margin-bottom: 2rem;
   font-family: 'Pixelify Sans', cursive;
   font-weight: 400;
-  font-style: italic; /* Removed duplicate font-style and font-weight */
+  font-style: italic;
   @apply h-[80px] w-[100px] rounded-[30px] md:h-[120px] md:w-[140px] md:rounded-[40px] lg:h-[135px] lg:w-[155px] lg:rounded-[50px];
 }
+
 .event-card {
   background: linear-gradient(180deg, rgba(100, 100, 100, 0.4) 0%, rgba(100, 100, 100, 0.2) 100%);
 }
@@ -32,11 +33,13 @@
     font-size: 1rem !important;
   }
 }
+
 @media (max-width: 767.5px) {
   .dashboard-div {
     margin-top: 15rem;
   }
 }
+
 @media (max-width: 750px) {
   .dashboard-div {
     @apply h-[550px] !important;
@@ -51,6 +54,7 @@
     @apply mb-2 text-sm !important;
   }
 }
+
 @media (max-width: 610px) {
   .redh {
     @apply text-[5rem] !important;
@@ -62,6 +66,7 @@
     margin-top: 12rem;
   }
 }
+
 @media (max-width: 525px) {
   .redh {
     @apply text-[4rem] !important;
@@ -92,6 +97,7 @@
     @apply h-[570px] !important;
   }
 }
+
 @media (max-width: 420px) {
   .redh {
     @apply text-[3.5rem] !important;
