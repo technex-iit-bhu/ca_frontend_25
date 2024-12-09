@@ -8,6 +8,7 @@ import FAQandTestimonials from '@/app/layout/FAQandTestimonials';
 import { ChevronsDown, ChevronsUp } from 'lucide-react';
 import WhyCA from './layout/WhyCA';
 import { HeadingTexts } from './layout/HeadingTexts';
+import RedLine from './layout/RedLine';
 
 interface StatCircleProps {
   value: number;
@@ -98,7 +99,7 @@ const StatCircle: React.FC<StatCircleProps> = ({ value, percentage, label }) => 
 const CAPortal = () => {
   return (
     <>
-      <div className="relative h-screen w-full overflow-hidden bg-gray-900 font-spline text-white">
+      <div className="font-spline relative h-screen w-full overflow-hidden bg-gray-900 text-white">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0"></div>
           <Image
@@ -126,15 +127,14 @@ const CAPortal = () => {
           <div className="pt-10 md:pt-0">
             <HeadingTexts whiteText="Our" redText="Reach" align="center" />
           </div>
-          <div id="our-reach" className="">
-            {/* <div className="flex flex-col items-center justify-center space-y-12 p-4 sm:flex-row sm:space-x-12 sm:space-y-0 md:p-10 md:pb-20"> */}
-            <div className="relative flex h-auto flex-col items-center justify-center px-6 text-center sm:h-screen sm:px-12 md:px-24 pb-4">
+          <div id="our-reach" className="px-[1.5rem] md:px-[6rem]">
+            <div className="relative flex h-auto flex-col items-center justify-center px-6 pb-4 text-center sm:h-screen sm:px-12 md:px-24">
               <StatCircle value={69} label="College Ambassadors" percentage={60} />
               <StatCircle value={234} label="Indian Colleges" percentage={70} />
               <StatCircle value={987} label="International Colleges" percentage={65} />
             </div>
-            <div className="flex w-full justify-end">
-              <div className="h-1 w-full max-w-[90%] bg-red-600 sm:w-1/2 md:w-1/3"></div>
+            <div className="flex justify-end">
+              <RedLine align="right" />
             </div>
           </div>
 

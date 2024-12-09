@@ -1,4 +1,5 @@
 import { HeadingTexts } from './HeadingTexts';
+import RedLine from './RedLine';
 
 export default function AboutTechnex() {
   return (
@@ -34,9 +35,7 @@ export default function AboutTechnex() {
           </span>
         </p>
       </div>
-      <div className="mt-6 w-[35%] text-left">
-        <div className="h-1 bg-red-600 w-full border-l-4"></div>
-      </div>
+      <RedLine align="left" />
     </section>
   );
 }

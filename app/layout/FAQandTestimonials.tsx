@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { HeadingTexts } from './HeadingTexts';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'; // Importing arrow icons
+import RedLine from './RedLine';
 
 interface Testimonial {
   name: string;
@@ -142,18 +143,18 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
               <FaArrowRight className="text-2xl text-white" />
             </button>
             {/* Testimonial Card */}
-            <div className="relative flex w-full max-w-[35rem] rounded-2xl bg-[#272727] p-4 sm:p-6 md:p-8 shadow-lg">
+            <div className="relative flex w-full max-w-[35rem] rounded-2xl bg-[#272727] p-4 shadow-lg sm:p-6 md:p-8">
               <Image
                 src="/next.svg"
                 alt="Testimonial Icon"
-                className="h-[100px] w-[100px] sm:h-[120px] sm:w-[120px] md:h-[150px] md:w-[150px] rounded-lg bg-[#646464]"
+                className="h-[100px] w-[100px] rounded-lg bg-[#646464] sm:h-[120px] sm:w-[120px] md:h-[150px] md:w-[150px]"
                 width={120}
                 height={120}
               />
 
               {/* Text Content */}
               <div className="ml-4 sm:ml-6 md:ml-8">
-                <h3 className="mb-2 text-lg sm:text-xl md:text-2xl font-semibold">
+                <h3 className="mb-2 text-lg font-semibold sm:text-xl md:text-2xl">
                   <span className="text-white">
                     {Array.isArray(testimonials[currentTestimonial])
                       ? testimonials[currentTestimonial][0].name
@@ -166,7 +167,7 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
                       : testimonials[currentTestimonial].surname}
                   </span>
                 </h3>
-                <p className="text-white text-sm sm:text-base md:text-lg">
+                <p className="text-sm text-white sm:text-base md:text-lg">
                   {Array.isArray(testimonials[currentTestimonial])
                     ? testimonials[currentTestimonial][0].content.slice(0, 100)
                     : testimonials[currentTestimonial].content.slice(0, 100)}
@@ -181,8 +182,8 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
           </div>
         </div>
       </div>
-      <div className="mt-10 w-[35%] text-left">
-        <div className="h-1 w-[70%] border-l-4 bg-red-600"></div>
+      <div className="flex justify-end">
+        <RedLine align="right" />
       </div>
 
       {/* FAQs Section */}
@@ -261,9 +262,7 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
           </div>
         </div>
       </section>
-      <div className="mt-8 flex w-full justify-start pl-16">
-        <div className="mb-16 h-1 w-full max-w-[90%] bg-red-600 sm:w-1/2 md:w-1/3"></div>
-      </div>
+      <RedLine align="right" />
     </div>
   );
 };
