@@ -32,29 +32,30 @@ const Incentives: React.FC = () => {
     if (scrollArea && scrollAreaLayer2) {
       scrollArea.scrollLeft = scrollArea.scrollWidth / 2 + 100;
       scrollAreaLayer2.scrollLeft = scrollArea.scrollWidth / 2;
+
+      const scrollAmount = 1;
+      const scrollInterval = 16;
+
+      const intervalId1 = setInterval(() => {
+        scrollArea.scrollLeft -= scrollAmount;
+        if (scrollArea.scrollLeft >= scrollArea.scrollWidth - scrollArea.clientWidth) {
+          scrollArea.scrollLeft = 0;
+        }
+      }, scrollInterval);
+
+      const intervalId2 = setInterval(() => {
+        scrollAreaLayer2.scrollLeft += scrollAmount;
+        if (scrollAreaLayer2.scrollLeft <= 0) {
+          scrollAreaLayer2.scrollLeft = scrollAreaLayer2.scrollWidth - scrollAreaLayer2.clientWidth;
+        }
+      }, scrollInterval);
+
+      return () => {
+        clearInterval(intervalId1);
+        clearInterval(intervalId2);
+      };
     }
   }, []);
-
-  const startScrolling = (direction: 'left' | 'right', layer: 'layer1' | 'layer2') => {
-    const scrollArea = layer === 'layer2' ? scrollAreaRef.current : scrollAreaRefLayer2.current;
-
-    if (!scrollArea) return;
-
-    const scrollAmount = 10;
-    const scrollDuration = 1000;
-
-    const intervalId = setInterval(() => {
-      if (direction === 'left') {
-        scrollArea.scrollLeft += scrollAmount;
-      } else {
-        scrollArea.scrollLeft -= scrollAmount;
-      }
-    }, 16);
-
-    setTimeout(() => {
-      clearInterval(intervalId);
-    }, scrollDuration);
-  };
 
   const handleScroll = () => {
     const scrollArea = scrollAreaRef.current;
@@ -75,6 +76,26 @@ const Incentives: React.FC = () => {
     } else if (scrollAreaLayer2.scrollLeft >= scrollWidth * 2) {
       scrollAreaLayer2.scrollLeft = scrollWidth;
     }
+  };
+  const startScrolling = (direction: 'left' | 'right', layer: 'layer1' | 'layer2') => {
+    const scrollArea = layer === 'layer2' ? scrollAreaRef.current : scrollAreaRefLayer2.current;
+
+    if (!scrollArea) return;
+
+    const scrollAmount = 10;
+    const scrollDuration = 1000;
+
+    const intervalId = setInterval(() => {
+      if (direction === 'left') {
+        scrollArea.scrollLeft += scrollAmount;
+      } else {
+        scrollArea.scrollLeft -= scrollAmount;
+      }
+    }, 16);
+
+    setTimeout(() => {
+      clearInterval(intervalId);
+    }, scrollDuration);
   };
 
   return (

@@ -6,15 +6,29 @@ import { HeadingTexts } from './HeadingTexts';
 
 const Responsibility: React.FC = () => {
   const scrollAreaRefLayer3 = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const scrollArea = scrollAreaRefLayer3.current;
 
     if (scrollArea) {
       scrollArea.scrollLeft = scrollArea.scrollWidth / 2;
+
+      const scrollAmount = 1; // Amount to scroll per iteration
+      const scrollInterval = 16; // Smooth scroll timing (in ms)
+
+      const intervalId3 = setInterval(() => {
+        scrollArea.scrollLeft -= scrollAmount;
+        if (scrollArea.scrollLeft >= scrollArea.scrollWidth - scrollArea.clientWidth) {
+          scrollArea.scrollLeft = 0;
+        }
+      }, scrollInterval);
+
+      return () => {
+        clearInterval(intervalId3);
+      };
     }
   }, []);
 
-  // Function to start scrolling the third section continuously
   const startScrollingForThirdSection = (direction: 'left' | 'right') => {
     const scrollArea = scrollAreaRefLayer3.current;
     if (!scrollArea) return;
@@ -24,9 +38,9 @@ const Responsibility: React.FC = () => {
 
     const intervalId = setInterval(() => {
       if (direction === 'left') {
-        scrollArea.scrollLeft -= scrollAmount;
-      } else {
         scrollArea.scrollLeft += scrollAmount;
+      } else {
+        scrollArea.scrollLeft -= scrollAmount;
       }
     }, intervalTime);
 
@@ -36,18 +50,16 @@ const Responsibility: React.FC = () => {
     }, 1000); // Duration for scrolling (in ms)
   };
 
-  // Infinite scroll logic for continuous scrolling when reaching the end
-
   const handleScroll = () => {
     const scrollArea = scrollAreaRefLayer3.current;
     if (!scrollArea) return;
+
     const scrollWidth = scrollArea.scrollWidth / 6; // Adjust width to account for 2x sets of items
 
-    // Infinite scroll logic: when reaching end, wrap around to start
     if (scrollArea.scrollLeft <= 0) {
       scrollArea.scrollLeft = scrollWidth;
     } else if (scrollArea.scrollLeft >= scrollWidth * 2) {
-      scrollArea.scrollLeft = scrollWidth; // Seamlessly jump to second set
+      scrollArea.scrollLeft = scrollWidth;
     }
   };
 
