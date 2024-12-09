@@ -59,7 +59,7 @@ export function Navbar() {
       <div className="flex h-20 items-center justify-between px-4 md:px-6">
         <div className="flex items-center gap-2">
           <Link href="/" onClick={(e) => handleAnchorClick(e, '/')}>
-            <Image src={'/technex_logo.svg'} alt="Technex Logo" width={240} height={60} />
+            <Image src={'/technex_logo.png'} alt="Technex Logo" width={240} height={60} />
           </Link>
         </div>
         <nav className="ml-auto mr-8 hidden gap-8 lg:flex">

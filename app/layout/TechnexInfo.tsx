@@ -6,20 +6,13 @@ export default function TechnexInfo() {
       id="first-section"
       className="flex h-screen flex-col items-start justify-center space-y-6 px-6 pt-8 text-left sm:px-12 md:px-24 md:pt-0"
     >
-      {/* <Image
-        src="/homebg.png"
-        alt="Home Background"
-        layout="fill"
-        objectFit="cover"
-        className="z-[0]"
-      /> */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/homebg.png"
           alt="Home Background"
           layout="fill"
           objectFit="cover"
-          className="z-[-1] w-full h-full"
+          className="z-[-1] h-full w-full"
         />
       </div>
       <h1 className="font-signika z-[0] text-3xl font-normal sm:text-4xl md:text-5xl">
@@ -42,6 +35,7 @@ export default function TechnexInfo() {
       <Button
         variant="outline"
         className="z-[0] w-48 rounded-full bg-customRed text-white hover:bg-gray-400"
+        onClick={() => (window.location.href = '/auth/signup')}
       >
         Register
       </Button>
