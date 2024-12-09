@@ -5,8 +5,15 @@ import Image from 'next/image';
 
 const Responsibility: React.FC = () => {
   const scrollAreaRefLayer3 = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const scrollArea = scrollAreaRefLayer3.current;
 
-  // Function to start scrolling the third section
+    if (scrollArea) {
+      scrollArea.scrollLeft = scrollArea.scrollWidth / 2;
+    }
+  }, []);
+
+  // Function to start scrolling the third section continuously
   const startScrollingForThirdSection = (direction: 'left' | 'right') => {
     const scrollArea = scrollAreaRefLayer3.current;
     if (!scrollArea) return;
@@ -28,30 +35,20 @@ const Responsibility: React.FC = () => {
     }, 1000); // Duration for scrolling (in ms)
   };
 
-  // Infinite scroll logic for the third section
-  useEffect(() => {
+  // Infinite scroll logic for continuous scrolling when reaching the end
+
+  const handleScroll = () => {
     const scrollArea = scrollAreaRefLayer3.current;
     if (!scrollArea) return;
+    const scrollWidth = scrollArea.scrollWidth / 6; // Adjust width to account for 2x sets of items
 
-    const handleScroll = () => {
-      const scrollWidth = scrollArea.scrollWidth;
-      const viewportWidth = scrollArea.clientWidth;
-      const scrollLeft = scrollArea.scrollLeft;
-
-      // Infinite scroll logic: wrap around if scroll reaches end or start
-      if (scrollLeft <= 0) {
-        scrollArea.scrollLeft = scrollWidth; // Seamlessly scroll to the end
-      } else if (scrollLeft >= scrollWidth - viewportWidth) {
-        scrollArea.scrollLeft = 0; // Seamlessly scroll to the start
-      }
-    };
-
-    scrollArea.addEventListener('scroll', handleScroll);
-
-    return () => {
-      scrollArea.removeEventListener('scroll', handleScroll); // Cleanup on unmount
-    };
-  }, []);
+    // Infinite scroll logic: when reaching end, wrap around to start
+    if (scrollArea.scrollLeft <= 0) {
+      scrollArea.scrollLeft = scrollWidth;
+    } else if (scrollArea.scrollLeft >= scrollWidth * 2) {
+      scrollArea.scrollLeft = scrollWidth; // Seamlessly jump to second set
+    }
+  };
 
   return (
     <>
@@ -72,51 +69,101 @@ const Responsibility: React.FC = () => {
         <ScrollArea.Viewport
           className="flex h-full w-full overflow-x-auto p-4"
           ref={scrollAreaRefLayer3}
+          onScroll={handleScroll}
         >
           <div className="flex gap-6">
-            {[...Array(6)].map((_, index) => (
-              <div
-                key={index}
-                className="relative mt-16 h-[400px] w-[300px] rounded-3xl bg-[#272727] p-8 text-white shadow-2xl"
-                style={{
-                  boxShadow: '0 8px 20px rgba(0, 0, 0, 0.5)',
-                  position: 'relative',
-                }}
-              >
+            {[...Array(6), ...Array(6)].map((_, index) => {
+              if (index % 2) {
+                return (
+                  <div
+                    key={index}
+                    className="relative mt-16 h-[400px] w-[300px] rounded-3xl bg-[#272727] p-8 text-white shadow-2xl"
+                    style={{
+                      boxShadow: '0 8px 20px rgba(0, 0, 0, 0.5)',
+                      position: 'relative',
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: 'absolute',
+                        inset: '6px',
+                        border: '4px solid #ff0000',
+                        borderRadius: 'inherit',
+                        pointerEvents: 'none',
+                      }}
+                      className="z-1"
+                    />
+                    <div
+                      className="z-2 absolute -left-0.5 top-[1px] flex h-52 w-[304px] items-center justify-center bg-[#404040]"
+                      style={{
+                        borderTopLeftRadius: '70px',
+                        borderTopRightRadius: '70px',
+                        borderBottomLeftRadius: '500px',
+                        borderBottomRightRadius: '500px',
+                      }}
+                    >
+                      <div
+                        className="flex items-center justify-center bg-white"
+                        style={{
+                          width: '100px',
+                          height: '100px',
+                          borderRadius: '50%',
+                          overflow: 'hidden',
+                        }}
+                      >
+                        <Image src="/coordinate.png" width={50} height={50} alt="coordinate" />
+                      </div>
+                    </div>
+                    <h3 className="flex justify-center pt-52 text-2xl font-semibold">
+                      Co-ordinate
+                    </h3>
+                  </div>
+                );
+              }
+              return (
                 <div
+                  key={index}
+                  className="relative mt-16 h-[400px] w-[300px] rounded-3xl bg-[#272727] p-8 text-white shadow-2xl"
                   style={{
-                    position: 'absolute',
-                    inset: '6px',
-                    border: '4px solid #ff0000',
-                    borderRadius: 'inherit',
-                    pointerEvents: 'none',
-                  }}
-                  className="z-1"
-                />
-                <div
-                  className="z-2 absolute -left-0.5 top-[1px] flex h-52 w-[304px] items-center justify-center bg-[#404040]"
-                  style={{
-                    borderTopLeftRadius: '70px',
-                    borderTopRightRadius: '70px',
-                    borderBottomLeftRadius: '500px',
-                    borderBottomRightRadius: '500px',
+                    boxShadow: '0 8px 20px rgba(0, 0, 0, 0.5)',
+                    position: 'relative',
                   }}
                 >
                   <div
-                    className="flex items-center justify-center bg-white"
                     style={{
-                      width: '100px', // Adjust the width for the circle
-                      height: '100px', // Adjust the height for the circle
-                      borderRadius: '50%', // Ensures the container is circular
-                      overflow: 'hidden', // Ensures the image fits within the circle
+                      position: 'absolute',
+                      inset: '6px',
+                      border: '4px solid #ff0000',
+                      borderRadius: 'inherit',
+                      pointerEvents: 'none',
+                    }}
+                    className="z-1"
+                  />
+                  <div
+                    className="z-2 absolute -left-0.5 top-[192px] flex h-52 w-[304px] items-center justify-center bg-[#404040]"
+                    style={{
+                      borderTopLeftRadius: '500px',
+                      borderTopRightRadius: '500px',
+                      borderBottomLeftRadius: '70px',
+                      borderBottomRightRadius: '70px',
                     }}
                   >
-                    <Image src="/coordinate.png" width={50} height={50} alt="coordinate" />
+                    <div
+                      className="flex items-center justify-center bg-white"
+                      style={{
+                        width: '100px',
+                        height: '100px',
+                        borderRadius: '50%',
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <Image src="/coordinate.png" width={50} height={50} alt="coordinate" />
+                    </div>
                   </div>
+                  <h3 className="flex justify-center pt-24 text-2xl font-semibold">Co-ordinate</h3>
                 </div>
-                <h3 className="flex justify-center pt-52 text-2xl font-semibold">Co-ordinate</h3>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </ScrollArea.Viewport>
       </ScrollArea.Root>

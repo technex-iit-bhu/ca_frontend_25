@@ -34,22 +34,19 @@ const Incentives: React.FC = () => {
     }
   }, []);
 
-  const startScrolling = (direction: 'left' | 'right') => {
-    const scrollArea = scrollAreaRef.current;
-    const scrollAreaLayer2 = scrollAreaRefLayer2.current;
+  const startScrolling = (direction: 'left' | 'right', layer: 'layer1' | 'layer2') => {
+    const scrollArea = layer === 'layer2' ? scrollAreaRef.current : scrollAreaRefLayer2.current;
 
-    if (!scrollArea || !scrollAreaLayer2) return;
+    if (!scrollArea) return;
 
     const scrollAmount = 10;
     const scrollDuration = 1000;
 
     const intervalId = setInterval(() => {
       if (direction === 'left') {
-        scrollArea.scrollLeft -= scrollAmount;
-        scrollAreaLayer2.scrollLeft -= scrollAmount;
-      } else {
         scrollArea.scrollLeft += scrollAmount;
-        scrollAreaLayer2.scrollLeft += scrollAmount;
+      } else {
+        scrollArea.scrollLeft -= scrollAmount;
       }
     }, 16);
 
@@ -95,10 +92,10 @@ const Incentives: React.FC = () => {
       </div>
       <ScrollArea.Root className="relative top-5 h-64 w-full overflow-hidden">
         <div className="absolute top-60 z-10 flex w-full -translate-y-1/2 transform items-center justify-between">
-          <button onClick={() => startScrolling('left')}>
+          <button onClick={() => startScrolling('left', 'layer1')}>
             <ChevronsLeft className="h-8 w-8" />
           </button>
-          <button onClick={() => startScrolling('right')}>
+          <button onClick={() => startScrolling('right', 'layer2')}>
             <ChevronsRight className="h-8 w-8" />
           </button>
         </div>
