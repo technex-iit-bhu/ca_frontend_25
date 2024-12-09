@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { ChevronsLeft, ChevronsRight } from 'lucide-react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import Image from 'next/image';
+import { HeadingTexts } from './HeadingTexts';
 
 const Responsibility: React.FC = () => {
   const scrollAreaRefLayer3 = useRef<HTMLDivElement>(null);
@@ -52,8 +53,8 @@ const Responsibility: React.FC = () => {
 
   return (
     <>
-      <div className="ml-7 mt-24 w-3/12 rounded-3xl bg-[#272727] px-6 py-3 text-white">
-        <h1 className="text-4xl font-extrabold md:text-5xl">Responsibilities</h1>
+      <div className="pt-28">
+        <HeadingTexts redText="" whiteText="Resposibilities" align="left" />
       </div>
 
       <ScrollArea.Root className="relative top-7 w-full overflow-hidden">
@@ -77,40 +78,11 @@ const Responsibility: React.FC = () => {
                 return (
                   <div
                     key={index}
-                    className="relative mt-16 h-[400px] w-[300px] rounded-3xl bg-[#272727] p-8 text-white shadow-2xl"
-                    style={{
-                      boxShadow: '0 8px 20px rgba(0, 0, 0, 0.5)',
-                      position: 'relative',
-                    }}
+                    className="relative mt-16 h-[400px] w-[300px] rounded-3xl bg-[#272727] p-8 text-white"
                   >
-                    <div
-                      style={{
-                        position: 'absolute',
-                        inset: '6px',
-                        border: '4px solid #ff0000',
-                        borderRadius: 'inherit',
-                        pointerEvents: 'none',
-                      }}
-                      className="z-1"
-                    />
-                    <div
-                      className="z-2 absolute -left-0.5 top-[1px] flex h-52 w-[304px] items-center justify-center bg-[#404040]"
-                      style={{
-                        borderTopLeftRadius: '70px',
-                        borderTopRightRadius: '70px',
-                        borderBottomLeftRadius: '500px',
-                        borderBottomRightRadius: '500px',
-                      }}
-                    >
-                      <div
-                        className="flex items-center justify-center bg-white"
-                        style={{
-                          width: '100px',
-                          height: '100px',
-                          borderRadius: '50%',
-                          overflow: 'hidden',
-                        }}
-                      >
+                    <div className="z-1 pointer-events-none absolute inset-[6px] rounded-3xl border-4 border-[#ff0000]"></div>
+                    <div className="z-2 absolute -left-0.5 top-[1px] flex h-52 w-[304px] items-center justify-center rounded-bl-[500px] rounded-br-[500px] rounded-tl-[70px] rounded-tr-[70px] bg-[#404040]">
+                      <div className="flex h-[100px] w-[100px] items-center justify-center overflow-hidden rounded-full bg-white">
                         <Image src="/coordinate.png" width={50} height={50} alt="coordinate" />
                       </div>
                     </div>
@@ -123,40 +95,12 @@ const Responsibility: React.FC = () => {
               return (
                 <div
                   key={index}
-                  className="relative mt-16 h-[400px] w-[300px] rounded-3xl bg-[#272727] p-8 text-white shadow-2xl"
-                  style={{
-                    boxShadow: '0 8px 20px rgba(0, 0, 0, 0.5)',
-                    position: 'relative',
-                  }}
+                  className="relative mt-16 h-[400px] w-[300px] rounded-3xl bg-[#272727] p-8 text-white"
                 >
-                  <div
-                    style={{
-                      position: 'absolute',
-                      inset: '6px',
-                      border: '4px solid #ff0000',
-                      borderRadius: 'inherit',
-                      pointerEvents: 'none',
-                    }}
-                    className="z-1"
-                  />
-                  <div
-                    className="z-2 absolute -left-0.5 top-[192px] flex h-52 w-[304px] items-center justify-center bg-[#404040]"
-                    style={{
-                      borderTopLeftRadius: '500px',
-                      borderTopRightRadius: '500px',
-                      borderBottomLeftRadius: '70px',
-                      borderBottomRightRadius: '70px',
-                    }}
-                  >
-                    <div
-                      className="flex items-center justify-center bg-white"
-                      style={{
-                        width: '100px',
-                        height: '100px',
-                        borderRadius: '50%',
-                        overflow: 'hidden',
-                      }}
-                    >
+                  <div className="z-1 pointer-events-none absolute inset-[6px] rounded-3xl border-4 border-[#ff0000]"></div>
+
+                  <div className="z-2 absolute -left-0.5 top-[192px] flex h-52 w-[304px] items-center justify-center rounded-bl-[70px] rounded-br-[70px] rounded-tl-[500px] rounded-tr-[500px] bg-[#404040]">
+                    <div className="flex h-[100px] w-[100px] items-center justify-center overflow-hidden rounded-full bg-white">
                       <Image src="/coordinate.png" width={50} height={50} alt="coordinate" />
                     </div>
                   </div>

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ChevronsLeft, ChevronsRight } from 'lucide-react';
 import Responsibility from '../layout/Responsibilities';
 import Footer from '../layout/Footer';
+import { HeadingTexts } from '../layout/HeadingTexts';
 
 interface Incentive {
   title: string;
@@ -87,8 +88,8 @@ const Incentives: React.FC = () => {
           className="z-[-1]"
         />
       </div>
-      <div className="ml-7 mt-24 w-72 rounded-3xl bg-[#272727] px-6 py-3 text-white">
-        <h1 className="text-4xl font-extrabold md:text-5xl">Incentives</h1>
+      <div className="pt-28">
+        <HeadingTexts whiteText="Incentives" align="left" redText="" />
       </div>
       <ScrollArea.Root className="relative top-5 h-64 w-full overflow-hidden">
         <div className="absolute top-60 z-10 flex w-full -translate-y-1/2 transform items-center justify-between">
@@ -108,21 +109,9 @@ const Incentives: React.FC = () => {
             {[...incentives, ...incentives].map((incentive, index) => (
               <div
                 key={index}
-                className="relative w-[400px] rounded-3xl bg-[#272727] p-8 text-white shadow-2xl"
-                style={{
-                  position: 'relative',
-                  boxShadow: '0 6px 15px rgba(0, 0, 0, 0.3)',
-                }}
+                className="relative w-[400px] rounded-3xl bg-[#272727] p-8 text-white shadow-[0_6px_15px_rgba(0,0,0,0.3)]"
               >
-                <div
-                  style={{
-                    position: 'absolute',
-                    inset: '6px',
-                    border: '4px solid #ff0000',
-                    borderRadius: 'inherit',
-                    pointerEvents: 'none',
-                  }}
-                />
+                <div className="pointer-events-none absolute inset-[6px] rounded-3xl border-4 border-[#ff0000]" />
                 <h3 className="flex justify-center text-2xl font-semibold">{incentive.title}</h3>
                 <p className="mt-4 pl-5">{incentive.description}</p>
               </div>
@@ -140,21 +129,9 @@ const Incentives: React.FC = () => {
             {[...incentives, ...incentives].map((incentive, index) => (
               <div
                 key={index}
-                className="relative w-[400px] rounded-3xl bg-[#272727] p-8 text-white shadow-2xl"
-                style={{
-                  boxShadow: '0 8px 20px rgba(0, 0, 0, 0.5)',
-                  position: 'relative',
-                }}
+                className="relative w-[400px] rounded-3xl bg-[#272727] p-8 text-white shadow-[0_8px_20px_rgba(0,0,0,0.5)]"
               >
-                <div
-                  style={{
-                    position: 'absolute',
-                    inset: '6px',
-                    border: '4px solid #ff0000',
-                    borderRadius: 'inherit',
-                    pointerEvents: 'none',
-                  }}
-                />
+                <div className="pointer-events-none absolute inset-[6px] rounded-3xl border-4 border-[#ff0000]" />
                 <h3 className="flex justify-center text-2xl font-semibold">{incentive.title}</h3>
                 <p className="mt-4 pl-5">{incentive.description}</p>
               </div>
