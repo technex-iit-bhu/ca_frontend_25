@@ -11,6 +11,7 @@ import { z } from 'zod';
 import { getProfileDetails, updateProfileDetails } from '@/app/utils/api';
 import { useRouter } from 'next/navigation';
 import { HeadingTexts } from './HeadingTexts';
+import { validateToken } from '../utils/token';
 
 const userSchema = z.object({
   name: z.string().optional(),
@@ -303,7 +304,7 @@ const ProfilePage: React.FC = () => {
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem('token');
-      if (!token) {
+      if (!token || !validateToken(token)) {
         throw new Error('Not authenticated');
       }
 
@@ -336,7 +337,7 @@ const ProfilePage: React.FC = () => {
       console.log('User data:', userData); // Debugging log
       setUser(userData);
     } catch (error) {
-      setErrorFetchingProfile('Failed to fetch profile' + (error instanceof Error ? error.message : ''));
+      setErrorFetchingProfile('Failed to fetch profile ' + (error instanceof Error ? error.message : ''));
       console.log('Fetch user data error:', error); // Debugging log
     }
   };
