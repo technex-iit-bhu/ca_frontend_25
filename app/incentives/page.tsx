@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import Image from 'next/image';
 import { ChevronsLeft, ChevronsRight } from 'lucide-react';
@@ -20,7 +20,7 @@ const generateIncentives = (count: number): Incentive[] => {
 };
 
 const Incentives: React.FC = () => {
-  const [incentives, setIncentives] = useState<Incentive[]>(generateIncentives(6));
+  const incentives = generateIncentives(6);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const scrollAreaRefLayer2 = useRef<HTMLDivElement>(null);
 
