@@ -5,6 +5,7 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { HeadingTexts } from './HeadingTexts';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'; // Importing arrow icons
 import RedLine from './RedLine';
+import Modal from '@/app/layout/Modal';
 
 interface Testimonial {
   name: string;
@@ -96,6 +97,8 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
 }) => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
+  const [modalContent, setModalContent] = useState<string>('');
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -115,6 +118,15 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
 
   const handlePrevTestimonial = () => {
     setCurrentTestimonial((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  };
+
+  const handleReadMore = () => {
+    setModalContent(testimonials[currentTestimonial].content); // Set the content for the modal
+    setIsModalOpen(true); // Open the modal
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // Close the modal
   };
 
   return (
@@ -161,8 +173,11 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
                 <p className="text-sm text-white sm:text-base md:text-lg">
                   {testimonials[currentTestimonial].content.slice(0, 100)}....
                 </p>
-                {/* TODO : Read More Button : Open a model with complete component : Implement later */}
-                <button className="mt-2 rounded-xl border border-white px-3 py-1 text-white hover:bg-red-600 hover:text-white">
+                {/* Read More Button */}
+                <button
+                  className="mt-2 rounded-xl border border-white px-3 py-1 text-white hover:bg-red-600 hover:text-white"
+                  onClick={handleReadMore}
+                >
                   Read More
                 </button>
               </div>
@@ -251,6 +266,36 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
         </div>
       </section>
       <RedLine align="right" />
+
+      {/* Modal */}
+      {isModalOpen && (
+        <Modal onClose={handleCloseModal} isOpen={isModalOpen}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+            onClick={handleCloseModal} // Close the modal when clicking outside
+          >
+            <div
+              className="relative w-full max-w-4xl rounded-lg bg-zinc-900 p-6 text-white sm:max-w-3xl md:max-w-2xl lg:max-w-2xl xl:max-w-2xl"
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal content
+            >
+              <div className="p-4 text-white">
+                {/* Show the person's name and surname instead of "Full Testimonial" */}
+                <h2 className="mb-4 text-xl font-semibold">
+                  <span className="text-white">{testimonials[currentTestimonial].name}</span>
+                  <span className="text-red-600"> {testimonials[currentTestimonial].surname}</span>
+                </h2>
+                <p>{modalContent}</p>
+                <button
+                  className="mt-4 rounded-xl border border-white px-3 py-1 text-white hover:bg-red-600 hover:text-white"
+                  onClick={handleCloseModal}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };
