@@ -85,8 +85,8 @@ export default function SignInPage() {
             )}
           </Button>
           <div className="text-center">
-            <span className='text-white'>New to Technex? Signup</span>
-            <a href="/auth/signup" className="text-customRed pl-2">
+            <span className="text-white">New to Technex? Signup</span>
+            <a href="/auth/signup" className="pl-2 text-customRed">
               HERE
             </a>
           </div>

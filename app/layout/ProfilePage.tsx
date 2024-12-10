@@ -173,7 +173,13 @@ const DetailTextarea = ({ className, field }: { className: string; field: UserFi
               disabled={!metadata.editable}
               style={{ fontSize: '1rem', lineHeight: '1.75rem' }}
               {...controllerField}
-              value={typeof controllerField.value === 'boolean' ? (controllerField.value?'Yes':'No') : controllerField.value}
+              value={
+                typeof controllerField.value === 'boolean'
+                  ? controllerField.value
+                    ? 'Yes'
+                    : 'No'
+                  : controllerField.value
+              }
               ref={(elm) => {
                 controllerField.ref(elm);
                 if (elm) {
@@ -181,7 +187,9 @@ const DetailTextarea = ({ className, field }: { className: string; field: UserFi
                   elm.style.height = `${elm.scrollHeight}px`;
                 }
               }}
-              onInput={()=>{setUpdateProfileButtonVisible?.(true);}}
+              onInput={() => {
+                setUpdateProfileButtonVisible?.(true);
+              }}
             />
             <FormMessage className="ml-5" />
           </FormItem>
@@ -208,7 +216,7 @@ const DetailElement = ({ field }: { field: UserField }) => {
 const ProfileCard = ({
   user,
   onProfileFormSubmit,
-  errorFetchingProfile
+  errorFetchingProfile,
 }: {
   user: User | null;
   onProfileFormSubmit: (data: User) => void;
@@ -240,7 +248,7 @@ const ProfileCard = ({
                 <div className="relative -top-20 inline-flex h-44 w-44 items-center justify-center rounded-full border-4 border-[#A81F25]">
                   <Avatar.Root className="h-36 w-36 overflow-hidden rounded-full">
                     <Avatar.Image
-                      className="h-full w-full bg-[#191919] scale-105 object-cover"
+                      className="h-full w-full scale-105 bg-[#191919] object-cover"
                       src="assets/profile-user-2.svg"
                     />
                   </Avatar.Root>
@@ -279,11 +287,11 @@ const ProfileCard = ({
       ) : (
         <>
           {errorFetchingProfile ? (
-            <span className="text-xl mb-2 text-red-600">{errorFetchingProfile}</span>
+            <span className="mb-2 text-xl text-red-600">{errorFetchingProfile}</span>
           ) : (
-            <span className="text-xl mb-2 text-white">Fetching user details, please wait...</span>
+            <span className="mb-2 text-xl text-white">Fetching user details, please wait...</span>
           )}
-          
+
           {Array.from({ length: 3 }).map((_, i) => (
             <Skeleton
               key={i}
@@ -337,7 +345,9 @@ const ProfilePage: React.FC = () => {
       console.log('User data:', userData); // Debugging log
       setUser(userData);
     } catch (error) {
-      setErrorFetchingProfile('Failed to fetch profile ' + (error instanceof Error ? error.message : ''));
+      setErrorFetchingProfile(
+        'Failed to fetch profile ' + (error instanceof Error ? error.message : ''),
+      );
       console.log('Fetch user data error:', error); // Debugging log
     }
   };
@@ -365,11 +375,15 @@ const ProfilePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="my-[8rem] mx-8 flex flex-col">
-      <div className='pb-3 md:pb-[12rem]'>
+    <div className="mx-8 my-[8rem] flex flex-col">
+      <div className="pb-3 md:pb-[12rem]">
         <HeadingTexts redText="" whiteText="Profile" align="left" />
       </div>
-      <ProfileCard user={user} onProfileFormSubmit={updateUserData} errorFetchingProfile={errorFetchingProfile} />
+      <ProfileCard
+        user={user}
+        onProfileFormSubmit={updateUserData}
+        errorFetchingProfile={errorFetchingProfile}
+      />
       <Button
         className="mx-auto my-8 self-center rounded-3xl bg-[#A81F25] px-10 py-6 text-3xl"
         onClick={() => router.push('/dashboard')}

@@ -155,23 +155,11 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
               {/* Text Content */}
               <div className="ml-4 sm:ml-6 md:ml-8">
                 <h3 className="mb-2 text-lg font-semibold sm:text-xl md:text-2xl">
-                  <span className="text-white">
-                    {Array.isArray(testimonials[currentTestimonial])
-                      ? testimonials[currentTestimonial][0].name
-                      : testimonials[currentTestimonial].name}
-                  </span>
-                  <span className="text-red-600">
-                    {' '}
-                    {Array.isArray(testimonials[currentTestimonial])
-                      ? testimonials[currentTestimonial][0].surname
-                      : testimonials[currentTestimonial].surname}
-                  </span>
+                  <span className="text-white">{testimonials[currentTestimonial].name}</span>
+                  <span className="text-red-600"> {testimonials[currentTestimonial].surname}</span>
                 </h3>
                 <p className="text-sm text-white sm:text-base md:text-lg">
-                  {Array.isArray(testimonials[currentTestimonial])
-                    ? testimonials[currentTestimonial][0].content.slice(0, 100)
-                    : testimonials[currentTestimonial].content.slice(0, 100)}
-                  ....
+                  {testimonials[currentTestimonial].content.slice(0, 100)}....
                 </p>
                 {/* TODO : Read More Button : Open a model with complete component : Implement later */}
                 <button className="mt-2 rounded-xl border border-white px-3 py-1 text-white hover:bg-red-600 hover:text-white">

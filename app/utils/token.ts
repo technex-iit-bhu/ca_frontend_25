@@ -5,7 +5,7 @@ export const verifyToken = (): string | null => {
 
   const token = localStorage.getItem('token');
   if (!token) {
-    return null
+    return null;
   }
 
   return token;
