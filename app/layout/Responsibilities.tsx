@@ -71,10 +71,10 @@ const Responsibility: React.FC = () => {
 
       <ScrollArea.Root className="relative top-7 w-full overflow-hidden">
         <div className="absolute bottom-0 z-10 flex w-full items-center justify-between">
-          <button onClick={() => startScrollingForThirdSection('left')}>
+          <button onClick={() => startScrollingForThirdSection('left')} title="scrollLeft">
             <ChevronsLeft className="h-8 w-8" />
           </button>
-          <button onClick={() => startScrollingForThirdSection('right')}>
+          <button onClick={() => startScrollingForThirdSection('right')} title="scrollRight">
             <ChevronsRight className="h-8 w-8" />
           </button>
         </div>

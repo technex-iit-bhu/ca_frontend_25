@@ -6,7 +6,7 @@ export default function WhyCA() {
       className="flex h-auto flex-col justify-center px-6 text-left sm:h-screen sm:px-12 md:px-24"
     >
       <HeadingTexts whiteText="Why" redText="CA?" align="center" />
-      <div className="max-w-max rounded-[20px] bg-black bg-opacity-80 p-4 my-10">
+      <div className="my-10 max-w-max rounded-[20px] bg-black bg-opacity-80 p-4">
         <p className="mt-4 text-white sm:text-lg md:text-xl">
           The Campus Ambassador Program for Technex&apos;23 offers an exciting chance to become an
           essential part of the organizing team behind India&apos;s premier technical and innovation

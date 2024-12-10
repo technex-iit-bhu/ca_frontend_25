@@ -114,10 +114,10 @@ const Incentives: React.FC = () => {
       </div>
       <ScrollArea.Root className="relative top-5 h-64 w-full overflow-hidden">
         <div className="absolute top-60 z-10 flex w-full -translate-y-1/2 transform items-center justify-between">
-          <button onClick={() => startScrolling('left', 'layer1')}>
+          <button onClick={() => startScrolling('left', 'layer1')} title="scrollLeft">
             <ChevronsLeft className="h-8 w-8" />
           </button>
-          <button onClick={() => startScrolling('right', 'layer2')}>
+          <button onClick={() => startScrolling('right', 'layer2')} title="scrollRight">
             <ChevronsRight className="h-8 w-8" />
           </button>
         </div>

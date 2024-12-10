@@ -35,10 +35,12 @@ const ListEntries = ({ entries }: { entries: LeaderboardEntry[] }) => {
         {entries.map((entry, index) => (
           <li className="mb-2 w-full rounded-[35px] bg-[#191919] px-4 py-2" key={index}>
             <div className="flex w-full items-center px-2">
-              <span className="basis-1/12 text-3xl pr-2">{entry.rank}</span>
+              <span className="basis-1/12 pr-2 text-3xl">{entry.rank}</span>
               <div className="flex basis-11/12 flex-col items-end md:flex-row md:items-center">
-                <span className="basis-1/3 text-2xl text-right md:text-left">{entry.name}</span>
-                <span className="text-l basis-1/3 text-right md:text-center">CA Id: {entry.ca_id}</span>
+                <span className="basis-1/3 text-right text-2xl md:text-left">{entry.name}</span>
+                <span className="text-l basis-1/3 text-right md:text-center">
+                  CA Id: {entry.ca_id}
+                </span>
                 <span className="text-l basis-1/3 text-right">Points: {entry.points}</span>
               </div>
             </div>
