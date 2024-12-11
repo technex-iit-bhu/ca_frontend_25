@@ -18,8 +18,8 @@ const ContactUs: React.FC = () => {
           <div className="flex flex-col items-center space-y-2 md:flex-row md:items-center md:space-x-4">
             <FaPhoneAlt className="text-3xl text-gray-400" />
             <div className="flex flex-col items-center p-3 md:items-start">
-              <p className="font-semibold text-customRed">Rhythm</p>
-              <p className="text-sm text-white">+91 8955879550</p>
+              <p className="font-semibold text-customRed">Sumit</p>
+              <p className="text-sm text-white">+91 8077712258</p>
             </div>
           </div>
 
@@ -27,8 +27,8 @@ const ContactUs: React.FC = () => {
           <div className="flex flex-col items-center space-y-2 md:flex-row md:items-center md:space-x-4">
             <FaPhoneAlt className="text-3xl text-gray-400" />
             <div className="flex flex-col items-center p-3 md:items-start">
-              <p className="font-semibold text-customRed">Keshav Maheshwari</p>
-              <p className="text-sm text-white">+91 8761833418</p>
+              <p className="font-semibold text-customRed">Kartikey</p>
+              <p className="text-sm text-white">+91 9560879378</p>
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { HeadingTexts } from './HeadingTexts';
@@ -28,36 +28,42 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
     {
       name: 'Eleen',
       surname: 'Verma',
+      // imgSrc: 'pics/i1.png',
       content:
         "My journey as a Campus Ambassador for TECHNEX'24 at IIT BHU was not only incredible but also instrumental in my personal and professional growth. This experience holds a special place in my heart, and I am grateful for the opportunity. Stay TECHNEXED!",
     },
     {
       name: 'Neha',
       surname: 'Upadhyay',
+      // imgSrc: 'pics/i2.png',
       content:
         "As the CA for TECHNEX'24, I honed my persuasive skills, and the remarkable support from the Technex team was truly commendable. In essence, Technex is both enjoyable and enlightening. Stay TECHNEXED!",
     },
     {
       name: 'Shakti',
       surname: 'Nandan',
+      // imgSrc: 'pics/i3.png',
       content:
         "Proudly serving as a Campus Ambassador for TECHNEX'24 in the vibrant and culturally rich campus of IIT BHU has been a highly enriching experience. Grateful to the TECHNEX team for providing such a valuable opportunity. Stay TECHNEXED!",
     },
     {
       name: 'Manish',
       surname: 'Gupta',
+      // imgSrc: 'pics/i4.png',
       content:
         'As a Campus Ambassador for TECHNEX, IIT BHU, the experience has been nothing short of wonderful. Representing my college at this prestigious technical fest has been a privilege. Stay TECHNEXED!',
     },
     {
       name: 'Krishna',
       surname: 'Raj',
+      // imgSrc: 'pics/i5.png',
       content:
         'An exceptionally delightful experience, spanning from the culinary diversity to meticulous security arrangements. The organisers demonstrated an unwavering commitment, surpassing expectations to craft a truly memorable event for all attendees. Stay TECHNEXED!',
     },
     {
       name: 'Umesh',
       surname: 'Verma',
+      // imgSrc: 'pics/i6.png',
       content:
         "Serving as a Campus Ambassador for TECHNEX'24 was a transformative experience, offering opportunities to engage with prospective students, represent my university, and share valuable insights about campus life. Stay TECHNEXED!",
     },
@@ -161,13 +167,13 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
             </button>
             {/* Testimonial Card */}
             <div className="relative flex w-full max-w-[35rem] rounded-2xl bg-[#272727] p-4 shadow-lg sm:p-6 md:p-8">
-              <Image
+              {/* <Image
                 src="/next.svg"
                 alt="Testimonial Icon"
                 className="h-[100px] w-[100px] rounded-lg bg-[#646464] sm:h-[120px] sm:w-[120px] md:h-[150px] md:w-[150px]"
                 width={120}
                 height={120}
-              />
+              /> */}
 
               {/* Text Content */}
               <div className="ml-4 sm:ml-6 md:ml-8">
