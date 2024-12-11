@@ -128,7 +128,7 @@ const CAPortal = () => {
             <HeadingTexts whiteText="Our" redText="Reach" align="center" />
           </div>
           <div id="our-reach" className="px-[1.5rem] md:px-[6rem]">
-            <div className="relative space-y-12 flex h-auto flex-col items-center justify-center px-6 pb-4 text-center sm:h-screen sm:px-12 md:px-24">
+            <div className="relative flex h-auto flex-col items-center justify-center px-6 pb-4 text-center sm:h-screen sm:px-12 md:px-24">
               <StatCircle value={587} label="College Ambassadors" percentage={80} />
               <StatCircle value={235} label="Indian Colleges" percentage={70} />
               <StatCircle value={69} label="International Colleges" percentage={45} />
