@@ -19,6 +19,7 @@ import { validateToken } from '../utils/token';
 
 export function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [open,setOpen]=useState(false);
   const router = useRouter();
 
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -26,7 +27,8 @@ export function Navbar() {
 
     const targetPath = href.split('#')[0];
     const targetId = href.split('#')[1];
-
+    // console.log(Sheet);
+    setOpen(false);
     if (window.location.pathname !== targetPath) {
       router.push(href);
     } else {
@@ -52,6 +54,7 @@ export function Navbar() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
+    setOpen(false);
     router.push('/auth/signin');
   };
 
@@ -159,7 +162,7 @@ export function Navbar() {
               </Button>
             </>
           )}
-          <Sheet>
+          <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button className="lg:hidden" size="icon" variant="ghost">
                 <Menu className="h-6 w-6 text-white transition-colors hover:text-gray-300" />
@@ -177,6 +180,7 @@ export function Navbar() {
                     <Link
                       className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
                       href="/profile"
+                      onClick={(e) => handleAnchorClick(e, '/profile')}
                     >
                       Profile
                     </Link>
@@ -193,12 +197,14 @@ export function Navbar() {
                     <Link
                       className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
                       href="/auth/signup"
+                      onClick={(e) => handleAnchorClick(e, '/auth/signup')}
                     >
                       Signup
                     </Link>
                     <Link
                       className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
                       href="/auth/signin"
+                      onClick={(e) => handleAnchorClick(e, '/auth/signin')}
                     >
                       Log In
                     </Link>
@@ -214,6 +220,7 @@ export function Navbar() {
                 <Link
                   className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
                   href="/incentives"
+                  onClick={(e) => handleAnchorClick(e, '/incentives')}
                 >
                   Incentives
                 </Link>
@@ -234,6 +241,7 @@ export function Navbar() {
                 <Link
                   className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
                   href="/leaderboard"
+                  onClick={(e) => handleAnchorClick(e, '/leaderboard')}
                 >
                   Leaderboard
                 </Link>
