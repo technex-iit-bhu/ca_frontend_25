@@ -15,7 +15,7 @@ export default function TechnexInfo() {
           className="z-[-1] h-full w-full"
         />
       </div>
-      <h1 className="font-signika z-[0] text-3xl font-normal sm:text-4xl md:text-5xl bg-gray-500 bg-opacity-40 rounded-md p-2">
+      <h1 className="font-signika z-[0] text-3xl font-normal sm:text-4xl md:text-5xl bg-gray-500 bg-opacity-20 rounded-md p-2 backdrop-blur-sm">
         <span className="text-white">Become our</span> <span className="text-red-600">Campus Ambassdor</span>
       </h1>
       {/* <p className="z-[0] max-w-xl rounded-[20px] bg-black bg-opacity-80 p-4 text-lg sm:text-xl md:text-2xl">
