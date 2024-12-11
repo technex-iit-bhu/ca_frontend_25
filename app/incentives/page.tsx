@@ -1,5 +1,5 @@
 'use client';
-import ComingSoon from "../layout/ComingSoon";
+import ComingSoon from '../layout/ComingSoon';
 // import React, { useRef, useEffect } from 'react';
 // import * as ScrollArea from '@radix-ui/react-scroll-area';
 // import Image from 'next/image';
@@ -22,82 +22,82 @@ import ComingSoon from "../layout/ComingSoon";
 // };
 
 const Incentives: React.FC = () => {
-//   const incentives = generateIncentives(6);
-//   const scrollAreaRef = useRef<HTMLDivElement>(null);
-//   const scrollAreaRefLayer2 = useRef<HTMLDivElement>(null);
+  //   const incentives = generateIncentives(6);
+  //   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  //   const scrollAreaRefLayer2 = useRef<HTMLDivElement>(null);
 
-//   useEffect(() => {
-//     const scrollArea = scrollAreaRef.current;
-//     const scrollAreaLayer2 = scrollAreaRefLayer2.current;
+  //   useEffect(() => {
+  //     const scrollArea = scrollAreaRef.current;
+  //     const scrollAreaLayer2 = scrollAreaRefLayer2.current;
 
-//     if (scrollArea && scrollAreaLayer2) {
-//       scrollArea.scrollLeft = scrollArea.scrollWidth / 2 + 100;
-//       scrollAreaLayer2.scrollLeft = scrollArea.scrollWidth / 2;
+  //     if (scrollArea && scrollAreaLayer2) {
+  //       scrollArea.scrollLeft = scrollArea.scrollWidth / 2 + 100;
+  //       scrollAreaLayer2.scrollLeft = scrollArea.scrollWidth / 2;
 
-//       const scrollAmount = 1;
-//       const scrollInterval = 16;
+  //       const scrollAmount = 1;
+  //       const scrollInterval = 16;
 
-//       const intervalId1 = setInterval(() => {
-//         scrollArea.scrollLeft -= scrollAmount;
-//         if (scrollArea.scrollLeft >= scrollArea.scrollWidth - scrollArea.clientWidth) {
-//           scrollArea.scrollLeft = 0;
-//         }
-//       }, scrollInterval);
+  //       const intervalId1 = setInterval(() => {
+  //         scrollArea.scrollLeft -= scrollAmount;
+  //         if (scrollArea.scrollLeft >= scrollArea.scrollWidth - scrollArea.clientWidth) {
+  //           scrollArea.scrollLeft = 0;
+  //         }
+  //       }, scrollInterval);
 
-//       const intervalId2 = setInterval(() => {
-//         scrollAreaLayer2.scrollLeft += scrollAmount;
-//         if (scrollAreaLayer2.scrollLeft <= 0) {
-//           scrollAreaLayer2.scrollLeft = scrollAreaLayer2.scrollWidth - scrollAreaLayer2.clientWidth;
-//         }
-//       }, scrollInterval);
+  //       const intervalId2 = setInterval(() => {
+  //         scrollAreaLayer2.scrollLeft += scrollAmount;
+  //         if (scrollAreaLayer2.scrollLeft <= 0) {
+  //           scrollAreaLayer2.scrollLeft = scrollAreaLayer2.scrollWidth - scrollAreaLayer2.clientWidth;
+  //         }
+  //       }, scrollInterval);
 
-//       return () => {
-//         clearInterval(intervalId1);
-//         clearInterval(intervalId2);
-//       };
-//     }
-//   }, []);
+  //       return () => {
+  //         clearInterval(intervalId1);
+  //         clearInterval(intervalId2);
+  //       };
+  //     }
+  //   }, []);
 
-//   const handleScroll = () => {
-//     const scrollArea = scrollAreaRef.current;
-//     const scrollAreaLayer2 = scrollAreaRefLayer2.current;
+  //   const handleScroll = () => {
+  //     const scrollArea = scrollAreaRef.current;
+  //     const scrollAreaLayer2 = scrollAreaRefLayer2.current;
 
-//     if (!scrollArea || !scrollAreaLayer2) return;
+  //     if (!scrollArea || !scrollAreaLayer2) return;
 
-//     const scrollWidth = scrollArea.scrollWidth / 3;
+  //     const scrollWidth = scrollArea.scrollWidth / 3;
 
-//     if (scrollArea.scrollLeft <= 0) {
-//       scrollArea.scrollLeft = scrollWidth;
-//     } else if (scrollArea.scrollLeft >= scrollWidth * 2) {
-//       scrollArea.scrollLeft = scrollWidth;
-//     }
+  //     if (scrollArea.scrollLeft <= 0) {
+  //       scrollArea.scrollLeft = scrollWidth;
+  //     } else if (scrollArea.scrollLeft >= scrollWidth * 2) {
+  //       scrollArea.scrollLeft = scrollWidth;
+  //     }
 
-//     if (scrollAreaLayer2.scrollLeft <= 0) {
-//       scrollAreaLayer2.scrollLeft = scrollWidth;
-//     } else if (scrollAreaLayer2.scrollLeft >= scrollWidth * 2) {
-//       scrollAreaLayer2.scrollLeft = scrollWidth;
-//     }
-//   };
-//   const startScrolling = (direction: 'left' | 'right', layer: 'layer1' | 'layer2') => {
-//     const scrollArea = layer === 'layer2' ? scrollAreaRef.current : scrollAreaRefLayer2.current;
+  //     if (scrollAreaLayer2.scrollLeft <= 0) {
+  //       scrollAreaLayer2.scrollLeft = scrollWidth;
+  //     } else if (scrollAreaLayer2.scrollLeft >= scrollWidth * 2) {
+  //       scrollAreaLayer2.scrollLeft = scrollWidth;
+  //     }
+  //   };
+  //   const startScrolling = (direction: 'left' | 'right', layer: 'layer1' | 'layer2') => {
+  //     const scrollArea = layer === 'layer2' ? scrollAreaRef.current : scrollAreaRefLayer2.current;
 
-//     if (!scrollArea) return;
+  //     if (!scrollArea) return;
 
-//     const scrollAmount = 10;
-//     const scrollDuration = 1000;
+  //     const scrollAmount = 10;
+  //     const scrollDuration = 1000;
 
-//     const intervalId = setInterval(() => {
-//       if (direction === 'left') {
-//         scrollArea.scrollLeft += scrollAmount;
-//       } else {
-//         scrollArea.scrollLeft -= scrollAmount;
-//       }
-//     }, 16);
+  //     const intervalId = setInterval(() => {
+  //       if (direction === 'left') {
+  //         scrollArea.scrollLeft += scrollAmount;
+  //       } else {
+  //         scrollArea.scrollLeft -= scrollAmount;
+  //       }
+  //     }, 16);
 
-//     setTimeout(() => {
-//       clearInterval(intervalId);
-//     }, scrollDuration);
-//   };
+  //     setTimeout(() => {
+  //       clearInterval(intervalId);
+  //     }, scrollDuration);
+  //   };
 
   return (
     // <div className="font-spline relative min-h-screen w-full overflow-hidden text-white">
