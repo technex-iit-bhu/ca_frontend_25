@@ -15,22 +15,20 @@ export default function TechnexInfo() {
           className="z-[-1] h-full w-full"
         />
       </div>
-      <h1 className="font-signika z-[0] rounded-md bg-[#272727] bg-opacity-80 p-2 text-3xl font-normal sm:text-4xl md:text-5xl">
+      <h1 className="font-signika z-[0] rounded-md bg-[#272727] bg-opacity-90 p-2 text-3xl font-normal sm:text-4xl md:text-5xl">
         <span className="text-white">Become our</span>{' '}
         <span className="text-red-600">Campus Ambassdor</span>
       </h1>
-      <div className="font-signika z-[0] rounded-md bg-[#272727] bg-opacity-80 p-2 text-xl font-normal sm:text-2xl md:text-3xl">
-        <span className="text-white">
-          Register for{' '}
-          <Button
-            variant="outline"
-            className="z-[0] text-customRed text-xl font-normal sm:text-2xl md:text-3xl hover:text-black transition-all"
-            onClick={() => (window.location.href = '/auth/signup')}
-            style={{ background: 'transparent', border: 'none' }}
-          >
-            CA Program
-          </Button>
-        </span>
+      <div className="font-signika z-[0] rounded-md bg-[#272727] bg-opacity-90 p-2 text-xl font-normal sm:text-2xl md:text-3xl">
+        <span className="text-white">Register for</span>
+        <Button
+          variant="outline"
+          className="z-[0] text-customRed text-xl font-normal sm:text-2xl md:text-3xl hover:text-red-600 transition-all"
+          onClick={() => (window.location.href = '/auth/signup')}
+          style={{ background: 'transparent', border: 'none' }}
+        >
+          CA Program
+        </Button>
       </div>
       {/* <p className="z-[0] max-w-xl rounded-[20px] bg-black bg-opacity-80 p-4 text-lg sm:text-xl md:text-2xl">
         <span className="text-2xl text-white sm:text-3xl">TECHNEX&apos;24, IIT BHU</span> is one of
@@ -45,14 +43,14 @@ export default function TechnexInfo() {
         college taking part in Technex and engage them with different activities of Technex, IIT
         BHU.
       </p> */}
-
+{/* 
       <Button
         variant="outline"
         className="z-[0] w-48 rounded-full bg-customRed text-white hover:bg-white"
         onClick={() => (window.location.href = '/auth/signup')}
       >
         Register
-      </Button>
+      </Button> */}
     </section>
   );
 }
