@@ -15,10 +15,10 @@ export default function TechnexInfo() {
           className="z-[-1] h-full w-full"
         />
       </div>
-      <h1 className="font-signika z-[0] text-3xl font-normal sm:text-4xl md:text-5xl">
-        <span className="text-red-600">Tech</span> <span className="text-white">Trek Pioneer</span>
+      <h1 className="font-signika z-[0] text-3xl font-normal sm:text-4xl md:text-5xl bg-gray-500 bg-opacity-40 rounded-md p-2">
+        <span className="text-white">Become our</span> <span className="text-red-600">Campus Ambassdor</span>
       </h1>
-      <p className="z-[0] max-w-xl rounded-[20px] bg-black bg-opacity-80 p-4 text-lg sm:text-xl md:text-2xl">
+      {/* <p className="z-[0] max-w-xl rounded-[20px] bg-black bg-opacity-80 p-4 text-lg sm:text-xl md:text-2xl">
         <span className="text-2xl text-white sm:text-3xl">TECHNEX&apos;24, IIT BHU</span> is one of
         the largest and oldest college fests in India. Embodying the true spirit of youth, Technex
         provides a platform for{' '}
@@ -30,11 +30,11 @@ export default function TechnexInfo() {
         <span className="text-red-600">India where you can lead the contingent</span> from your
         college taking part in Technex and engage them with different activities of Technex, IIT
         BHU.
-      </p>
+      </p> */}
 
       <Button
         variant="outline"
-        className="z-[0] w-48 rounded-full bg-customRed text-white hover:bg-gray-400"
+        className="z-[0] w-48 rounded-full bg-customRed text-white hover:bg-white"
         onClick={() => (window.location.href = '/auth/signup')}
       >
         Register
