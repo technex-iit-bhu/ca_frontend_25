@@ -19,7 +19,7 @@ import { validateToken } from '../utils/token';
 
 export function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [open,setOpen]=useState(false);
+  const [open, setOpen] = useState(false);
   const router = useRouter();
 
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
