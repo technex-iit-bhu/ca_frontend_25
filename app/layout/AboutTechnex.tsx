@@ -10,7 +10,7 @@ export default function AboutTechnex() {
       <HeadingTexts redText="Technex" whiteText="About" align="left" />
       <div className="mt-10 w-full rounded-[20px] bg-black bg-opacity-80 p-4 text-left">
         <p className="font-spline md:text-2xlt sm:text-xl">
-          TECHNEX&apos;23, IIT BHU is one of the largest and oldest college fests in India.
+          TECHNEX&apos;24, IIT BHU is one of the largest and oldest college fests in India.
           Embodying the true spirit of youth,
           <span className="text-customRed">
             Technex provides a platform for young talent from all over India to showcase their
