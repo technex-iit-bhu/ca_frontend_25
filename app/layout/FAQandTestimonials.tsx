@@ -29,19 +29,19 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
       name: 'Eleen',
       surname: 'Verma',
       content:
-        "My journey as a Campus Ambassador for TECHNEX'23 at IIT BHU was not only incredible but also instrumental in my personal and professional growth. This experience holds a special place in my heart, and I am grateful for the opportunity. Stay TECHNEXED!",
+        "My journey as a Campus Ambassador for TECHNEX'24 at IIT BHU was not only incredible but also instrumental in my personal and professional growth. This experience holds a special place in my heart, and I am grateful for the opportunity. Stay TECHNEXED!",
     },
     {
       name: 'Neha',
       surname: 'Upadhyay',
       content:
-        "As the CA for TECHNEX'23, I honed my persuasive skills, and the remarkable support from the Technex team was truly commendable. In essence, Technex is both enjoyable and enlightening. Stay TECHNEXED!",
+        "As the CA for TECHNEX'24, I honed my persuasive skills, and the remarkable support from the Technex team was truly commendable. In essence, Technex is both enjoyable and enlightening. Stay TECHNEXED!",
     },
     {
       name: 'Shakti',
       surname: 'Nandan',
       content:
-        "Proudly serving as a Campus Ambassador for TECHNEX'23 in the vibrant and culturally rich campus of IIT BHU has been a highly enriching experience. Grateful to the TECHNEX team for providing such a valuable opportunity. Stay TECHNEXED!",
+        "Proudly serving as a Campus Ambassador for TECHNEX'24 in the vibrant and culturally rich campus of IIT BHU has been a highly enriching experience. Grateful to the TECHNEX team for providing such a valuable opportunity. Stay TECHNEXED!",
     },
     {
       name: 'Manish',
@@ -59,7 +59,7 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
       name: 'Umesh',
       surname: 'Verma',
       content:
-        "Serving as a Campus Ambassador for TECHNEX'23 was a transformative experience, offering opportunities to engage with prospective students, represent my university, and share valuable insights about campus life. Stay TECHNEXED!",
+        "Serving as a Campus Ambassador for TECHNEX'24 was a transformative experience, offering opportunities to engage with prospective students, represent my university, and share valuable insights about campus life. Stay TECHNEXED!",
     },
   ],
   faqs = [
