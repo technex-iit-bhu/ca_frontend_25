@@ -23,7 +23,7 @@ export default function TechnexInfo() {
         <span className="text-white">Register for</span>
         <Button
           variant="outline"
-          className="z-[0] text-customRed text-xl font-normal sm:text-2xl md:text-3xl hover:text-red-600 transition-all"
+          className="z-[0] text-xl font-normal text-customRed transition-all hover:text-red-600 sm:text-2xl md:text-3xl"
           onClick={() => (window.location.href = '/auth/signup')}
           style={{ background: 'transparent', border: 'none' }}
         >
@@ -43,7 +43,7 @@ export default function TechnexInfo() {
         college taking part in Technex and engage them with different activities of Technex, IIT
         BHU.
       </p> */}
-{/* 
+      {/* 
       <Button
         variant="outline"
         className="z-[0] w-48 rounded-full bg-customRed text-white hover:bg-white"
