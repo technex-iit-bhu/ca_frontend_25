@@ -57,13 +57,13 @@ const Incentives: React.FC = () => {
     startAutoScroll();
 
     return () => {
-      intervalIds.forEach(id => {
+      intervalIds.forEach((id) => {
         if (typeof id === 'number') {
           clearInterval(id);
         }
       });
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // Please do NOT change the dependencies of this useEffect.
 
@@ -140,11 +140,11 @@ const Incentives: React.FC = () => {
 
   const handleImageClick = (imageSrc: string) => {
     setSelectedImage(imageSrc);
-    intervalIds.forEach(id => {
-        if (typeof id === 'number') {
-          clearInterval(id);
-        }
-      });
+    intervalIds.forEach((id) => {
+      if (typeof id === 'number') {
+        clearInterval(id);
+      }
+    });
   };
 
   const handleCloseModal = () => {
@@ -242,11 +242,11 @@ const Incentives: React.FC = () => {
             <button
               onClick={handleCloseModal}
               className="absolute -right-4 -top-4 rounded-full bg-zinc-800 p-2"
-              title='modal-image'
+              title="modal-image"
             >
               <X className="h-6 w-6" />
             </button>
-            <div className="relative h-[40vh] sm:h-[60vh] w-[60vw]">
+            <div className="relative h-[40vh] w-[60vw] sm:h-[60vh]">
               <Image
                 src={selectedImage}
                 alt="Selected Incentive"

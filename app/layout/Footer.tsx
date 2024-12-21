@@ -2,88 +2,96 @@ import React from 'react';
 import Image from 'next/image';
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
-const Footer: React.FC = () => {
+import GridBackground from './GridBackground';
+
+const Footer = () => {
+  const socialLinks = [
+    {
+      icon: FaInstagram,
+      href: 'https://www.instagram.com/technexiitbhu/?hl=en',
+      title: 'Instagram',
+      color: 'rgb(244,114,182)',
+    },
+    {
+      icon: FaLinkedinIn,
+      href: 'https://www.linkedin.com/company/technex-iit-bhu-varanasi/?originalSubdomain=in',
+      title: 'LinkedIn',
+      color: 'rgb(59,130,246)',
+    },
+    {
+      icon: FaFacebookF,
+      href: 'https://www.facebook.com/technexiitbhu/',
+      title: 'Facebook',
+      color: 'rgb(37,99,235)',
+    },
+    {
+      icon: FaXTwitter,
+      href: 'https://x.com/technexiitbhu',
+      title: 'Twitter',
+      color: 'rgb(156,163,175)',
+    },
+    {
+      icon: FaYoutube,
+      href: 'https://www.youtube.com/@TechnexIITBHU',
+      title: 'Youtube',
+      color: 'rgb(239,68,68)',
+    },
+  ];
+
   return (
-    <footer className="mt-10 bg-[#272727] p-[1rem] text-white opacity-80">
-      <div className="container mx-auto flex flex-col items-center justify-center md:flex-row md:gap-8">
-        {/* Logo and Council Information */}
-        <div className="flex flex-col items-center md:mb-0 md:items-start">
-          <a
-            href="https://www.sntciitbhu.co.in/"
-            title="SNTC"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src="/sntc.svg"
-              alt="SNTC Logo"
-              width={256}
-              height={64}
-              className="h-auto w-64"
-            />
-          </a>
-        </div>
+    <footer className="relative mt-10">
+      <div className="h-2 w-full bg-red-700" />
 
-        {/* Divider */}
-        <div className="hidden h-20 border-l border-gray-600 pr-7 md:block"></div>
-
-        {/* Social Links */}
-        <div className="flex flex-col items-center justify-center md:items-center">
-          <h2 className="mb-2 text-lg font-semibold">Social Links</h2>
-          <div className="flex space-x-4">
+      <GridBackground>
+        <div className="container mx-auto flex flex-col items-center justify-between gap-6 p-4 md:flex-row md:gap-4">
+          <div className="group transition-all duration-200 hover:-translate-y-0.5">
             <a
-              href="https://www.facebook.com/technexiitbhu/"
+              href="https://www.sntciitbhu.co.in/"
+              className="relative block rounded border-2 border-red-500/20 p-2 hover:border-red-500/50"
+              title="SNTC"
               target="_blank"
-              title="Facebook"
               rel="noopener noreferrer"
             >
-              <FaFacebookF className="text-xl hover:text-gray-400" />
-            </a>
-            <a
-              href="https://www.instagram.com/technexiitbhu/?hl=en"
-              target="_blank"
-              title="Instagram"
-              rel="noopener noreferrer"
-            >
-              <FaInstagram className="text-xl hover:text-gray-400" />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/technex-iit-bhu-varanasi/?originalSubdomain=in"
-              target="_blank"
-              title="LinkedIn"
-              rel="noopener noreferrer"
-            >
-              <FaLinkedinIn className="text-xl hover:text-gray-400" />
-            </a>
-            <a
-              href="https://x.com/technexiitbhu"
-              target="_blank"
-              title="Twitter"
-              rel="noopener noreferrer"
-            >
-              <FaXTwitter className="text-xl hover:text-gray-400" />
-            </a>
-            <a
-              href="https://www.youtube.com/@TechnexIITBHU"
-              target="_blank"
-              title="Youtube"
-              rel="noopener noreferrer"
-            >
-              <FaYoutube className="text-xl hover:text-gray-400" />
+              <Image
+                src="/sntc.svg"
+                alt="SNTC Logo"
+                width={128}
+                height={32}
+                className="relative h-auto w-32"
+              />
             </a>
           </div>
-          <p className="mt-2 text-xs">
-            For more queries:{' '}
+
+          <div className="order-last border-2 border-red-500/30 bg-black/40 p-4 text-center md:order-none">
+            <p className="mb-2 font-mono text-sm text-red-400">FOR QUERIES:</p>
             <a
               href="mailto:publicity@technex.in"
-              className="text-red-500 hover:underline"
-              title="Email"
+              className="group relative font-mono text-red-300 transition-colors hover:text-red-400"
             >
-              publicity@technex.in
+              <span className="relative inline-block">
+                &gt; publicity@technex.in_
+                <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-red-400 transition-all group-hover:w-full" />
+              </span>
             </a>
-          </p>
+          </div>
+
+          <div className="flex gap-4">
+            {socialLinks.map(({ icon: Icon, href, title, color }, index) => (
+              <a
+                key={index}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={title}
+                style={{ '--hover-color': color } as React.CSSProperties}
+                className="group relative border-2 border-red-500/20 bg-black/50 p-2.5 transition-all hover:-translate-y-0.5 hover:border-[color:var(--hover-color)] hover:[box-shadow:0_0_15px_var(--hover-color)]"
+              >
+                <Icon className="text-xl text-red-400 transition-all group-hover:scale-110 group-hover:text-[var(--hover-color)] group-hover:[filter:drop-shadow(0_0_5px_var(--hover-color))]" />
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      </GridBackground>
     </footer>
   );
 };
