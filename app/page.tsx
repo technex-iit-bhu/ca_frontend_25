@@ -99,9 +99,8 @@ const StatCircle: React.FC<StatCircleProps> = ({ value, percentage, label }) => 
 const CAPortal = () => {
   return (
     <>
-      <div className="font-spline relative h-screen w-full overflow-hidden bg-gray-900 text-white">
+      <div className="font-spline border-blue relative h-screen w-full overflow-hidden bg-gray-900 text-white">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0"></div>
           <Image
             src="/sunbg.png"
             alt="Home Background"
@@ -111,11 +110,11 @@ const CAPortal = () => {
           />
         </div>
 
-        <main className="relative h-full overflow-y-auto">
+        <main className="relative h-full w-screen overflow-clip overflow-y-auto">
           <ScrollChevron />
 
           {/* Main Technex Info */}
-          <div id="technex-info">
+          <div id="technex-info border">
             <TechnexInfo />
           </div>
 
