@@ -67,3 +67,7 @@ export async function getSubmittedTasks(token: string): Promise<Task[]> {
   });
   return res.json();
 }
+
+export async function getLeaderboard() {
+  return await fetch(`${BASE_URL}/leaderboard`);
+}
