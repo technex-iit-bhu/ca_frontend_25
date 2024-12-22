@@ -81,11 +81,11 @@ export default function SignupPage() {
 
   return (
     <BackgroundLines>
-      <div className="flex min-h-screen items-center justify-center p-20">
+      <div className="flex min-h-screen items-center justify-center p-4 md:p-8">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full max-w-md space-y-8 rounded bg-[#2e2e2e38] p-8"
+            className="w-full max-w-md space-y-8 rounded bg-[#2e2e2e38] p-4 md:p-8"
           >
             <h2 className="mb-6 text-2xl font-bold text-white">Sign Up</h2>
             <div className="space-y-4">
