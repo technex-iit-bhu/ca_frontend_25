@@ -81,7 +81,7 @@ export default function SignupPage() {
 
   return (
     <BackgroundLines>
-      <div className="flex min-h-screen items-center justify-center bg-black p-20">
+      <div className="flex min-h-screen items-center justify-center p-20">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
