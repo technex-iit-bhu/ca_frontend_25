@@ -9,12 +9,7 @@ import { ChevronsDown, ChevronsUp } from 'lucide-react';
 import WhyCA from './layout/WhyCA';
 import { HeadingTexts } from './layout/HeadingTexts';
 import RedLine from './layout/RedLine';
-
-interface StatCircleProps {
-  value: number;
-  percentage: number;
-  label: string;
-}
+import StatCircle from './layout/StatCircle';
 
 const ScrollChevron: React.FC = () => {
   const [currentSection, setCurrentSection] = useState(0);
@@ -60,47 +55,12 @@ const ScrollChevron: React.FC = () => {
   );
 };
 
-const StatCircle: React.FC<StatCircleProps> = ({ value, percentage, label }) => {
-  const radius = 15.9155;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (percentage / 100) * circumference;
-
-  return (
-    <>
-      <div className="flex flex-col items-center">
-        <div className="relative flex h-32 w-32 items-center justify-center rounded-full border-[#A81F25] bg-[#191919] opacity-90 sm:h-40 sm:w-40 md:h-48 md:w-48">
-          <svg className="absolute h-full w-full" viewBox="0 0 36 36">
-            <path
-              className="text-gray-700"
-              strokeWidth="4"
-              stroke="currentColor"
-              fill="none"
-              d="M18 2.0845a15.9155 15.9155 0 1 1 0 31.831 15.9155 15.9155 0 1 1 0-31.831"
-            />
-            <path
-              className="text-red-600"
-              strokeWidth="4"
-              stroke="currentColor"
-              fill="none"
-              strokeDasharray={circumference}
-              strokeDashoffset={offset}
-              d="M18 2.0845a15.9155 15.9155 0 1 1 0 31.831 15.9155 15.9155 0 1 1 0-31.831"
-              style={{ transition: 'stroke-dashoffset 0.35s ease' }}
-            />
-          </svg>
-          <span className="text-lg font-bold sm:text-4xl md:text-6xl">{value}</span>
-        </div>
-        <p className="mt-4 text-sm sm:text-lg md:text-xl">{label}</p>
-      </div>
-    </>
-  );
-};
-
 const CAPortal = () => {
   return (
     <>
-      <div className="font-spline border-blue relative h-screen w-full overflow-hidden bg-gray-900 text-white">
+      <div className="font-spline relative h-screen w-full overflow-hidden bg-gray-900 text-white">
         <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0"></div>
           <Image
             src="/sunbg.png"
             alt="Home Background"
@@ -110,11 +70,11 @@ const CAPortal = () => {
           />
         </div>
 
-        <main className="relative h-full w-screen overflow-clip overflow-y-auto">
+        <main className="relative h-full overflow-y-auto">
           <ScrollChevron />
 
           {/* Main Technex Info */}
-          <div id="technex-info border">
+          <div id="technex-info">
             <TechnexInfo />
           </div>
 
@@ -123,14 +83,14 @@ const CAPortal = () => {
             <AboutTechnex />
           </div>
 
-          <div className="pt-12 md:pt-0">
+          <div className="pb-0 pt-10 md:pb-2 md:pt-0">
             <HeadingTexts whiteText="Our" redText="Reach" align="center" />
           </div>
-          <div id="our-reach" className="px-[1.5rem] md:px-[6rem]">
-            <div className="relative flex h-auto flex-col items-center justify-center px-6 pb-4 text-center sm:h-screen sm:px-12 md:px-24">
-              <StatCircle value={587} label="College Ambassadors" percentage={80} />
-              <StatCircle value={235} label="Indian Colleges" percentage={70} />
-              <StatCircle value={69} label="International Colleges" percentage={45} />
+          <div id="our-reach" className="mt-8 px-[1.5rem] md:mt-12 md:px-[6rem]">
+            <div className="relative flex h-auto flex-col items-center justify-center gap-10 px-6 pb-4 text-center sm:h-screen sm:px-12 md:px-24">
+              <StatCircle value={69} label="College Ambassadors" percentage={60} />
+              <StatCircle value={234} label="Indian Colleges" percentage={70} />
+              <StatCircle value={987} label="International Colleges" percentage={65} />
             </div>
             <div className="flex justify-end">
               <RedLine align="right" />
