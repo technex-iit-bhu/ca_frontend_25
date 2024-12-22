@@ -8,9 +8,9 @@ export default function WhyCA() {
       <HeadingTexts whiteText="Why" redText="CA?" align="center" />
       <div className="my-10 max-w-max rounded-[20px] bg-black bg-opacity-80 p-4">
         <p className="mt-4 text-white sm:text-lg md:text-xl">
-          The Campus Ambassador Program for Technex offers an exciting chance to become an
-          essential part of the organizing team behind India&apos;s premier technical and innovation
-          fest. As a Campus Ambassador,{' '}
+          The Campus Ambassador Program for Technex offers an exciting chance to become an essential
+          part of the organizing team behind India&apos;s premier technical and innovation fest. As
+          a Campus Ambassador,{' '}
           <span className="text-customRed">
             you&apos;ll lead your college&apos;s contingent at Technex
           </span>

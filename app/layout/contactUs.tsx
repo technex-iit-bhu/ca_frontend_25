@@ -15,7 +15,7 @@ const ContactUs: React.FC = () => {
         {/* Contact Information Centered */}
         <div className="mt-8 flex flex-col items-center justify-center gap-10 px-4 md:flex-row md:space-x-10 md:px-0">
           {/* Contact Card 1 */}
-          <div className="flex flex-col items-center space-y-2 md:flex-row md:items-center md:space-x-4 transition-all">
+          <div className="flex flex-col items-center space-y-2 transition-all md:flex-row md:items-center md:space-x-4">
             <FaPhoneAlt className="text-3xl text-gray-400" />
             <div className="flex flex-col items-center p-3 md:items-start">
               <p className="font-semibold text-customRed hover:text-red-500">Sumit</p>
