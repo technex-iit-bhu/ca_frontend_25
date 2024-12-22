@@ -1,11 +1,13 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 // import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FaChevronDown } from 'react-icons/fa';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { HeadingTexts } from './HeadingTexts';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import RedLine from './RedLine';
 import Modal from '@/app/layout/Modal';
+import { CardStack } from '@/components/ui/card-stack';
+
 
 interface Testimonial {
   name: string;
@@ -26,6 +28,7 @@ interface FAQSectionProps {
 const FAQandTestimonials: React.FC<FAQSectionProps> = ({
   testimonials = [
     {
+      index: 0,
       name: 'Eleen',
       surname: 'Verma',
       // imgSrc: 'pics/i1.png',
@@ -33,6 +36,7 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
         "My journey as a Campus Ambassador for TECHNEX'24 at IIT BHU was not only incredible but also instrumental in my personal and professional growth. This experience holds a special place in my heart, and I am grateful for the opportunity. Stay TECHNEXED!",
     },
     {
+      index: 1,
       name: 'Neha',
       surname: 'Upadhyay',
       // imgSrc: 'pics/i2.png',
@@ -40,6 +44,7 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
         "As the CA for TECHNEX'24, I honed my persuasive skills, and the remarkable support from the Technex team was truly commendable. In essence, Technex is both enjoyable and enlightening. Stay TECHNEXED!",
     },
     {
+      index: 2,
       name: 'Shakti',
       surname: 'Nandan',
       // imgSrc: 'pics/i3.png',
@@ -47,6 +52,7 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
         "Proudly serving as a Campus Ambassador for TECHNEX'24 in the vibrant and culturally rich campus of IIT BHU has been a highly enriching experience. Grateful to the TECHNEX team for providing such a valuable opportunity. Stay TECHNEXED!",
     },
     {
+      index: 3,
       name: 'Manish',
       surname: 'Gupta',
       // imgSrc: 'pics/i4.png',
@@ -54,6 +60,7 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
         'As a Campus Ambassador for TECHNEX, IIT BHU, the experience has been nothing short of wonderful. Representing my college at this prestigious technical fest has been a privilege. Stay TECHNEXED!',
     },
     {
+      index: 4,
       name: 'Krishna',
       surname: 'Raj',
       // imgSrc: 'pics/i5.png',
@@ -61,6 +68,7 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
         'An exceptionally delightful experience, spanning from the culinary diversity to meticulous security arrangements. The organisers demonstrated an unwavering commitment, surpassing expectations to craft a truly memorable event for all attendees. Stay TECHNEXED!',
     },
     {
+      index: 5,
       name: 'Umesh',
       surname: 'Verma',
       // imgSrc: 'pics/i6.png',
@@ -140,6 +148,17 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
     setIsAutoScrollEnabled(true);
   };
 
+  const cardStackItems = testimonials.map((testimonial, index) => ({
+    id: index,
+    name: testimonial.name,
+    surname: testimonial.surname,
+    content: (
+      <span className="flex flex-col h-full justify-between">
+        {testimonial.content.slice(0, 100)}...
+      </span>
+    ),
+  }));
+
   return (
     <div className="min-h-screen w-full p-8 pt-[4rem] text-white">
       {/* Testimonials Section */}
@@ -148,54 +167,14 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
           <HeadingTexts redText="" whiteText="Testimonials" align="center" />
         </div>
 
-        <div className="relative mx-auto flex flex-col items-center text-center">
-          <div className="relative flex w-full items-center justify-center">
-            {/* Navigation Buttons */}
-            <button
-              onClick={handlePrevTestimonial}
-              className="absolute -left-10 z-10 p-2 sm:left-10"
-              aria-label="Previous Testimonial"
-            >
-              <FaArrowLeft className="text-2xl text-white" />
-            </button>
-            <button
-              onClick={handleNextTestimonial}
-              className="absolute -right-10 z-10 p-2 sm:right-10"
-              aria-label="Next Testimonial"
-            >
-              <FaArrowRight className="text-2xl text-white" />
-            </button>
-            {/* Testimonial Card */}
-            <div className="relative flex w-full max-w-[35rem] rounded-2xl bg-[#272727] p-4 shadow-lg sm:p-6 md:p-8">
-              {/* <Image
-                src="/next.svg"
-                alt="Testimonial Icon"
-                className="h-[100px] w-[100px] rounded-lg bg-[#646464] sm:h-[120px] sm:w-[120px] md:h-[150px] md:w-[150px]"
-                width={120}
-                height={120}
-              /> */}
-
-              {/* Text Content */}
-              <div className="ml-4 sm:ml-6 md:ml-8">
-                <h3 className="mb-2 text-lg font-semibold sm:text-xl md:text-2xl">
-                  <span className="text-white">{testimonials[currentTestimonial].name}</span>
-                  <span className="text-red-600"> {testimonials[currentTestimonial].surname}</span>
-                </h3>
-                <p className="text-sm text-white sm:text-base md:text-lg">
-                  {testimonials[currentTestimonial].content.slice(0, 100)}....
-                </p>
-                {/* Read More Button */}
-                <button
-                  className="mt-2 rounded-xl border border-white px-3 py-1 text-white hover:bg-red-600 hover:text-white"
-                  onClick={handleReadMore}
-                >
-                  Read More
-                </button>
-              </div>
-            </div>
-          </div>
+        <div className="flex justify-center items-center min-h-[400px]">
+          <CardStack
+            items={cardStackItems}
+            offset={10}
+            scaleFactor={0.06}
+            onReadMore={handleReadMore}
+          />
         </div>
-      </div>
       <div className="flex justify-end">
         <RedLine align="right" />
       </div>
@@ -213,19 +192,17 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
               {faqs.slice(0, Math.ceil(faqs.length / 2)).map((faq, index) => (
                 <div
                   key={index}
-                  className="relative cursor-pointer rounded-lg bg-[#121212] p-4 transition-shadow duration-300 hover:shadow-[0_0_15px_#f00]"
+                  className="relative cursor-pointer rounded-lg bg-zinc-800 p-4"
                   onClick={() => toggleFAQ(index)}
                 >
                   <h3 className="mb-2 flex justify-between text-lg font-semibold text-white">
                     {faq.question}
-
-                    <FaChevronDown
-                      className={`flex-shrink-0 transform text-xl transition-transform duration-300 ${
-                        expandedFAQ === index ? 'rotate-180' : 'rotate-0'
-                      }`}
-                    />
+                    {expandedFAQ === index ? (
+                      <FaChevronUp className="text-xl" />
+                    ) : (
+                      <FaChevronDown className="text-xl" />
+                    )}
                   </h3>
-
                   <AnimatePresence>
                     {expandedFAQ === index && (
                       <motion.div
@@ -248,19 +225,16 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
               {faqs.slice(Math.ceil(faqs.length / 2)).map((faq, index) => (
                 <div
                   key={index}
-                  className="relative cursor-pointer rounded-lg bg-[#121212] p-4 transition-shadow duration-300 hover:shadow-[0_0_15px_#f00]"
+                  className="relative cursor-pointer rounded-lg bg-zinc-800 p-4"
                   onClick={() => toggleFAQ(index + Math.ceil(faqs.length / 2))}
                 >
                   <h3 className="mb-2 flex justify-between text-lg font-semibold text-white">
                     {faq.question}
-
-                    <FaChevronDown
-                      className={`flex-shrink-0 transform text-xl transition-transform duration-300 ${
-                        expandedFAQ === index + Math.ceil(faqs.length / 2)
-                          ? 'rotate-180'
-                          : 'rotate-0'
-                      }`}
-                    />
+                    {expandedFAQ === index + Math.ceil(faqs.length / 2) ? (
+                      <FaChevronUp className="text-xl" />
+                    ) : (
+                      <FaChevronDown className="text-xl" />
+                    )}
                   </h3>
                   <AnimatePresence>
                     {expandedFAQ === index + Math.ceil(faqs.length / 2) && (
@@ -312,6 +286,7 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
         </Modal>
       )}
     </div>
+  </div>
   );
 };
 
