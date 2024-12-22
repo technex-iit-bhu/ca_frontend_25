@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import Image from 'next/image';
+import { BackgroundLines } from '@/components/ui/BackgroundLines';
 
 const passwordSchema = z
   .string()
@@ -79,11 +80,12 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#191919] pt-20">
+    <BackgroundLines>
+    <div className="flex min-h-screen items-center justify-center bg-black p-20">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full max-w-md space-y-8 rounded p-8 outline-dotted outline-[#a81f25]"
+          className="w-full max-w-md space-y-8 rounded p-8 bg-[#2e2e2e38]"
         >
           <h2 className="mb-6 text-2xl font-bold text-white">Sign Up</h2>
           <div className="space-y-4">
@@ -181,5 +183,6 @@ export default function SignupPage() {
         </form>
       </Form>
     </div>
+    </BackgroundLines>
   );
 }

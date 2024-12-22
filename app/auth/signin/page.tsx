@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import Image from 'next/image';
 import { useState } from 'react';
+import { BackgroundLines } from '@/components/ui/BackgroundLines';
 const formSchema = z.object({
   username: z.string().min(2, {
     message: 'Username must be at least 2 characters.',
@@ -45,11 +46,12 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#191919] pt-20">
+    <BackgroundLines>
+    <div className="flex min-h-screen items-center justify-center bg-black p-20">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full max-w-md space-y-8 rounded p-8 outline-dotted outline-[#a81f25]"
+          className="w-full max-w-md space-y-8 rounded p-8 bg-[#2e2e2e38] "
         >
           <h2 className="mb-6 text-center text-2xl font-bold text-white">Login</h2>
           <div className="space-y-4">
@@ -93,5 +95,6 @@ export default function SignInPage() {
         </form>
       </Form>
     </div>
+    </BackgroundLines>
   );
 }
