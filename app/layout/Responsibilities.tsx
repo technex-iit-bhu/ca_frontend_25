@@ -1,11 +1,14 @@
-import React, { useRef, useEffect } from 'react';
-import { ChevronsLeft, ChevronsRight } from 'lucide-react';
-import * as ScrollArea from '@radix-ui/react-scroll-area';
 import Image from 'next/image';
+import React, { useRef, useEffect, useState } from 'react';
+import { X } from 'lucide-react';
+import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { HeadingTexts } from './HeadingTexts';
 
 const Responsibility: React.FC = () => {
   const scrollAreaRefLayer3 = useRef<HTMLDivElement>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   useEffect(() => {
     const scrollArea = scrollAreaRefLayer3.current;
@@ -13,13 +16,13 @@ const Responsibility: React.FC = () => {
     if (scrollArea) {
       scrollArea.scrollLeft = scrollArea.scrollWidth / 2;
 
-      const scrollAmount = 1; // Amount to scroll per iteration
-      const scrollInterval = 16; // Smooth scroll timing (in ms)
+      const scrollAmount = 1;
+      const scrollInterval = 16;
 
       const intervalId3 = setInterval(() => {
         scrollArea.scrollLeft -= scrollAmount;
-        if (scrollArea.scrollLeft >= scrollArea.scrollWidth - scrollArea.clientWidth) {
-          scrollArea.scrollLeft = 0;
+        if (scrollArea.scrollLeft <= 0) {
+          scrollArea.scrollLeft = scrollArea.scrollWidth;
         }
       }, scrollInterval);
 
@@ -33,8 +36,8 @@ const Responsibility: React.FC = () => {
     const scrollArea = scrollAreaRefLayer3.current;
     if (!scrollArea) return;
 
-    const scrollAmount = 10; // Amount to scroll per iteration
-    const intervalTime = 16; // Smooth scroll timing (in ms)
+    const scrollAmount = 10;
+    const intervalTime = 16;
 
     const intervalId = setInterval(() => {
       if (direction === 'left') {
@@ -44,18 +47,16 @@ const Responsibility: React.FC = () => {
       }
     }, intervalTime);
 
-    // Stop scrolling after a set duration
     setTimeout(() => {
       clearInterval(intervalId);
-    }, 1000); // Duration for scrolling (in ms)
+    }, 1000);
   };
 
   const handleScroll = () => {
     const scrollArea = scrollAreaRefLayer3.current;
     if (!scrollArea) return;
 
-    const scrollWidth = scrollArea.scrollWidth / 6; // Adjust width to account for 2x sets of items
-
+    const scrollWidth = scrollArea.scrollWidth / 6;
     if (scrollArea.scrollLeft <= 0) {
       scrollArea.scrollLeft = scrollWidth;
     } else if (scrollArea.scrollLeft >= scrollWidth * 2) {
@@ -63,66 +64,109 @@ const Responsibility: React.FC = () => {
     }
   };
 
+  const handleImageClick = (imageNumber: number) => {
+    setSelectedImage(`/resp/c${imageNumber}.png`);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedImage(null);
+  };
+
+  // Handle touch events for mobile scrolling
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(distance) < minSwipeDistance) return;
+
+    if (distance > 0) {
+      // Swiped left
+      startScrollingForThirdSection('left');
+    } else {
+      // Swiped right
+      startScrollingForThirdSection('right');
+    }
+
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
+
   return (
     <>
       <div className="pt-28">
-        <HeadingTexts redText="" whiteText="Resposibilities" align="left" />
+        <HeadingTexts redText="" whiteText="Responsibilities" align="left" />
       </div>
 
       <ScrollArea.Root className="relative top-7 w-full overflow-hidden">
-        <div className="absolute bottom-0 z-10 flex w-full items-center justify-between">
-          <button onClick={() => startScrollingForThirdSection('left')} title="scrollLeft">
-            <ChevronsLeft className="h-8 w-8" />
-          </button>
-          <button onClick={() => startScrollingForThirdSection('right')} title="scrollRight">
-            <ChevronsRight className="h-8 w-8" />
-          </button>
-        </div>
-
         <ScrollArea.Viewport
-          className="flex h-full w-full overflow-x-auto p-4"
+          className="flex flex-row h-full w-full overflow-x-auto overflow-y-hidden p-4"
           ref={scrollAreaRefLayer3}
           onScroll={handleScroll}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
-          <div className="flex gap-6">
-            {[...Array(6), ...Array(6)].map((_, index) => {
-              if (index % 2) {
-                return (
-                  <div
-                    key={index}
-                    className="relative mt-16 h-[400px] w-[300px] rounded-3xl bg-[#272727] p-8 text-white"
+          <div className="flex flex-row gap-4 min-w-max">
+            {[...Array(6)].map((_, setIndex) => (
+              <React.Fragment key={`set-${setIndex}`}>
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <div 
+                    key={`set${setIndex}-${i}`} 
+                    className="relative h-96 w-96 flex-shrink-0 transition-transform duration-300 hover:scale-105 cursor-pointer"
+                    onClick={() => handleImageClick(i)}
                   >
-                    <div className="z-1 pointer-events-none absolute inset-[6px] rounded-3xl border-4 border-[#ff0000]"></div>
-                    <div className="z-2 absolute -left-0.5 top-[1px] flex h-52 w-[304px] items-center justify-center rounded-bl-[500px] rounded-br-[500px] rounded-tl-[70px] rounded-tr-[70px] bg-[#404040]">
-                      <div className="flex h-[100px] w-[100px] items-center justify-center overflow-hidden rounded-full bg-white">
-                        <Image src="/coordinate.png" width={50} height={50} alt="coordinate" />
-                      </div>
-                    </div>
-                    <h3 className="flex justify-center pt-52 text-2xl font-semibold">
-                      Co-ordinate
-                    </h3>
+                    <Image
+                      src={`/resp/c${i}.png`}
+                      alt={`Responsibility ${i}`}
+                      fill
+                      className="object-contain"
+                      priority={setIndex < 2}
+                    />
                   </div>
-                );
-              }
-              return (
-                <div
-                  key={index}
-                  className="relative mt-16 h-[400px] w-[300px] rounded-3xl bg-[#272727] p-8 text-white"
-                >
-                  <div className="z-1 pointer-events-none absolute inset-[6px] rounded-3xl border-4 border-[#ff0000]"></div>
-
-                  <div className="z-2 absolute -left-0.5 top-[192px] flex h-52 w-[304px] items-center justify-center rounded-bl-[70px] rounded-br-[70px] rounded-tl-[500px] rounded-tr-[500px] bg-[#404040]">
-                    <div className="flex h-[100px] w-[100px] items-center justify-center overflow-hidden rounded-full bg-white">
-                      <Image src="/coordinate.png" width={50} height={50} alt="coordinate" />
-                    </div>
-                  </div>
-                  <h3 className="flex justify-center pt-24 text-2xl font-semibold">Co-ordinate</h3>
-                </div>
-              );
-            })}
+                ))}
+              </React.Fragment>
+            ))}
           </div>
         </ScrollArea.Viewport>
       </ScrollArea.Root>
+
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80"
+          onClick={handleCloseModal}
+        >
+          <div
+            className="relative max-h-[80vh] max-w-[80vw] rounded-lg bg-zinc-900/80 p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={handleCloseModal}
+              className="absolute -right-4 -top-4 rounded-full bg-zinc-800 p-2"
+              title="modal-image"
+            >
+              <X className="h-6 w-6" />
+            </button>
+            <div className="relative h-[50vh] w-[70vw] md:h-[60vh]">
+              <Image
+                src={selectedImage}
+                alt="Selected Responsibility"
+                fill
+                className="rounded-lg object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
