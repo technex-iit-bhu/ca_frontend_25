@@ -1,5 +1,4 @@
 import { Task, User } from '../layout/dashboard/dashboard';
-import { LeaderboardEntry } from '../layout/Leaderboard';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -69,7 +68,6 @@ export async function getSubmittedTasks(token: string): Promise<Task[]> {
   return res.json();
 }
 
-export async function getLeaderboard(): Promise<LeaderboardEntry[]> {
-  const res = await fetch(`${BASE_URL}/leaderboard`);
-  return res.ok ? res.json() : [];
+export async function getLeaderboard() {
+  return await fetch(`${BASE_URL}/leaderboard`);
 }
