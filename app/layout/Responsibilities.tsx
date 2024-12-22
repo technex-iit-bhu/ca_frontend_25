@@ -83,7 +83,7 @@ const Responsibility: React.FC = () => {
 
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    
+
     const distance = touchStart - touchEnd;
     const minSwipeDistance = 50;
 
@@ -109,20 +109,20 @@ const Responsibility: React.FC = () => {
 
       <ScrollArea.Root className="relative top-7 w-full overflow-hidden">
         <ScrollArea.Viewport
-          className="flex flex-row h-full w-full overflow-x-auto overflow-y-hidden p-4"
+          className="flex h-full w-full flex-row overflow-x-auto overflow-y-hidden p-4"
           ref={scrollAreaRefLayer3}
           onScroll={handleScroll}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <div className="flex flex-row gap-4 min-w-max">
+          <div className="flex min-w-max flex-row gap-4">
             {[...Array(6)].map((_, setIndex) => (
               <React.Fragment key={`set-${setIndex}`}>
                 {[1, 2, 3, 4, 5].map((i) => (
-                  <div 
-                    key={`set${setIndex}-${i}`} 
-                    className="relative h-96 w-96 flex-shrink-0 transition-transform duration-300 hover:scale-105 cursor-pointer"
+                  <div
+                    key={`set${setIndex}-${i}`}
+                    className="relative h-96 w-96 flex-shrink-0 cursor-pointer transition-transform duration-300 hover:scale-105"
                     onClick={() => handleImageClick(i)}
                   >
                     <Image

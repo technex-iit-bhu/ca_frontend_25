@@ -81,7 +81,9 @@ const TopThree = ({ topThree }: { topThree: LeaderboardEntry[] }) => {
           key={index + 1}
           className={`relative m-1 mb-8 flex ${index === 1 ? 'h-[180px]' : index === 2 ? 'h-[150px]' : 'h-[120px]'} flex-1 flex-col items-center justify-between rounded-[35px] p-4 lg:m-3 ${index === 1 ? 'bg-[#E1BE00]' : index === 2 ? 'bg-[#C0C0C0]' : 'bg-[#CD7F32]'} md:${rankInfo[index + 1].height} md:${rankInfo[index + 1].order}`}
         >
-          <span className="absolute -top-8 self-start px-2 text-3xl font-bold border-[#A81F25] text-white border-4 rounded-full">{entry.points}</span>
+          <span className="absolute -top-8 self-start rounded-full border-4 border-[#A81F25] px-2 text-3xl font-bold text-white">
+            {entry.points}
+          </span>
           <div className="flex h-[4.5rem] w-full">
             <AvatarWithBadge badgeSrc={rankInfo[index + 1].badgeSrc} />
             <div className="flex h-full flex-1 items-center justify-center">

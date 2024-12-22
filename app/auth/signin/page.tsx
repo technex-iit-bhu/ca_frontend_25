@@ -47,54 +47,54 @@ export default function SignInPage() {
 
   return (
     <BackgroundLines>
-    <div className="flex min-h-screen items-center justify-center bg-black p-20">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full max-w-md space-y-8 rounded p-8 bg-[#2e2e2e38] "
-        >
-          <h2 className="mb-6 text-center text-2xl font-bold text-white">Login</h2>
-          <div className="space-y-4">
-            <InputFormField
-              form={form}
-              name="username"
-              label="Username"
-              placeholder="Enter your username"
-            />
-            <InputFormField
-              form={form}
-              name="password"
-              label="Password"
-              type="password"
-              placeholder="Enter your password"
-            />
-          </div>
-          <Button
-            type="submit"
-            className="w-full rounded bg-[#a81f25] p-2 text-white hover:bg-[#8e1a1f]"
-            disabled={isLoading}
+      <div className="flex min-h-screen items-center justify-center bg-black p-20">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="w-full max-w-md space-y-8 rounded bg-[#2e2e2e38] p-8"
           >
-            {isLoading ? (
-              <Image
-                src="/spiral-loading.gif"
-                alt="Loading..."
-                width={48}
-                height={48}
-                className="mx-auto"
+            <h2 className="mb-6 text-center text-2xl font-bold text-white">Login</h2>
+            <div className="space-y-4">
+              <InputFormField
+                form={form}
+                name="username"
+                label="Username"
+                placeholder="Enter your username"
               />
-            ) : (
-              'Login'
-            )}
-          </Button>
-          <div className="text-center">
-            <span className="text-white">New to Technex? Signup</span>
-            <a href="/auth/signup" className="pl-2 text-customRed">
-              HERE
-            </a>
-          </div>
-        </form>
-      </Form>
-    </div>
+              <InputFormField
+                form={form}
+                name="password"
+                label="Password"
+                type="password"
+                placeholder="Enter your password"
+              />
+            </div>
+            <Button
+              type="submit"
+              className="w-full rounded bg-[#a81f25] p-2 text-white hover:bg-[#8e1a1f]"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <Image
+                  src="/spiral-loading.gif"
+                  alt="Loading..."
+                  width={48}
+                  height={48}
+                  className="mx-auto"
+                />
+              ) : (
+                'Login'
+              )}
+            </Button>
+            <div className="text-center">
+              <span className="text-white">New to Technex? Signup</span>
+              <a href="/auth/signup" className="pl-2 text-customRed">
+                HERE
+              </a>
+            </div>
+          </form>
+        </Form>
+      </div>
     </BackgroundLines>
   );
 }

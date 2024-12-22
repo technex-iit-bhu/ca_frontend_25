@@ -81,108 +81,108 @@ export default function SignupPage() {
 
   return (
     <BackgroundLines>
-    <div className="flex min-h-screen items-center justify-center bg-black p-20">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full max-w-md space-y-8 rounded p-8 bg-[#2e2e2e38]"
-        >
-          <h2 className="mb-6 text-2xl font-bold text-white">Sign Up</h2>
-          <div className="space-y-4">
-            <InputFormField form={form} name="name" label="Name" placeholder="Enter your name" />
-            <InputFormField
-              form={form}
-              name="username"
-              label="Username"
-              placeholder="Enter your username"
-            />
-            <InputFormField
-              form={form}
-              name="email"
-              label="Email"
-              type="email"
-              placeholder="Enter your email"
-            />
-            <div className="flex flex-col md:flex-row md:space-x-4">
-              <InputFormField
-                form={form}
-                name="password"
-                label="Password"
-                type="password"
-                placeholder="Enter your password"
-              />
-              <InputFormField
-                form={form}
-                name="confirmPassword"
-                label="Confirm Password"
-                type="password"
-                placeholder="Confirm your password"
-              />
-            </div>
-            <div className="flex flex-col md:flex-row md:space-x-4">
-              <InputFormField
-                form={form}
-                name="phoneNumber"
-                label="Phone Number"
-                placeholder="Enter your phone number"
-              />
-              <InputFormField
-                form={form}
-                name="whatsappNumber"
-                label="Whatsapp Number"
-                placeholder="Enter your whatsapp number"
-              />
-            </div>
-            <InputFormField
-              form={form}
-              name="institute"
-              label="Institute"
-              placeholder="Enter your institute"
-            />
-            <InputFormField
-              form={form}
-              name="referralCode"
-              label="Referral Code"
-              placeholder="Enter your referral code"
-            />
-          </div>
-          <div className="flex items-center space-x-4">
-            <input
-              type="checkbox"
-              id="terms"
-              className="h-4 w-4"
-              onChange={() => setIsCheckboxChecked(!isCheckboxChecked)}
-            />
-            <Label htmlFor="terms" className="text-white">
-              I agree to the terms and conditions
-            </Label>
-          </div>
-          <Button
-            type="submit"
-            className="w-full rounded bg-[#a81f25] p-2 text-white hover:bg-[#8e1a1f]"
-            disabled={!isCheckboxChecked || isLoading}
+      <div className="flex min-h-screen items-center justify-center bg-black p-20">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="w-full max-w-md space-y-8 rounded bg-[#2e2e2e38] p-8"
           >
-            {isLoading ? (
-              <Image
-                src="/spiral-loading.gif"
-                alt="Loading..."
-                width={48}
-                height={48}
-                className="mx-auto"
+            <h2 className="mb-6 text-2xl font-bold text-white">Sign Up</h2>
+            <div className="space-y-4">
+              <InputFormField form={form} name="name" label="Name" placeholder="Enter your name" />
+              <InputFormField
+                form={form}
+                name="username"
+                label="Username"
+                placeholder="Enter your username"
               />
-            ) : (
-              'Sign Up'
-            )}
-          </Button>
-          <div className="text-center">
-            <span className="text-white">Already a member? Login</span>
-            <a href="/auth/signin" className="pl-2 text-customRed">
-              HERE
-            </a>
-          </div>
-        </form>
-      </Form>
-    </div>
+              <InputFormField
+                form={form}
+                name="email"
+                label="Email"
+                type="email"
+                placeholder="Enter your email"
+              />
+              <div className="flex flex-col md:flex-row md:space-x-4">
+                <InputFormField
+                  form={form}
+                  name="password"
+                  label="Password"
+                  type="password"
+                  placeholder="Enter your password"
+                />
+                <InputFormField
+                  form={form}
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  type="password"
+                  placeholder="Confirm your password"
+                />
+              </div>
+              <div className="flex flex-col md:flex-row md:space-x-4">
+                <InputFormField
+                  form={form}
+                  name="phoneNumber"
+                  label="Phone Number"
+                  placeholder="Enter your phone number"
+                />
+                <InputFormField
+                  form={form}
+                  name="whatsappNumber"
+                  label="Whatsapp Number"
+                  placeholder="Enter your whatsapp number"
+                />
+              </div>
+              <InputFormField
+                form={form}
+                name="institute"
+                label="Institute"
+                placeholder="Enter your institute"
+              />
+              <InputFormField
+                form={form}
+                name="referralCode"
+                label="Referral Code"
+                placeholder="Enter your referral code"
+              />
+            </div>
+            <div className="flex items-center space-x-4">
+              <input
+                type="checkbox"
+                id="terms"
+                className="h-4 w-4"
+                onChange={() => setIsCheckboxChecked(!isCheckboxChecked)}
+              />
+              <Label htmlFor="terms" className="text-white">
+                I agree to the terms and conditions
+              </Label>
+            </div>
+            <Button
+              type="submit"
+              className="w-full rounded bg-[#a81f25] p-2 text-white hover:bg-[#8e1a1f]"
+              disabled={!isCheckboxChecked || isLoading}
+            >
+              {isLoading ? (
+                <Image
+                  src="/spiral-loading.gif"
+                  alt="Loading..."
+                  width={48}
+                  height={48}
+                  className="mx-auto"
+                />
+              ) : (
+                'Sign Up'
+              )}
+            </Button>
+            <div className="text-center">
+              <span className="text-white">Already a member? Login</span>
+              <a href="/auth/signin" className="pl-2 text-customRed">
+                HERE
+              </a>
+            </div>
+          </form>
+        </Form>
+      </div>
     </BackgroundLines>
   );
 }
