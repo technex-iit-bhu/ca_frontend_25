@@ -10,8 +10,8 @@ export default function TechnexInfo() {
         <Image
           src="/homebg.png"
           alt="Home Background"
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: "cover" }}
           className="z-[-1] h-full w-full"
         />
       </div>

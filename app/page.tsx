@@ -64,8 +64,8 @@ const CAPortal = () => {
           <Image
             src="/sunbg.png"
             alt="Home Background"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
             className="z-[-1]"
           />
         </div>

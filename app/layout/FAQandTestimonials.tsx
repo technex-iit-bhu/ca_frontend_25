@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-// import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { HeadingTexts } from './HeadingTexts';
@@ -129,13 +128,13 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
     setExpandedFAQ((prev) => (prev === index ? null : index));
   };
 
-  const handleNextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-  };
+  // const handleNextTestimonial = () => {
+  //   setCurrentTestimonial((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+  // };
 
-  const handlePrevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
-  };
+  // const handlePrevTestimonial = () => {
+  //   setCurrentTestimonial((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  // };
 
   const handleReadMore = () => {
     setModalContent(testimonials[currentTestimonial].content);
