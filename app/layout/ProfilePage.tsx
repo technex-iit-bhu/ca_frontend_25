@@ -376,8 +376,13 @@ const ProfilePage: React.FC = () => {
 
   return (
     <div className="mx-8 my-[8rem] flex flex-col">
-      <div className="pb-3 md:pb-[12rem]">
+      <div className="pb-3 md:pb-[5rem]">
         <HeadingTexts redText="" whiteText="Profile" align="left" />
+      </div>
+      <div className="mb-9 w-full rounded-[20px] bg-black bg-opacity-80 p-4 text-left">
+        <p className="md:text-2xlt flex justify-center font-bold text-white sm:text-xl">
+          Note: It is mandatory to update your details.
+        </p>
       </div>
       <ProfileCard
         user={user}
