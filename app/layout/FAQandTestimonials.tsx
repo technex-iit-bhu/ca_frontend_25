@@ -1,12 +1,11 @@
-"use client";
+'use client';
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { FaChevronDown } from 'react-icons/fa';
 import { HeadingTexts } from './HeadingTexts';
 import RedLine from './RedLine';
 import Modal from '@/app/layout/Modal';
 import { CardStack } from '@/components/ui/card-stack';
-
 
 interface Testimonial {
   name: string;
@@ -152,7 +151,7 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
     name: testimonial.name,
     surname: testimonial.surname,
     content: (
-      <span className="flex flex-col h-full justify-between">
+      <span className="flex h-full flex-col justify-between">
         {testimonial.content.slice(0, 100)}...
       </span>
     ),
@@ -166,7 +165,7 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
           <HeadingTexts redText="" whiteText="Testimonials" align="center" />
         </div>
 
-        <div className="flex justify-center items-center min-h-[400px]">
+        <div className="flex min-h-[400px] items-center justify-center">
           <CardStack
             items={cardStackItems}
             offset={10}
@@ -174,118 +173,125 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
             onReadMore={handleReadMore}
           />
         </div>
-      <div className="flex justify-end">
-        <RedLine align="right" />
-      </div>
-
-      {/* FAQs Section */}
-      <section className="relative mt-10" id="faqs">
-        <div className="md:mb-10">
-          <HeadingTexts redText="" whiteText="FAQs" align="center" />
+        <div className="flex justify-end">
+          <RedLine align="right" />
         </div>
-        <div className="relative mx-auto flex max-w-4xl flex-col justify-center">
-          {/* Two adjacent grids */}
-          <div className="flex flex-col justify-between gap-12 md:flex-row">
-            <div className="grid w-full grid-cols-1 gap-6">
-              {/* First Grid of FAQs */}
-              {faqs.slice(0, Math.ceil(faqs.length / 2)).map((faq, index) => (
-                <div
-                  key={index}
-                  className="relative cursor-pointer rounded-lg bg-zinc-800 p-4"
-                  onClick={() => toggleFAQ(index)}
-                >
-                  <h3 className="mb-2 flex justify-between text-lg font-semibold text-white">
-                    {faq.question}
-                    {expandedFAQ === index ? (
-                      <FaChevronUp className="text-xl" />
-                    ) : (
-                      <FaChevronDown className="text-xl" />
-                    )}
-                  </h3>
-                  <AnimatePresence>
-                    {expandedFAQ === index && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="overflow-hidden"
-                      >
-                        <div className="py-2 text-sm text-gray-400">{faq.answer}</div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
-            </div>
 
-            <div className="grid w-full grid-cols-1 gap-6">
-              {/* Second Grid of FAQs */}
-              {faqs.slice(Math.ceil(faqs.length / 2)).map((faq, index) => (
-                <div
-                  key={index}
-                  className="relative cursor-pointer rounded-lg bg-zinc-800 p-4"
-                  onClick={() => toggleFAQ(index + Math.ceil(faqs.length / 2))}
-                >
-                  <h3 className="mb-2 flex justify-between text-lg font-semibold text-white">
-                    {faq.question}
-                    {expandedFAQ === index + Math.ceil(faqs.length / 2) ? (
-                      <FaChevronUp className="text-xl" />
-                    ) : (
-                      <FaChevronDown className="text-xl" />
-                    )}
-                  </h3>
-                  <AnimatePresence>
-                    {expandedFAQ === index + Math.ceil(faqs.length / 2) && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="overflow-hidden"
-                      >
-                        <div className="py-2 text-sm text-gray-400">{faq.answer}</div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
-            </div>
+        {/* FAQs Section */}
+        <section className="relative mt-10" id="faqs">
+          <div className="md:mb-10">
+            <HeadingTexts redText="" whiteText="FAQs" align="center" />
           </div>
-        </div>
-      </section>
-      <RedLine align="right" />
+          <div className="relative mx-auto flex max-w-4xl flex-col justify-center">
+            {/* Two adjacent grids */}
+            <div className="flex flex-col justify-between gap-12 md:flex-row">
+              <div className="grid w-full grid-cols-1 gap-6">
+                {/* First Grid of FAQs */}
+                {faqs.slice(0, Math.ceil(faqs.length / 2)).map((faq, index) => (
+                  <div
+                    key={index}
+                    className="relative cursor-pointer rounded-lg bg-[#121212] p-4 transition-shadow duration-300 hover:shadow-[0_0_15px_#f00]"
+                    onClick={() => toggleFAQ(index)}
+                  >
+                    <h3 className="mb-2 flex justify-between text-lg font-semibold text-white">
+                      {faq.question}
 
-      {/* Modal */}
-      {isModalOpen && (
-        <Modal onClose={handleCloseModal} isOpen={isModalOpen}>
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
-            onClick={handleCloseModal}
-          >
-            <div
-              className="relative w-full max-w-4xl rounded-lg bg-zinc-900 p-6 text-white sm:max-w-3xl md:max-w-2xl lg:max-w-2xl xl:max-w-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="p-4 text-white">
-                <h2 className="mb-4 text-xl font-semibold">
-                  <span className="text-white">{testimonials[currentTestimonial].name}</span>
-                  <span className="text-red-600"> {testimonials[currentTestimonial].surname}</span>
-                </h2>
-                <p>{modalContent}</p>
-                <button
-                  className="mt-4 rounded-xl border border-white px-3 py-1 text-white hover:bg-red-600 hover:text-white"
-                  onClick={handleCloseModal}
-                >
-                  Close
-                </button>
+                      <FaChevronDown
+                        className={`flex-shrink-0 transform text-xl transition-transform duration-300 ${
+                          expandedFAQ === index ? 'rotate-180' : 'rotate-0'
+                        }`}
+                      />
+                    </h3>
+                    <AnimatePresence>
+                      {expandedFAQ === index && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3, ease: 'easeInOut' }}
+                          className="overflow-hidden"
+                        >
+                          <div className="py-2 text-sm text-gray-400">{faq.answer}</div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
+              </div>
+
+              <div className="grid w-full grid-cols-1 gap-6">
+                {/* Second Grid of FAQs */}
+                {faqs.slice(Math.ceil(faqs.length / 2)).map((faq, index) => (
+                  <div
+                    key={index}
+                    className="relative cursor-pointer rounded-lg bg-[#121212] p-4 transition-shadow duration-300 hover:shadow-[0_0_15px_#f00]"
+                    onClick={() => toggleFAQ(index + Math.ceil(faqs.length / 2))}
+                  >
+                    <h3 className="mb-2 flex justify-between text-lg font-semibold text-white">
+                      {faq.question}
+
+                      <FaChevronDown
+                        className={`flex-shrink-0 transform text-xl transition-transform duration-300 ${
+                          expandedFAQ === index + Math.ceil(faqs.length / 2)
+                            ? 'rotate-180'
+                            : 'rotate-0'
+                        }`}
+                      />
+                    </h3>
+                    <AnimatePresence>
+                      {expandedFAQ === index + Math.ceil(faqs.length / 2) && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3, ease: 'easeInOut' }}
+                          className="overflow-hidden"
+                        >
+                          <div className="py-2 text-sm text-gray-400">{faq.answer}</div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-        </Modal>
-      )}
+        </section>
+        <RedLine align="right" />
+
+        {/* Modal */}
+        {isModalOpen && (
+          <Modal onClose={handleCloseModal} isOpen={isModalOpen}>
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+              onClick={handleCloseModal}
+            >
+              <div
+                className="relative w-full max-w-4xl rounded-lg bg-zinc-900 p-6 text-white sm:max-w-3xl md:max-w-2xl lg:max-w-2xl xl:max-w-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="p-4 text-white">
+                  <h2 className="mb-4 text-xl font-semibold">
+                    <span className="text-white">{testimonials[currentTestimonial].name}</span>
+                    <span className="text-red-600">
+                      {' '}
+                      {testimonials[currentTestimonial].surname}
+                    </span>
+                  </h2>
+                  <p>{modalContent}</p>
+                  <button
+                    className="mt-4 rounded-xl border border-white px-3 py-1 text-white hover:bg-red-600 hover:text-white"
+                    onClick={handleCloseModal}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </Modal>
+        )}
+      </div>
     </div>
-  </div>
   );
 };
 
