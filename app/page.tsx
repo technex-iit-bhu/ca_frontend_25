@@ -88,9 +88,9 @@ const CAPortal = () => {
           </div>
           <div id="our-reach" className="mt-8 px-[1.5rem] md:mt-12 md:px-[6rem]">
             <div className="relative flex h-auto flex-col items-center justify-center gap-10 px-6 pb-4 text-center sm:h-screen sm:px-12 md:px-24">
-              <StatCircle value={69} label="College Ambassadors" percentage={60} />
-              <StatCircle value={234} label="Indian Colleges" percentage={70} />
-              <StatCircle value={987} label="International Colleges" percentage={65} />
+              <StatCircle value={587} label="College Ambassadors" percentage={60} />
+              <StatCircle value={235} label="Indian Colleges" percentage={70} />
+              <StatCircle value={65} label="International Colleges" percentage={65} />
             </div>
             <div className="flex justify-end">
               <RedLine align="right" />
