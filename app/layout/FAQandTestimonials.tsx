@@ -191,16 +191,17 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
               {faqs.slice(0, Math.ceil(faqs.length / 2)).map((faq, index) => (
                 <div
                   key={index}
-                  className="relative cursor-pointer rounded-lg bg-zinc-800 p-4"
+                  className="relative cursor-pointer rounded-lg bg-[#121212] p-4 transition-shadow duration-300 hover:shadow-[0_0_15px_#f00]"
                   onClick={() => toggleFAQ(index)}
                 >
                   <h3 className="mb-2 flex justify-between text-lg font-semibold text-white">
                     {faq.question}
-                    {expandedFAQ === index ? (
-                      <FaChevronUp className="text-xl" />
-                    ) : (
-                      <FaChevronDown className="text-xl" />
-                    )}
+
+                    <FaChevronDown
+                      className={`flex-shrink-0 transform text-xl transition-transform duration-300 ${
+                        expandedFAQ === index ? 'rotate-180' : 'rotate-0'
+                      }`}
+                    />
                   </h3>
                   <AnimatePresence>
                     {expandedFAQ === index && (
@@ -223,18 +224,21 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
               {/* Second Grid of FAQs */}
               {faqs.slice(Math.ceil(faqs.length / 2)).map((faq, index) => (
                 <div
-                  key={index}
-                  className="relative cursor-pointer rounded-lg bg-zinc-800 p-4"
-                  onClick={() => toggleFAQ(index + Math.ceil(faqs.length / 2))}
-                >
-                  <h3 className="mb-2 flex justify-between text-lg font-semibold text-white">
-                    {faq.question}
-                    {expandedFAQ === index + Math.ceil(faqs.length / 2) ? (
-                      <FaChevronUp className="text-xl" />
-                    ) : (
-                      <FaChevronDown className="text-xl" />
-                    )}
-                  </h3>
+                key={index}
+                className="relative cursor-pointer rounded-lg bg-[#121212] p-4 transition-shadow duration-300 hover:shadow-[0_0_15px_#f00]"
+                onClick={() => toggleFAQ(index + Math.ceil(faqs.length / 2))}
+              >
+                <h3 className="mb-2 flex justify-between text-lg font-semibold text-white">
+                  {faq.question}
+
+                  <FaChevronDown
+                    className={`flex-shrink-0 transform text-xl transition-transform duration-300 ${
+                      expandedFAQ === index + Math.ceil(faqs.length / 2)
+                        ? 'rotate-180'
+                        : 'rotate-0'
+                    }`}
+                  />
+                </h3>
                   <AnimatePresence>
                     {expandedFAQ === index + Math.ceil(faqs.length / 2) && (
                       <motion.div
