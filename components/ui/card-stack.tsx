@@ -43,11 +43,11 @@ export const CardStack = ({
   };
 
   return (
-    <div className="relative h-60 w-96 md:h-66 md:w-[600px]"> {/* Increased card dimensions */}
+    <div className="relative flex justify-center items-center w-full">
       {cards.map((card, index) => (
         <motion.div
           key={card.id}
-          className="absolute h-60 w-96 md:h-60 md:w-[600px] rounded-2xl bg-[#272727] p-6 shadow-lg sm:p-8 flex flex-col justify-between border border-neutral-200 dark:border-white/[0.1]"
+          className="absolute w-full max-w-md sm:max-w-[90%] md:max-w-[70%] lg:max-w-[50%] xl:max-w-[40%] mx-auto p-4 bg-[#272727] text-white rounded-lg border border-white shadow-xl flex flex-col justify-between"
           style={{ transformOrigin: "top center" }}
           animate={{
             top: index * -CARD_OFFSET,
