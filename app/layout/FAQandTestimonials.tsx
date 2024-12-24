@@ -159,13 +159,12 @@ const FAQandTestimonials: React.FC<FAQSectionProps> = ({
 
   return (
     <div className="min-h-screen w-full p-8 pt-[4rem] text-white">
-      {/* Testimonials Section */}
-      <div>
-        <div className="mb-10">
+      <div className="flex flex-col items-center justify-center">
+        <div>
           <HeadingTexts redText="" whiteText="Testimonials" align="center" />
         </div>
 
-        <div className="flex min-h-[400px] items-center justify-center">
+        <div className="mb-6 mt-[-6rem] flex min-h-[380px] w-full items-center justify-center">
           <CardStack
             items={cardStackItems}
             offset={10}
