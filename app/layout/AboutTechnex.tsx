@@ -17,11 +17,11 @@ export default function AboutTechnex() {
             varied skills.
           </span>
           <br />
-          Technex is an annual technical festival organized by the students of Indian Institute of
+          Technex is an annual techno-management fest organized by the students of Indian Institute of
           Technology (IIT) BHU, Varanasi.
         </p>
         <p className="font-spline md:text-2xlt mt-4 text-white sm:text-xl">
-          The festival provides a platform for students to showcase their technical and creative
+          The fest provides a platform for students to showcase their technical and creative
           abilities through{' '}
           <span className="text-customRed">
             various competitions, workshops, guest lectures, and exhibitions.
