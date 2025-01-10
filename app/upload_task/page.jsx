@@ -1,8 +1,7 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {  useRef, useState } from 'react';
 import upload_image from '../utils/image_upload';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 const Alert = ({ type, message, onClose }) => {
   return (
     <div
