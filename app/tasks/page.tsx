@@ -221,8 +221,8 @@ export default function LiveTasksDashboard() {
                     
                     <CardContent className="p-6 space-y-4">
                       <div>
-                        <p className="text-sm text-black mb-2">{task.category}</p>
-                        <h3 className="text-2xl font-bold text-black mb-2">{task.title}</h3>
+                        <p className="text-sm text-gray-300 mb-2">{task.category}</p>
+                        <h3 className="text-2xl font-bold text-white mb-2">{task.title}</h3>
                         <p className="text-gray-300">{task.description}</p>
                       </div>
 
