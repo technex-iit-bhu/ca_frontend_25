@@ -70,7 +70,7 @@ export default function FormPage() {
 
   return (
     <>
-    {sending && <div className="absolute w-screen h-screen bg-gray-700 bg-opacity-60 flex justify-center items-center z-[50]"><span>Sending...</span></div>}
+    {sending && <div className="absolute w-screen h-screen bg-gray-700 bg-opacity-60 flex justify-center items-center z-[50]"><span>Uploading...</span></div>}
       <section className="overflow-y-hidden bg-cover bg-fixed bg-center">
         <div className="relative mx-auto flex w-[90vw] flex-col justify-between overflow-hidden rounded-2xl bg-black bg-gray-400/10 p-6 py-8 text-black backdrop-blur-md md:p-12">
           <div className="container mx-auto flex flex-wrap items-center justify-center px-4">
