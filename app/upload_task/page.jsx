@@ -45,7 +45,7 @@ export default function FormPage() {
     const image_url = await upload_image(raw_image);
     // console.log(image_url);
     const formattedDeadline = new Date(task.deadline).toISOString();
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/tasks/create`, {
+    await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/tasks/create`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
