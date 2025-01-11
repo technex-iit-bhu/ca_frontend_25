@@ -191,7 +191,7 @@ export default function LiveTasksDashboard() {
             <h1 className="text-3xl font-bold text-black">Task Dashboard</h1>
             <Tabs
               value={filter}
-              onValueChange={(value) => setFilter(value as any)}
+              onValueChange={(value) => setFilter(value as 'all' | 'active' | 'completed' | 'expired')}
               className="w-full sm:w-auto"
             >
               <TabsList className="border-[#8B4513] bg-[#2c1810]">
