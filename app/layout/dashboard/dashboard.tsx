@@ -48,6 +48,8 @@ const comingSoon = false;
 
 function Dashboard({ user, tasks, submitted_tasks }: DashboardProps) {
   const [selectedTab, setSelectedTab] = useState<string>('live');
+  console.log(tasks);
+  console.log(submitted_tasks);
   return (
     <section className="flex min-h-screen w-screen flex-col px-4 pt-[6rem] md:px-8 md:pb-[3rem] lg:pb-[5rem]">
       <div className="relative mx-auto flex h-[150px] w-full max-w-[80%] flex-col rounded-[50px] md:h-[180px] md:p-3 lg:h-[200px]">
