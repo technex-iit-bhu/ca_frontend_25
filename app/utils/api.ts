@@ -71,3 +71,24 @@ export async function getSubmittedTasks(token: string): Promise<Task[]> {
 export async function getLeaderboard() {
   return await fetch(`${BASE_URL}/leaderboard`);
 }
+
+export const submitTask = async (taskId: string, driveLink: string) => {
+  const token = localStorage.getItem('token');
+  if (!token) throw new Error('Authentication required.');
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/submissions/submit`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ task_id: taskId, driveLink }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Failed to submit task.');
+  }
+
+  return response.json();
+};
