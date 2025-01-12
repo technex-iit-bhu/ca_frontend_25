@@ -41,12 +41,12 @@ export default function LiveTasksDashboard() {
         setSubmittedTasks(submittedTasksData || []);
 
         // Fetch total participants count
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/users/count`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/count`);
         const data = await response.json();
         setTotalParticipants(data.count);
 
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.log('Error fetching data:', error);
       } finally {
         setLoading(false);
       }
