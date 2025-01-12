@@ -50,7 +50,7 @@ const SubmitTaskModal: React.FC<ModalProps> = ({ isOpen, onClose, onSubmit }) =>
                 value={driveLink}
                 onChange={(e) => setDriveLink(e.target.value)}
                 placeholder="Enter your Drive link"
-                className="w-full rounded-md border border-gray-300 p-2"
+                className="w-full rounded-md border border-gray-300 p-2 text-white"
               />
             </div>
             {error && <p className="text-sm text-red-500">{error}</p>}
