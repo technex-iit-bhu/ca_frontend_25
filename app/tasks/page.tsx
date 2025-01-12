@@ -44,7 +44,6 @@ export default function LiveTasksDashboard() {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/count`);
         const data = await response.json();
         setTotalParticipants(data.count);
-
       } catch (error) {
         console.log('Error fetching data:', error);
       } finally {
@@ -86,12 +85,17 @@ export default function LiveTasksDashboard() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-xl text-white">Loading tasks...</div>
+      <div
+        className="min-h-screen bg-gradient-to-br from-[#2c1810] via-[#5c3a2c] to-[#8B4513] bg-cover bg-center pt-16"
+        style={{ backgroundImage: "url('/image.png')" }}
+      >
+        <div className="flex h-full items-center justify-center pt-20">
+          <div className="text-3xl font-bold text-black">Loading tasks...</div>
+        </div>
       </div>
     );
   }
-
+  console.log('Tasks are : ', tasks);
   return (
     <div
       className="min-h-screen bg-gradient-to-br from-[#2c1810] via-[#5c3a2c] to-[#8B4513] bg-cover bg-center pt-16"
@@ -193,9 +197,10 @@ export default function LiveTasksDashboard() {
                   >
                     <div className="relative h-[200px] w-full overflow-hidden">
                       <Image
-                        src={'/homebg.png'}
+                        src={task.image_url}
                         alt={task.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#2c1810] to-transparent" />
