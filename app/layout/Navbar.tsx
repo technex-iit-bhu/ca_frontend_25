@@ -100,14 +100,6 @@ export function Navbar() {
           >
             Leaderboard
           </Link>
-          {isLoggedIn && (
-            <Link
-              className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
-              href="/tasks"
-            >
-              Tasks
-            </Link>
-          )}
         </nav>
         <div className="flex items-center gap-4">
           {isLoggedIn ? (
@@ -138,9 +130,9 @@ export function Navbar() {
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator className="bg-gray-700" />
                   <DropdownMenuItem className="focus:bg-red-500/20 focus:text-white">
-                    <Link href="/dashboard" className="flex w-full items-center gap-2">
+                    <Link href="/tasks" className="flex w-full items-center gap-2">
                       <LayoutDashboard className="mr-2 h-4 w-4" />
-                      <span>Dashboard</span>
+                      <span>Tasks</span>
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem className="focus:bg-red-500/20 focus:text-white">
