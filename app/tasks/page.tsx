@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -8,126 +8,75 @@ import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Clock, Trophy, Users, Flame, CheckCircle, XCircle } from 'lucide-react';
 import Image from 'next/image';
+import { getSubmittedTasks, getTasks } from '../utils/api';
 
 interface Task {
-  id: string;
   title: string;
   description: string;
-  imageUrl: string;
+  image_url: string;
   deadline: string;
   points: number;
-  participants: number;
-  progress: number;
-  difficulty: 'Easy' | 'Medium' | 'Hard';
-  category: string;
-  status: 'active' | 'completed' | 'expired';
 }
 
-const tasks: Task[] = [
-  {
-    id: '1',
-    title: 'Diamond Mining Expedition',
-    description:
-      'Embark on a strategic mining operation to collect rare diamonds. Use advanced techniques and collaborate with other miners.',
-    imageUrl: '/placeholder.svg?height=200&width=400',
-    deadline: '2h 30m',
-    points: 500,
-    participants: 24,
-    progress: 65,
-    difficulty: 'Medium',
-    category: 'Resource Gathering',
-    status: 'active',
-  },
-  {
-    id: '2',
-    title: 'Modern Castle Architecture',
-    description:
-      'Design and construct a contemporary castle that blends medieval aesthetics with modern architectural principles.',
-    imageUrl: '/placeholder.svg?height=200&width=400',
-    deadline: '5h 45m',
-    points: 750,
-    participants: 31,
-    progress: 42,
-    difficulty: 'Hard',
-    category: 'Architecture',
-    status: 'active',
-  },
-  {
-    id: '3',
-    title: 'Advanced Defense Systems',
-    description:
-      'Implement sophisticated redstone mechanisms to create an automated defense system against hostile mobs.',
-    imageUrl: '/placeholder.svg?height=200&width=400',
-    deadline: '1h 15m',
-    points: 1000,
-    participants: 18,
-    progress: 89,
-    difficulty: 'Hard',
-    category: 'Engineering',
-    status: 'active',
-  },
-  {
-    id: '4',
-    title: 'Nether Portal Enhancement',
-    description:
-      'Upgrade the Nether Portal with advanced obsidian patterns to increase travel efficiency.',
-    imageUrl: '/placeholder.svg?height=200&width=400',
-    deadline: 'Completed',
-    points: 600,
-    participants: 42,
-    progress: 100,
-    difficulty: 'Medium',
-    category: 'Interdimensional Travel',
-    status: 'completed',
-  },
-  {
-    id: '5',
-    title: 'Underwater City Construction',
-    description:
-      'Build a thriving underwater metropolis using advanced water-removal techniques and sustainable materials.',
-    imageUrl: '/placeholder.svg?height=200&width=400',
-    deadline: 'Expired',
-    points: 1200,
-    participants: 15,
-    progress: 78,
-    difficulty: 'Hard',
-    category: 'Megastructures',
-    status: 'expired',
-  },
-];
-
-const getDifficultyColor = (difficulty: Task['difficulty']) => {
-  switch (difficulty) {
-    case 'Easy':
-      return 'bg-emerald-500';
-    case 'Medium':
-      return 'bg-amber-500';
-    case 'Hard':
-      return 'bg-red-500';
-    default:
-      return 'bg-slate-500';
-  }
-};
-
-const getStatusDetails = (status: Task['status']) => {
-  switch (status) {
-    case 'completed':
-      return { icon: CheckCircle, color: 'text-green-400', label: 'Completed' };
-    case 'expired':
-      return { icon: XCircle, color: 'text-red-400', label: 'Expired' };
-    default:
-      return { icon: Clock, color: 'text-blue-400', label: 'Active' };
-  }
-};
-
 export default function LiveTasksDashboard() {
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [submittedTasks, setSubmittedTasks] = useState<Task[]>([]);
+  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'active' | 'completed' | 'expired'>('all');
 
-  const filteredTasks = tasks.filter((task) => filter === 'all' || task.status === filter);
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        return;
+      }
 
-  const activeTasksCount = tasks.filter((task) => task.status === 'active').length;
-  const completedTasksCount = tasks.filter((task) => task.status === 'completed').length;
-  const expiredTasksCount = tasks.filter((task) => task.status === 'expired').length;
+      try {
+        const [tasksData, submittedTasksData] = await Promise.all([
+          getTasks(token),
+          getSubmittedTasks(token),
+        ]);
+
+        setTasks(tasksData || []);
+        setSubmittedTasks(submittedTasksData || []);
+      } catch (error) {
+        console.error('Error fetching tasks:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTasks();
+  }, []);
+
+  const getTaskStatus = (task: Task): 'active' | 'completed' | 'expired' => {
+    const isSubmitted = submittedTasks.some((st) => st.title === task.title);
+    if (isSubmitted) return 'completed';
+
+    const deadline = new Date(task.deadline);
+    if (deadline < new Date()) return 'expired';
+    return 'active';
+  };
+
+  const filteredTasks = tasks.filter((task) => {
+    const status = getTaskStatus(task);
+    return filter === 'all' || status === filter;
+  });
+
+  const activeTasksCount = tasks.filter((task) => getTaskStatus(task) === 'active').length;
+  const completedTasksCount = submittedTasks.length;
+  const expiredTasksCount = tasks.filter((task) => getTaskStatus(task) === 'expired').length;
+
+  const getStatusDetails = (status: 'active' | 'completed' | 'expired') => {
+    switch (status) {
+      case 'completed':
+        return { icon: CheckCircle, color: 'text-green-400', label: 'Completed' };
+      case 'expired':
+        return { icon: XCircle, color: 'text-red-400', label: 'Expired' };
+      default:
+        return { icon: Clock, color: 'text-blue-400', label: 'Active' };
+    }
+  };
 
   return (
     <div
@@ -174,9 +123,8 @@ export default function LiveTasksDashboard() {
             <CardContent className="flex items-center justify-between p-6">
               <div className="space-y-1">
                 <p className="text-sm text-black">Total Participants</p>
-                <p className="text-2xl font-bold text-black">
-                  {tasks.reduce((sum, task) => sum + task.participants, 0)}
-                </p>
+                {/* harcoded for now */}
+                <p className="text-2xl font-bold text-black">130</p>
               </div>
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#47261c]">
                 <Users className="h-6 w-6 text-blue-400" />
@@ -191,7 +139,9 @@ export default function LiveTasksDashboard() {
             <h1 className="text-3xl font-bold text-black">Task Dashboard</h1>
             <Tabs
               value={filter}
-              onValueChange={(value) => setFilter(value as 'all' | 'active' | 'completed' | 'expired')}
+              onValueChange={(value) =>
+                setFilter(value as 'all' | 'active' | 'completed' | 'expired')
+              }
               className="w-full sm:w-auto"
             >
               <TabsList className="border-[#8B4513] bg-[#2c1810]">
@@ -215,73 +165,57 @@ export default function LiveTasksDashboard() {
             {' '}
             {/* Reduced from -250px to -380px */}
             <div className="grid grid-cols-1 gap-6 pr-4 lg:grid-cols-2">
-              {filteredTasks.map((task) => {
+              {filteredTasks.map((task, index) => {
+                const status = getTaskStatus(task);
                 const {
                   icon: StatusIcon,
                   color: statusColor,
                   label: statusLabel,
-                } = getStatusDetails(task.status);
+                } = getStatusDetails(status);
+
                 return (
                   <Card
-                    key={task.id}
-                    className={`group overflow-hidden border-none bg-[#2c1810]/90 backdrop-blur transition-all duration-300 hover:shadow-xl ${task.status !== 'active' ? 'opacity-95 saturate-50' : ''}`}
+                    key={index}
+                    className={`group overflow-hidden border-none bg-[#2c1810]/90 backdrop-blur transition-all duration-300 hover:shadow-xl ${status !== 'active' ? 'opacity-95 saturate-50' : ''}`}
                   >
                     <div className="relative h-[200px] w-full overflow-hidden">
                       <Image
-                        src="/homebg.png"
+                        src={'/homebg.png'}
                         alt={task.title}
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#2c1810] to-transparent" />
-                      <Badge
-                        className={`absolute right-4 top-4 ${getDifficultyColor(task.difficulty)} border-none`}
-                      >
-                        {task.difficulty}
-                      </Badge>
                     </div>
 
                     <CardContent className="space-y-4 p-6">
                       <div>
-                        <p className="mb-2 text-sm text-gray-300">{task.category}</p>
                         <h3 className="mb-2 text-2xl font-bold text-white">{task.title}</h3>
                         <p className="text-gray-300">{task.description}</p>
                       </div>
 
                       <div className="space-y-4">
-                        <div className="flex items-center justify-between text-sm">
-                          <div className="flex items-center space-x-2 text-gray-300">
-                            <Users className="h-4 w-4" />
-                            <span>{task.participants} participants</span>
-                          </div>
+                        <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-2 text-[#FFB700]">
                             <Trophy className="h-4 w-4" />
                             <span>{task.points} pts</span>
                           </div>
-                        </div>
-
-                        <div className="space-y-2">
-                          <div className="flex justify-between text-sm text-gray-300">
-                            <span>Progress</span>
-                            <span>{task.progress}%</span>
-                          </div>
-                          <Progress value={task.progress} className="h-2" />
-                        </div>
-
-                        <div className="flex items-center justify-between">
                           <Badge
                             variant="outline"
                             className={`bg-[#47261c] ${statusColor} border-${statusColor}/20`}
                           >
                             <StatusIcon className="mr-1 h-4 w-4" />
-                            {task.status === 'active' ? `${task.deadline} remaining` : statusLabel}
+                            {status === 'active'
+                              ? new Date(task.deadline).toLocaleString()
+                              : statusLabel}
                           </Badge>
-                          {task.status === 'active' && (
-                            <button className="rounded-md bg-[#8B4513] px-4 py-2 text-black transition-colors hover:bg-[#47261c]">
-                              Join Task
-                            </button>
-                          )}
                         </div>
+
+                        {status === 'active' && (
+                          <button className="w-full rounded-md bg-[#8B4513] px-4 py-2 text-black transition-colors hover:bg-[#47261c]">
+                            Submit Task
+                          </button>
+                        )}
                       </div>
                     </CardContent>
                   </Card>

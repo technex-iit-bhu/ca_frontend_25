@@ -100,6 +100,14 @@ export function Navbar() {
           >
             Leaderboard
           </Link>
+          {isLoggedIn && (
+            <Link
+              className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+              href="/tasks"
+            >
+              Tasks
+            </Link>
+          )}
         </nav>
         <div className="flex items-center gap-4">
           {isLoggedIn ? (
@@ -183,6 +191,13 @@ export function Navbar() {
                       onClick={(e) => handleAnchorClick(e, '/profile')}
                     >
                       Profile
+                    </Link>
+                    <Link
+                      className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
+                      href="/tasks"
+                      onClick={(e) => handleAnchorClick(e, '/tasks')}
+                    >
+                      Tasks
                     </Link>
                     <Button
                       className="text-lg font-medium text-white/90 transition-colors hover:text-red-500"
