@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Clock, Trophy, Users, Flame, CheckCircle, XCircle } from 'lucide-react';
 import Image from 'next/image';
@@ -22,6 +21,7 @@ export default function LiveTasksDashboard() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [submittedTasks, setSubmittedTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
+  const [totalParticipants, setTotalParticipants] = useState(0);
   const [filter, setFilter] = useState<'all' | 'active' | 'completed' | 'expired'>('all');
 
   useEffect(() => {
@@ -39,8 +39,14 @@ export default function LiveTasksDashboard() {
 
         setTasks(tasksData || []);
         setSubmittedTasks(submittedTasksData || []);
+
+        // Fetch total participants count
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/users/count`);
+        const data = await response.json();
+        setTotalParticipants(data.count);
+
       } catch (error) {
-        console.error('Error fetching tasks:', error);
+        console.error('Error fetching data:', error);
       } finally {
         setLoading(false);
       }
@@ -77,6 +83,14 @@ export default function LiveTasksDashboard() {
         return { icon: Clock, color: 'text-blue-400', label: 'Active' };
     }
   };
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="text-xl text-white">Loading tasks...</div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -123,8 +137,7 @@ export default function LiveTasksDashboard() {
             <CardContent className="flex items-center justify-between p-6">
               <div className="space-y-1">
                 <p className="text-sm text-black">Total Participants</p>
-                {/* harcoded for now */}
-                <p className="text-2xl font-bold text-black">130</p>
+                <p className="text-2xl font-bold text-black">{totalParticipants}</p>
               </div>
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#47261c]">
                 <Users className="h-6 w-6 text-blue-400" />
