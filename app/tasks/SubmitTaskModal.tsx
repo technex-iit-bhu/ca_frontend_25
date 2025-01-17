@@ -16,7 +16,7 @@ const SubmitTaskModal: React.FC<ModalProps> = ({ isOpen, onClose, onSubmit }) =>
 
   const handleSubmit = async () => {
     if (!drive_link.trim()) {
-      setError('Drive link is required.');
+      setError('A valid drive link is required.');
       return;
     }
     setError('');
