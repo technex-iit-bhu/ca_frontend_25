@@ -73,31 +73,36 @@ export async function getLeaderboard() {
 }
 
 export const submitTask = async (taskId: string, driveLink: string) => {
-  const token = localStorage.getItem('token');
-  if (!token) throw new Error('Authentication required.');
-  const userDetails = getProfileDetails(token);
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/submissions/submit`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      task: taskId,
-      user_id: (await userDetails)._id,
-      username: (await userDetails).username,
-      timestamp: new Date().toISOString(),
-      drive_link: driveLink,
-      image_url: '',
-      verified: false,
-      admin_comment: ''
-    }),
-  });
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) throw new Error('Authentication required.');
+    const userDetails = getProfileDetails(token);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/submissions/submit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        task: taskId,
+        user_id: (await userDetails)._id,
+        username: (await userDetails).username,
+        timestamp: new Date().toISOString(),
+        drive_link: driveLink,
+        image_url: '',
+        verified: false,
+        admin_comment: ''
+      }),
+    });
 
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || 'Failed to submit task.');
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Failed to submit task.');
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error submitting task:', error);
+    throw error;
   }
-
-  return response.json();
 };

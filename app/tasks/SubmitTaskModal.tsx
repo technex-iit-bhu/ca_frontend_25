@@ -9,13 +9,13 @@ interface ModalProps {
 }
 
 const SubmitTaskModal: React.FC<ModalProps> = ({ isOpen, onClose, onSubmit }) => {
-  const [driveLink, setDriveLink] = useState('');
+  const [drive_link, setDriveLink] = useState('');
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async () => {
-    if (!driveLink.trim()) {
+    if (!drive_link.trim()) {
       setError('Drive link is required.');
       return;
     }
@@ -23,7 +23,7 @@ const SubmitTaskModal: React.FC<ModalProps> = ({ isOpen, onClose, onSubmit }) =>
     setSubmitting(true);
 
     try {
-      await onSubmit(driveLink);
+      await onSubmit(drive_link);
       setSubmitted(true);
     } catch (e: any) {
       setError(e.message || 'Failed to submit task.');
@@ -47,7 +47,7 @@ const SubmitTaskModal: React.FC<ModalProps> = ({ isOpen, onClose, onSubmit }) =>
               </label>
               <input
                 type="url"
-                value={driveLink}
+                value={drive_link}
                 onChange={(e) => setDriveLink(e.target.value)}
                 placeholder="Enter your Drive link"
                 className="w-full rounded-md border border-gray-300 p-2 text-white"
