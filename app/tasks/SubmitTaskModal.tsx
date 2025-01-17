@@ -25,8 +25,9 @@ const SubmitTaskModal: React.FC<ModalProps> = ({ isOpen, onClose, onSubmit }) =>
     try {
       await onSubmit(drive_link);
       setSubmitted(true);
-    } catch (e: any) {
-      setError(e.message || 'Failed to submit task.');
+    } catch (e: Error | unknown) {
+      const errorMessage = e instanceof Error ? e.message : 'Failed to submit task.';
+      setError(errorMessage);
     } finally {
       setSubmitting(false);
     }

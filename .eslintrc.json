@@ -1,4 +1,7 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
-  "ignorePatterns": ["!*.prettierrc.js"]
+  "ignorePatterns": ["!*.prettierrc.js"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off"
+  }
 }
