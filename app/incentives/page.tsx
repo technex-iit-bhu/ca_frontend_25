@@ -19,9 +19,13 @@ const incentiveImages1 = [
   '/incentives/i9.png',
   '/incentives/i10.png',
   '/incentives/i11.png',
+  '/incentives/i12.png',
+  '/incentives/i13.png',
 ];
 
 const incentiveImages2 = [
+  '/incentives/i13.png',
+  '/incentives/i12.png',
   '/incentives/i11.png',
   '/incentives/i10.png',
   '/incentives/i9.png',
