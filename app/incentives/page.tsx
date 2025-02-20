@@ -6,6 +6,7 @@ import { ChevronsLeft, ChevronsRight, X } from 'lucide-react';
 import Responsibility from '../layout/Responsibilities';
 import Footer from '../layout/Footer';
 import { HeadingTexts } from '../layout/HeadingTexts';
+import Link from 'next/link';
 
 const incentiveImages1 = [
   '/incentives/i1.png',
@@ -253,12 +254,15 @@ const Incentives: React.FC = () => {
               <X className="h-6 w-6" />
             </button>
             <div className="relative h-[40vh] w-[60vw] sm:h-[60vh]">
+              <Link href={selectedImage=="/incentives/i11.png"?"https://quillbot.com/":"#"}>
               <Image
                 src={selectedImage}
                 alt="Selected Incentive"
                 fill
                 className="rounded-lg object-contain"
-              />
+                />
+                </Link>
+                <div className="absolute w-[60vw] bottom-[-40px] text-center">Click the image to learn more</div>
             </div>
           </div>
         </div>
